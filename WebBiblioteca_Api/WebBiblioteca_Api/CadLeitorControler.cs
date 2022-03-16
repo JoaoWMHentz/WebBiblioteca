@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebBiblioteca_Api
 {
-    [Route("admin/cadleitor")]
+    [Route("api/cadleitor")]
     public class leitorControler : Controller
     {
         [HttpGet]
