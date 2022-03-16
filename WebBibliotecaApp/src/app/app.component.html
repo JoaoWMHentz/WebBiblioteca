@@ -1,7 +1,26 @@
-<mat-toolbar class="navBar" color="primary">
-  <div class="LogoContent">Biblioteca</div>
-  <div class="spanContent">
-    <span>Leitor</span>
-    <span>administração</span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        <img src="../assets/Logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        Bibiloteca
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="leitor">Leitor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="admin">Administração</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-3" type="search" placeholder="Pesquisar Livro" aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit">
+          <img src="../assets/search.png"  width="20" height="20">
+        </button>
+      </form>
+    </div>
   </div>
-</mat-toolbar>
+</nav>
+<router-outlet></router-outlet>
