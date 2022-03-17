@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebBiblioteca_Api",
+    "\\WebBiblioteca_Api\\WebBiblioteca_Api"
   ],
-  "SelectedNode": "\\WebBiblioteca_Api.sln",
+  "SelectedNode": "\\WebBiblioteca_Api\\WebBiblioteca_Api\\CadLeitorControler.cs",
   "PreviewInSolutionExplorer": false
 }

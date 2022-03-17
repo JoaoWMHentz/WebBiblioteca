@@ -41,11 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autor\Autor.cs" />
+    <Compile Include="Autor\DaoAutor.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="IConexao.cs" />
     <Compile Include="leitor\Leitor.cs" />
     <Compile Include="leitor\LeitorDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
