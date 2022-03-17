@@ -44,13 +44,22 @@
     <Compile Include="Autor\Autor.cs" />
     <Compile Include="Autor\DaoAutor.cs" />
     <Compile Include="Conexao.cs" />
+    <Compile Include="editora\DaoEditora.cs" />
+    <Compile Include="editora\Editora.cs" />
     <Compile Include="IConexao.cs" />
+    <Compile Include="itemAcervo\DaoItemAcervo.cs" />
+    <Compile Include="itemAcervo\ItemAcervo.cs" />
     <Compile Include="leitor\Leitor.cs" />
     <Compile Include="leitor\LeitorDao.cs" />
+    <Compile Include="local\DaoLocal.cs" />
+    <Compile Include="local\Local.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="secao\DaoSecao.cs" />
+    <Compile Include="secao\Secao.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
