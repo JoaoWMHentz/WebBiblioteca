@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace WebBiblioteca_Api
+namespace WebBiblioteca_Api.ControlerLeitor
 {
     [Route("api/cadleitor")]
     public class leitorControler : Controller

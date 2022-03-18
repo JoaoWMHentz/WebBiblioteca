@@ -2,13 +2,13 @@
 {
     public class Local
     {
-        public Local(int codLoCal, int descricaoLocal)
+        public Local(int codLoCal, string descricaoLocal)
         {
             CodLoCal = codLoCal;
             DescricaoLocal = descricaoLocal;
         }
 
         public int CodLoCal { get; set; }
-        public int DescricaoLocal { get; set; }
+        public string DescricaoLocal { get; set; }
     }
 }

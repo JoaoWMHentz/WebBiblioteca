@@ -15,7 +15,9 @@ namespace BibliotecaApiDLL.local
 		private string UpdateCommand => $@"UPDATE {TableName} SET, 
 										descricaoLocal = @descricaoLocal
 										 WHERE xxxxxxxxxxxx";
-		private string SelectCommand => $@"";
+		private string SelectCommand => $@"SELECT [codLocal]
+											  ,[descricaoLocal]
+										  FROM [MvtBiblioteca].[dbo].[MvtBIBLocal]";
 		public void Salvar(Local local)
 		{
 			using (var cmd = new SqlCommand())
@@ -52,7 +54,7 @@ namespace BibliotecaApiDLL.local
 		{
 			return new Local(
 				Convert.ToInt32(reader["codLocal"]),
-				Convert.ToInt32(reader["descricaoLocal"])
+				Convert.ToString(reader["descricaoLocal"])
 				);
 		}
 	}
