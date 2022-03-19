@@ -1,6 +1,6 @@
 ﻿namespace BibliotecaApiDLL.secao
 {
-    internal class Secao
+    public class Secao
     {
         public Secao(int codSeCao, string descricaoSecao, string codLoCal)
         {

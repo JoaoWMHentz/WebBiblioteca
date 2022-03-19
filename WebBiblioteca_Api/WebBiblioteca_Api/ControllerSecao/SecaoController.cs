@@ -1,24 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using BibliotecaApiDLL.secao;
 
 namespace WebBiblioteca_Api.ControllerSecao
 {
+    [Route("api/cadsecao")]
     public class SecaoController : Controller
     {
         [HttpGet]
         public List<Secao> Get()
         {
-            DaoEditora Dao = new DaoEditora();
-            List<Editora> list = new List<Editora>();
-            list = Dao.GetDados();
-            return list;
+            DaoSecao Dao = new();
+            return Dao.GetDados();
         }
         [HttpPost]
-        public void Create([FromBody] List<Editora> ListaAutores)
+        public void Create([FromBody] List<Secao> ListaSecao)
         {
-            DaoEditora Dao = new DaoEditora();
-            foreach (var Autor in ListaAutores)
+            DaoSecao Dao = new DaoSecao();
+            foreach (var Secao in ListaSecao)
             {
-                Dao.Salvar(Autor);
+                Dao.Salvar(Secao);
             }
         }
     }

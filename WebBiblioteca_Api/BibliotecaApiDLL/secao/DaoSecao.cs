@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace BibliotecaApiDLL.secao
 {
-    internal class DaoSecao
+    public class DaoSecao
     {
 		private string TableName => "MvtBIBLeitor";
 		private string InsertCommand => $@"INSERT INTO {TableName} (codSecao, 
