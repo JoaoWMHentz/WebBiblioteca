@@ -1,28 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LeitorComponent } from './leitor/leitor.component';
-import { AdminComponent } from './admin/admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LeitorSpaceComponent } from './leitor-space/leitor-space.component';
-import { AdminSpaceComponent } from './admin-space/admin-space.component';
-
+import { Homemodule } from './home/home.module';
+import { AdminPageModule } from './admin-page/admin-page.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LeitorComponent,
-    AdminComponent,
-    LeitorSpaceComponent,
-    AdminSpaceComponent
   ],
   imports: [
+    CollapseModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Homemodule,
+    AdminPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminSpaceComponent } from './admin-space.component';
+import { LoginleitorComponent } from './loginleitor.component';
 
-describe('AdminSpaceComponent', () => {
-  let component: AdminSpaceComponent;
-  let fixture: ComponentFixture<AdminSpaceComponent>;
+describe('LoginleitorComponent', () => {
+  let component: LoginleitorComponent;
+  let fixture: ComponentFixture<LoginleitorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminSpaceComponent ]
+      declarations: [ LoginleitorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminSpaceComponent);
+    fixture = TestBed.createComponent(LoginleitorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

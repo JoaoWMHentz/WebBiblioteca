@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeitorSpaceComponent } from './leitor-space.component';
+import { CadLivroComponent } from './cad-livro.component';
 
-describe('LeitorSpaceComponent', () => {
-  let component: LeitorSpaceComponent;
-  let fixture: ComponentFixture<LeitorSpaceComponent>;
+describe('CadLivroComponent', () => {
+  let component: CadLivroComponent;
+  let fixture: ComponentFixture<CadLivroComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeitorSpaceComponent ]
+      declarations: [ CadLivroComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeitorSpaceComponent);
+    fixture = TestBed.createComponent(CadLivroComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

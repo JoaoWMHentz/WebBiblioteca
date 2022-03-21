@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeitorComponent } from './leitor.component';
+import { CadLeitorComponent } from './cad-leitor.component';
 
-describe('LeitorComponent', () => {
-  let component: LeitorComponent;
-  let fixture: ComponentFixture<LeitorComponent>;
+describe('CadLeitorComponent', () => {
+  let component: CadLeitorComponent;
+  let fixture: ComponentFixture<CadLeitorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeitorComponent ]
+      declarations: [ CadLeitorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LeitorComponent);
+    fixture = TestBed.createComponent(CadLeitorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

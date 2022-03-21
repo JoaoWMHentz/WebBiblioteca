@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LeitorComponent } from './leitor/leitor.component';
-import { AdminComponent } from './admin/admin.component';
-import { AdminSpaceComponent } from './admin-space/admin-space.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { HomeComponent } from './home/home.component';
+import { LoginadminComponent } from './loginadmin/loginadmin.component';
+import { LoginleitorComponent } from './loginleitor/loginleitor.component';
 
 const routes: Routes = [
-  { path: 'leitor', component: LeitorComponent},
-  { path: 'admin', component: AdminComponent},
-  { path: 'adminspace', component: AdminSpaceComponent},
+  {path: '', redirectTo: 'home', pathMatch: "full"},
+  {path: 'home', component: HomeComponent},
+  {path: 'loginleitor', component: LoginleitorComponent},
+  {path: 'loginadmin', component: LoginadminComponent},
+  {path: 'adminpage', component: AdminPageComponent}
 ];
 
 @NgModule({
