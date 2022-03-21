@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cad-livro',
-  templateUrl: './cad-livro.component.html',
-  styleUrls: ['./cad-livro.component.scss']
+  selector: 'app-cad-autor',
+  templateUrl: './cad-autor.component.html',
+  styleUrls: ['./cad-autor.component.scss']
 })
-export class CadLivroComponent implements OnInit {
+export class CadAutorComponent implements OnInit {
 
   constructor() { }
 
@@ -16,11 +16,11 @@ export class CadLivroComponent implements OnInit {
     }
     var CadLivroActive = document.getElementById('ACadlivro');
     if (CadLivroActive != null){
-      CadLivroActive.classList.add('active');
+      CadLivroActive.classList.remove('active');
     }
     var ACadAutorActive = document.getElementById('ACadAutor');
     if (ACadAutorActive != null){
-      ACadAutorActive.classList.remove('active');
+      ACadAutorActive.classList.add('active');
     }
   }
 

@@ -1,3 +1,4 @@
+import { CadAutorComponent } from './cad-autor/cad-autor.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPageComponent } from './admin-page.component';
@@ -7,7 +8,8 @@ import { CadLivroComponent } from './cad-livro/cad-livro.component';
 const routesAdmin: Routes = [
   {path: 'adminpage', component: AdminPageComponent, children: [
     {path: 'cadleitor', component: CadLeitorComponent},
-    {path: 'cadlivro', component: CadLivroComponent}
+    {path: 'cadlivro', component: CadLivroComponent},
+    {path: 'cadautor', component: CadAutorComponent}
   ]}
 ];
 

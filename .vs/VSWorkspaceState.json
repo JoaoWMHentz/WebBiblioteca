@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebBiblioteca_Api",
-    "\\WebBiblioteca_Api\\BibliotecaApiDLL",
-    "\\WebBiblioteca_Api\\BibliotecaApiDLL\\itemAcervo"
+    "\\WebBiblioteca_Api"
   ],
-  "SelectedNode": "\\WebBiblioteca_Api\\BibliotecaApiDLL\\itemAcervo\\DaoItemAcervo.cs",
+  "SelectedNode": "\\WebBiblioteca_Api\\WebBiblioteca_Api.sln",
   "PreviewInSolutionExplorer": false
 }
