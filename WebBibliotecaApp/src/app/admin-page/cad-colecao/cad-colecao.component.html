@@ -1,0 +1,55 @@
+<main>
+  <form class="MyForm">
+    <div class="mb-2">
+      <label for="TbTitulo" class="form-label">Nome:</label>
+      <input type="text" class="form-control MyTam" id="TbTitulo">
+    </div>
+    <div class="mb-2">
+      <label for="TbDescricao" class="form-label">Descrição:</label>
+      <input type="text" class="form-control MyTam" id="TbDescricao">
+    </div>
+    <div class="mb-2">
+      <label for="TbAutor" class="form-label">Autor:</label>
+      <input class="form-control" list="datalistOptions" id="TbAutor" placeholder="Digite para Pesquisar...">
+      <datalist id="datalistOptions">
+        <option value="San Francisco">
+        <option value="New York">
+        <option value="Seattle">
+        <option value="Los Angeles">
+        <option value="Chicago">
+    </datalist>
+    </div>
+  </form>
+
+  <form class="MyForm">
+    <div class="mb-2">
+      <label for="TbEditora" class="form-label">Editora:</label>
+      <input class="form-control" list="datalistOptions" id="TbEditora" placeholder="Digite para Pesquisar...">
+      <datalist  id="datalistOptions">
+        <option value="San Francisco">
+        <option value="New York">
+        <option value="Seattle">
+        <option value="Los Angeles">
+        <option value="Chicago">
+      </datalist>
+    </div>
+    <div class="mb-2">
+      <label for="SeTipo" class="form-label">Tipo:</label>
+      <select class="form-control MyTam " id="SeTipo">
+        <option selected>Selecione...</option>
+        <option value="1">Dicionário</option>
+        <option value="2">História</option>
+        <option value="3">Aventura</option>
+        <option value="4">Terror</option>
+        <option value="5">Romance</option>
+        <option value="6">Ficção</option>
+        <option value="7">Enciclopédia</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label for="TbAno" class="form-label e">Ano:</label>
+      <input type="number" class="form-control MyTam" id="TbNum" placeholder="1900" >
+    </div>
+  </form>
+</main>
+

@@ -22,6 +22,21 @@ export class CadLivroComponent implements OnInit {
     if (ACadAutorActive != null){
       ACadAutorActive.classList.remove('active');
     }
+    var ACadEditoraActive = document.getElementById('ACadEditora');
+      if (ACadEditoraActive != null){
+        ACadEditoraActive.classList.remove('active');
+    }
+    var AcadSecaoActiva = document.getElementById('AcadSecao');
+    if (AcadSecaoActiva != null){
+      AcadSecaoActiva.classList.remove('active');
+    }
+    var AcadLocalActiva = document.getElementById('AcadLocal');
+    if (AcadLocalActiva != null){
+      AcadLocalActiva.classList.remove('active');
+    }
+    var AcadSecapActive = document.getElementById('AcadColecao');
+    if (AcadSecapActive != null){
+      AcadSecapActive.classList.remove('active');
+    }
   }
-
 }

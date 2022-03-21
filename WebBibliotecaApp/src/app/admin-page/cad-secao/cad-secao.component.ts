@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CadLeitorModule } from './cad-leitor.module';
 
 @Component({
-  selector: 'app-cad-leitor',
-  templateUrl: './cad-leitor.component.html',
-  styleUrls: ['./cad-leitor.component.scss']
+  selector: 'app-cad-secao',
+  templateUrl: './cad-secao.component.html',
+  styleUrls: ['./cad-secao.component.scss']
 })
-
-export class CadLeitorComponent implements OnInit {
+export class CadSecaoComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
     var CadLeitorActive = document.getElementById('ACadleitor');
     if (CadLeitorActive != null){
-      CadLeitorActive.classList.add('active');
+      CadLeitorActive.classList.remove('active');
     }
     var CadLivroActive = document.getElementById('ACadlivro');
     if (CadLivroActive != null){
@@ -25,12 +23,12 @@ export class CadLeitorComponent implements OnInit {
       ACadAutorActive.classList.remove('active');
     }
     var ACadEditoraActive = document.getElementById('ACadEditora');
-    if (ACadEditoraActive != null){
-      ACadEditoraActive.classList.remove('active');
+      if (ACadEditoraActive != null){
+        ACadEditoraActive.classList.remove('active');
     }
     var AcadSecaoActiva = document.getElementById('AcadSecao');
     if (AcadSecaoActiva != null){
-      AcadSecaoActiva.classList.remove('active');
+      AcadSecaoActiva.classList.add('active');
     }
     var AcadLocalActiva = document.getElementById('AcadLocal');
     if (AcadLocalActiva != null){
@@ -41,5 +39,5 @@ export class CadLeitorComponent implements OnInit {
       AcadSecapActive.classList.remove('active');
     }
   }
-}
 
+}

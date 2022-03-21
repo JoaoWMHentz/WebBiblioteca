@@ -14,31 +14,30 @@
     </div>
     <div class="mb-2">
       <label for="TbAutor" class="form-label">Autor:</label>
-      
-      <div class="input-group mb-2">
-        <input type="text" class="form-control MyTam" id="TbAutor">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="btnPesquisaAutor">
-            <img src="../assets/search.png"  width="20" height="20">
-          </button>
-        </div>
-      </div>
+      <input class="form-control" list="datalistOptions" id="TbAutor" placeholder="Digite para Pesquisar...">
+      <datalist id="datalistOptions">
+        <option value="San Francisco">
+        <option value="New York">
+        <option value="Seattle">
+        <option value="Los Angeles">
+        <option value="Chicago">
+</datalist>
     </div>
     <div class="mb-2">
       <label for="TbEditora" class="form-label">Editora:</label>
-      <div class="input-group mb-2">
-        <input type="text" class="form-control MyTam" id="TbEditora">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="btnPesquisaEditora">
-            <img src="../assets/search.png"  width="20" height="20">
-          </button>
-        </div>
-      </div>
+      <input class="form-control" list="datalistOptions" id="TbEditora" placeholder="Digite para Pesquisar...">
+      <datalist  id="datalistOptions">
+        <option value="San Francisco">
+        <option value="New York">
+        <option value="Seattle">
+        <option value="Los Angeles">
+        <option value="Chicago">
+      </datalist>
     </div>
     <div class="mb-2">
       <label for="TbColecao" class="form-label">Coleção:</label>
       <div class="input-group mb-2">
-        <input type="text" class="form-control MyTam" id="TbColecao">  
+        <input type="text" class="form-control MyTam" id="TbColecao">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="btnPesquisaEditora">
             <img src="../assets/search.png"  width="20" height="20">
@@ -97,10 +96,5 @@
   </form>
 </main>
 
-<select data-live-search="true" data-live-search-style="startsWith" class="selectpicker">
-  <option value="4444">4444</option>
-  <option value="Fedex">Fedex</option>
-  <option value="Elite">Elite</option>
-  <option value="Interp">Interp</option>
-  <option value="Test">Test</option>
-</select>
+
+

@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CadLeitorModule } from './cad-leitor.module';
 
 @Component({
-  selector: 'app-cad-leitor',
-  templateUrl: './cad-leitor.component.html',
-  styleUrls: ['./cad-leitor.component.scss']
+  selector: 'app-cad-editora',
+  templateUrl: './cad-editora.component.html',
+  styleUrls: ['./cad-editora.component.scss']
 })
-
-export class CadLeitorComponent implements OnInit {
+export class CadEditoraComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
     var CadLeitorActive = document.getElementById('ACadleitor');
     if (CadLeitorActive != null){
-      CadLeitorActive.classList.add('active');
+      CadLeitorActive.classList.remove('active');
     }
     var CadLivroActive = document.getElementById('ACadlivro');
     if (CadLivroActive != null){
@@ -26,7 +24,7 @@ export class CadLeitorComponent implements OnInit {
     }
     var ACadEditoraActive = document.getElementById('ACadEditora');
     if (ACadEditoraActive != null){
-      ACadEditoraActive.classList.remove('active');
+      ACadEditoraActive.classList.add('active');
     }
     var AcadSecaoActiva = document.getElementById('AcadSecao');
     if (AcadSecaoActiva != null){
@@ -41,5 +39,5 @@ export class CadLeitorComponent implements OnInit {
       AcadSecapActive.classList.remove('active');
     }
   }
-}
 
+}

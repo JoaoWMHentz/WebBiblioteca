@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Homemodule } from './home/home.module';
 import { AdminPageModule } from './admin-page/admin-page.module';
+import { PesquisaLivroComponent } from './pesquisa-livro/pesquisa-livro.component';
 @NgModule({
   declarations: [
     AppComponent,
+    PesquisaLivroComponent,
   ],
   imports: [
     CollapseModule,
