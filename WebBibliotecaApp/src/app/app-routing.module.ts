@@ -1,3 +1,4 @@
+import { PesquisaLivroComponent } from './pesquisa-livro/pesquisa-livro.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'loginleitor', component: LoginleitorComponent},
   {path: 'loginadmin', component: LoginadminComponent},
-  {path: 'adminpage', component: AdminPageComponent}
+  {path: 'adminpage', component: AdminPageComponent},
+  {path: 'pesquisalivro', component: PesquisaLivroComponent}
 ];
 
 @NgModule({

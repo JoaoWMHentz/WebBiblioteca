@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace BibliotecaApiDLL.itemAcervo
 {
-    internal class ItemAcervo
+    public class ItemAcervo
     {
-        public ItemAcervo(int codLivro, string tiTulo, string descricao, int numeroExemplar, int codAutor, int codEditora, int codColeCao, int codTipo, int codSeCao, int volume, int anoEdicAo, string idIoma, string statuS)
+        public ItemAcervo(int codLivro, string tiTulo, string descricao, string numeroExemplar, string autor, string editora, string coleCao, string tipo, string seCao, int volume, int anoEdicAo, string idIoma, string statuS)
         {
             CodLivro = codLivro;
             TiTulo = tiTulo;
             Descricao = descricao;
             NumeroExemplar = numeroExemplar;
-            CodAutor = codAutor;
-            CodEditora = codEditora;
-            CodColeCao = codColeCao;
-            CodTipo = codTipo;
-            CodSeCao = codSeCao;
+            Autor = autor;
+            Editora = editora;
+            ColeCao = coleCao;
+            Tipo = tipo;
+            SeCao = seCao;
             Volume = volume;
             AnoEdicAo = anoEdicAo;
             IdIoma = idIoma;
@@ -28,12 +28,12 @@ namespace BibliotecaApiDLL.itemAcervo
         public int CodLivro { get; set; }
         public string TiTulo { get; set; }
         public string Descricao { get; set; }
-        public int NumeroExemplar { get; set; }
-        public int CodAutor { get; set; }
-        public int CodEditora { get; set; }
-        public int CodColeCao { get; set; }
-        public int CodTipo { get; set; }
-        public int CodSeCao { get; set; }
+        public string NumeroExemplar { get; set; }
+        public string Autor { get; set; }
+        public string Editora { get; set; }
+        public string ColeCao { get; set; }
+        public string Tipo { get; set; }
+        public string SeCao { get; set; }
         public int Volume { get; set; }
         public int AnoEdicAo { get; set; }
         public string IdIoma { get; set; }

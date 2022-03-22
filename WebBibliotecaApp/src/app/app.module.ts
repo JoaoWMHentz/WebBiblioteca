@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Homemodule } from './home/home.module';
 import { AdminPageModule } from './admin-page/admin-page.module';
 import { PesquisaLivroComponent } from './pesquisa-livro/pesquisa-livro.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { PesquisaLivroComponent } from './pesquisa-livro/pesquisa-livro.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     Homemodule,
-    AdminPageModule
+    AdminPageModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

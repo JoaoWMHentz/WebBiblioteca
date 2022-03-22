@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\WebBiblioteca_Api"
+    "\\WebBiblioteca_Api",
+    "\\WebBiblioteca_Api\\WebBiblioteca_Api",
+    "\\WebBiblioteca_Api\\WebBiblioteca_Api\\ControlerLivro"
   ],
+  "SelectedNode": "\\WebBiblioteca_Api\\WebBiblioteca_Api\\ControlerLivro\\LivroController.cs",
   "PreviewInSolutionExplorer": false
 }

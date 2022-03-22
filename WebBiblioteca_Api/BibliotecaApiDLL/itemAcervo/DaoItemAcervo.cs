@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace BibliotecaApiDLL.itemAcervo
 {
-    internal class DaoItemAcervo
+    public class DaoItemAcervo
     {
 		private string TableName => "MvtBIBLeitor";
 		private string InsertCommand => $@"INSERT INTO {TableName} (
@@ -48,20 +48,24 @@ namespace BibliotecaApiDLL.itemAcervo
 											idioma = @idioma, 
 											status = @status
 											 WHERE xxxxxxxxxxxx";
-		private string SelectCommand => $@"SELECT TOP (1000) [codLivro]
-										  ,[titulo]
-										  ,[descricao]
-										  ,[numeroExemplar]
-										  ,[codAutor]
-										  ,[codEditora]
-										  ,[codColecao]
-										  ,[codTipo]
-										  ,[codSecao]
-										  ,[volume]
-										  ,[anoEdicao]
-										  ,[idioma]
-										  ,[status]
-									  FROM [MvtBIBItemAcervo]";
+		private string SelectCommand => $@"SELECT Livro.codLivro
+												  ,Livro.titulo
+												  ,Livro.descricao
+												  ,Livro.numeroExemplar
+												  ,Autor.nomeAutor
+												  ,Editora.nomeEditora
+												  ,Colecao.nomeColecao
+												  ,Livro.Tipo
+												  ,Secao.descricaoSecao
+												  ,Livro.volume
+												  ,Livro.anoEdicao
+												  ,Livro.idioma
+												  ,Livro.status
+											  FROM MvtBIBItemAcervo As Livro 
+											  INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
+											  INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
+											  INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
+											  INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao";
 		public void Salvar(ItemAcervo itemAcervo)
 		{
 			using (var cmd = new SqlCommand())
@@ -70,11 +74,11 @@ namespace BibliotecaApiDLL.itemAcervo
 				cmd.Parameters.AddWithValue("@titulo", itemAcervo.TiTulo);
 				cmd.Parameters.AddWithValue("@descricao", itemAcervo.Descricao);
 				cmd.Parameters.AddWithValue("@numeroExemplar", itemAcervo.NumeroExemplar);
-				cmd.Parameters.AddWithValue("@codAutor", itemAcervo.CodAutor);
-				cmd.Parameters.AddWithValue("@codEditora", itemAcervo.CodEditora);
-				cmd.Parameters.AddWithValue("@codColecao", itemAcervo.CodColeCao);
-				cmd.Parameters.AddWithValue("@codTipo", itemAcervo.CodTipo);
-				cmd.Parameters.AddWithValue("@codSecao", itemAcervo.CodSeCao);
+				cmd.Parameters.AddWithValue("@nomeAutor", itemAcervo.Autor);
+				cmd.Parameters.AddWithValue("@nomeEditora", itemAcervo.Editora);
+				cmd.Parameters.AddWithValue("@nomeColecao", itemAcervo.ColeCao);
+				cmd.Parameters.AddWithValue("@Tipo", itemAcervo.Tipo);
+				cmd.Parameters.AddWithValue("@descricaoSecao", itemAcervo.SeCao);
 				cmd.Parameters.AddWithValue("@volume", itemAcervo.Volume);
 				cmd.Parameters.AddWithValue("@anoEdicao", itemAcervo.AnoEdicAo);
 				cmd.Parameters.AddWithValue("@idioma", itemAcervo.IdIoma);
@@ -111,12 +115,12 @@ namespace BibliotecaApiDLL.itemAcervo
 				Convert.ToInt32(reader["codLivro"]),
 				Convert.ToString(reader["titulo"]),
 				Convert.ToString(reader["descricao"]),
-				Convert.ToInt32(reader["numeroExemplar"]),
-				Convert.ToInt32(reader["codAutor"]),
-				Convert.ToInt32(reader["codEditora"]),
-				Convert.ToInt32(reader["codColecao"]),
-				Convert.ToInt32(reader["codTipo"]),
-				Convert.ToInt32(reader["codSecao"]),
+				Convert.ToString(reader["numeroExemplar"]),
+				Convert.ToString(reader["nomeAutor"]),
+				Convert.ToString(reader["nomeEditora"]),
+				Convert.ToString(reader["nomeColecao"]),
+				Convert.ToString(reader["Tipo"]),
+				Convert.ToString(reader["descricaoSecao"]),
 				Convert.ToInt32(reader["volume"]),
 				Convert.ToInt32(reader["anoEdicao"]),
 				Convert.ToString(reader["idioma"]),
