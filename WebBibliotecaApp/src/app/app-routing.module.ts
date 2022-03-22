@@ -5,6 +5,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginadminComponent } from './loginadmin/loginadmin.component';
 import { LoginleitorComponent } from './loginleitor/loginleitor.component';
+import { LeitorPageComponent } from './leitor-page/leitor-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: "full"},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'loginleitor', component: LoginleitorComponent},
   {path: 'loginadmin', component: LoginadminComponent},
   {path: 'adminpage', component: AdminPageComponent},
-  {path: 'pesquisalivro', component: PesquisaLivroComponent}
+  {path: 'pesquisalivro', component: PesquisaLivroComponent},
+  {path: 'leitorpage', component: LeitorPageComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,39 @@
+<main>
+  <div class="SideBar">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
+      <a routerLink="adminpage" class="link-dark text-decoration-none">
+        <span class="fs-4">Pagina do Leitor</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="admimpage" class="nav-link SideLink">
+            Meus Livros
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="#" class="nav-link SideLink ">
+            Histórico
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="#" class="nav-link SideLink">
+             Renovar
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="cadleitor" class="nav-link SideLink" id="ACadleitor">
+            Reservar
+          </a>
+        </li>
+      </ul>
+      <hr>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</main>
+
+

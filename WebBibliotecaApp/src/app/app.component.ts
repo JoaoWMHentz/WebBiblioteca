@@ -1,4 +1,3 @@
-import { Livro } from './../Objects/livro';
 import { Component } from '@angular/core';
 
 @Component({
