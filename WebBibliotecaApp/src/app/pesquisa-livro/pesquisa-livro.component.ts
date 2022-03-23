@@ -15,7 +15,7 @@ export class PesquisaLivroComponent implements OnInit {
     
     this.Livros.forEach(l => {
       console
-      console.log(l);
+      console.log(l.Autor);
     });
     
   }

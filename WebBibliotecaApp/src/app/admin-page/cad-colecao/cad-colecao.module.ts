@@ -6,10 +6,10 @@ import { CadColecaoComponent } from '../cad-colecao/cad-colecao.component';
 
 @NgModule({
   declarations: [
-    CadColecaoComponent
+    CadColecaoComponent, NgModule
   ],
   imports: [
-    CommonModule
+    CommonModule, NgModule
   ]
 })
 export class CadColecaoModule { }

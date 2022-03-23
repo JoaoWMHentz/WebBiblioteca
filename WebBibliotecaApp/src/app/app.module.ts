@@ -9,6 +9,7 @@ import { AdminPageModule } from './admin-page/admin-page.module';
 import { PesquisaLivroComponent } from './pesquisa-livro/pesquisa-livro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LeitorPageComponent } from './leitor-page/leitor-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
