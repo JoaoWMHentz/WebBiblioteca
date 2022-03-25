@@ -18,18 +18,19 @@ namespace BibliotecaApiDLL.secao
 										descricaoSecao = @descricaoSecao, 
 										codLocal = @codLocal, 
 										 WHERE xxxxxxxxxxxx";
-		private string SelectCommand => $@"SELECT TOP (1000) [codSecao]
-											  ,[descricaoSecao]
-											  ,[codLocal]
-										  FROM [MvtBIBSecao]";
+		private string SelectCommand => $@"SELECT Secao.codSecao,
+										Secao.descricaoSecao,
+										Local.descricaoLocal FROM MvtBIBSecao AS Secao
+										LEFT JOIN MvtBIBLocal AS Local	
+										ON Secao.codLocal = Local.codLocal";
 		public void Salvar(Secao secao)
 		{
 			using (var cmd = new SqlCommand())
 			{
 				cmd.CommandText = InsertCommand;
-				cmd.Parameters.AddWithValue("@codSecao", secao.CodSeCao);
+				cmd.Parameters.AddWithValue("@codSecao", secao.codSecao);
 				cmd.Parameters.AddWithValue("@descricaoSecao", secao.DescricaoSecao);
-				cmd.Parameters.AddWithValue("@codLocal", secao.CodLoCal);
+				cmd.Parameters.AddWithValue("@codLocal", secao.DescricaoLocal);
 
 				using (var Con = new Conexao())
 				{
@@ -61,7 +62,7 @@ namespace BibliotecaApiDLL.secao
 			return new Secao(
 				Convert.ToInt32(reader["codSecao"]),
 				Convert.ToString(reader["descricaoSecao"]),
-				Convert.ToString(reader["codLocal"])
+				Convert.ToString(reader["descricaoLocal"])
 				);
 		}
 	}

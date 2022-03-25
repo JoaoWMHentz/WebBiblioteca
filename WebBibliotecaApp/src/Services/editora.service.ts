@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EditoraService {
-  pathbase: string = "api/cadeditora";
+  pathbase: string = "/api/cadeditora";
 
   constructor(private http: HttpClient) { }
 

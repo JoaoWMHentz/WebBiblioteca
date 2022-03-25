@@ -23,9 +23,6 @@ export class CadColecaoComponent implements OnInit {
     UpdateActive();
   }
 }
-
-
-
 function UpdateOptionAutor(Autor: Autor){
   var DataList = document.getElementById('DatalistAutor');
   var Option = document.createElement('option');

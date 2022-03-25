@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CadLeitorModule } from './cad-leitor.module';
 
 @Component({
@@ -9,37 +10,61 @@ import { CadLeitorModule } from './cad-leitor.module';
 
 export class CadLeitorComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    var CadLeitorActive = document.getElementById('ACadleitor');
-    if (CadLeitorActive != null){
-      CadLeitorActive.classList.add('active');
-    }
-    var CadLivroActive = document.getElementById('ACadlivro');
-    if (CadLivroActive != null){
-      CadLivroActive.classList.remove('active');
-    }
-    var ACadAutorActive = document.getElementById('ACadAutor');
-    if (ACadAutorActive != null){
-      ACadAutorActive.classList.remove('active');
-    }
-    var ACadEditoraActive = document.getElementById('ACadEditora');
-    if (ACadEditoraActive != null){
-      ACadEditoraActive.classList.remove('active');
-    }
-    var AcadSecaoActiva = document.getElementById('AcadSecao');
-    if (AcadSecaoActiva != null){
-      AcadSecaoActiva.classList.remove('active');
-    }
-    var AcadLocalActiva = document.getElementById('AcadLocal');
-    if (AcadLocalActiva != null){
-      AcadLocalActiva.classList.remove('active');
-    }
-    var AcadSecapActive = document.getElementById('AcadColecao');
-    if (AcadSecapActive != null){
-      AcadSecapActive.classList.remove('active');
-    }
+    this.form = this.formbuilder.group({
+      Nome: [null],
+      Senha: [null],
+      Email: [null],
+      Sexo: [null],
+      DataNascimento: [null],
+      Cpf: [null],
+      Rg: [null],
+      Telefone: [null],
+      celular: [null],
+      Rua: [null],
+      Numero: [null],
+      Bairro: [null],
+      Cidade: [null],
+      Cep: [null]
+    })
+    UpdateActive();
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function UpdateActive(){
+  var CadLeitorActive = document.getElementById('ACadleitor');
+      CadLeitorActive?.classList.add('active');
+    var CadLivroActive = document.getElementById('ACadlivro');
+           CadLivroActive?.classList.remove('active');
+    var ACadAutorActive = document.getElementById('ACadAutor');
+      ACadAutorActive?.classList.remove('active');
+    var ACadEditoraActive = document.getElementById('ACadEditora');
+        ACadEditoraActive?.classList.remove('active');
+    var AcadSecaoActiva = document.getElementById('AcadSecao');
+      AcadSecaoActiva?.classList.remove('active');
+    var AcadLocalActiva = document.getElementById('AcadLocal');
+      AcadLocalActiva?.classList.remove('active');
+    var AcadSecapActive = document.getElementById('AcadColecao');
+      AcadSecapActive?.classList.remove('active');  
+}

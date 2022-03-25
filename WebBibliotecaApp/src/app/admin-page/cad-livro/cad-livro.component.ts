@@ -1,4 +1,10 @@
+import { EditoraService } from './../../../Services/editora.service';
+import { AutorService } from './../../../Services/autor.service';
+import { Editora } from './../../../Objects/Editora';
+import { Autor } from './../../../Objects/Autor';
 import { Component, OnInit } from '@angular/core';
+import { Secao } from 'src/Objects/Secao';
+import { SecaoService } from 'src/Services/secao.service';
 
 @Component({
   selector: 'app-cad-livro',
@@ -7,36 +13,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadLivroComponent implements OnInit {
 
-  constructor() { }
+  constructor(public AutorService: AutorService, public EditoraService: EditoraService, public SecaoService: SecaoService) { }
 
   ngOnInit(): void {
-    var CadLeitorActive = document.getElementById('ACadleitor');
-    if (CadLeitorActive != null){
-      CadLeitorActive.classList.remove('active');
-    }
-    var CadLivroActive = document.getElementById('ACadlivro');
-    if (CadLivroActive != null){
-      CadLivroActive.classList.add('active');
-    }
-    var ACadAutorActive = document.getElementById('ACadAutor');
-    if (ACadAutorActive != null){
-      ACadAutorActive.classList.remove('active');
-    }
-    var ACadEditoraActive = document.getElementById('ACadEditora');
-      if (ACadEditoraActive != null){
-        ACadEditoraActive.classList.remove('active');
-    }
-    var AcadSecaoActiva = document.getElementById('AcadSecao');
-    if (AcadSecaoActiva != null){
-      AcadSecaoActiva.classList.remove('active');
-    }
-    var AcadLocalActiva = document.getElementById('AcadLocal');
-    if (AcadLocalActiva != null){
-      AcadLocalActiva.classList.remove('active');
-    }
-    var AcadSecapActive = document.getElementById('AcadColecao');
-    if (AcadSecapActive != null){
-      AcadSecapActive.classList.remove('active');
-    }
+    this.AutorService.GetAutor().subscribe(autores => {
+      autores.forEach(autor => {UpdateOptionAutor(autor)})})
+
+    this.EditoraService.GetEditora().subscribe(editoras => {
+      editoras.forEach(editora => {UpdateOptionEditora(editora)})})
+
+    this.SecaoService.GetSecao().subscribe(secoes => {
+      secoes.forEach(secao => {UpdateOptionSecao(secao)})})
+
+    UpdateActive();
   }
+}
+
+function UpdateOptionAutor(Autor: Autor){
+  var DataList = document.getElementById('DatalistAutor');
+  var Option = document.createElement('option');
+  Option.value = Autor.nome + " - código " + Autor.codAutor;
+  DataList?.appendChild(Option);
+}
+function UpdateOptionEditora(editora: Editora){
+  var Datalist = document.getElementById('DatalistEditora');
+  var Option = document.createElement('option');
+  Option.value = editora.nomeEditora + ' - código ' + editora.codEditora;
+  Datalist?.appendChild(Option);
+}
+function UpdateOptionSecao(secao: Secao){
+  var Datalist = document.getElementById('DatalistSecao');
+  var Option = document.createElement('option');
+  Option.value = secao.descricaoSecao + ' - ' + secao.descricaoLocal + ' - código ' + secao.codSecao;
+  Datalist?.appendChild(Option);
+}
+
+
+function UpdateActive(){
+  var CadLeitorActive = document.getElementById('ACadleitor');
+     
+      CadLeitorActive?.classList.remove('active');
+    
+    var CadLivroActive = document.getElementById('ACadlivro');
+           CadLivroActive?.classList.add('active');
+    
+    var ACadAutorActive = document.getElementById('ACadAutor');
+     
+      ACadAutorActive?.classList.remove('active');
+    
+    var ACadEditoraActive = document.getElementById('ACadEditora');
+       
+        ACadEditoraActive?.classList.remove('active');
+    
+    var AcadSecaoActiva = document.getElementById('AcadSecao');
+     
+      AcadSecaoActiva?.classList.remove('active');
+    
+    var AcadLocalActiva = document.getElementById('AcadLocal');
+     
+      AcadLocalActiva?.classList.remove('active');
+    
+    var AcadSecapActive = document.getElementById('AcadColecao');
+     
+      AcadSecapActive?.classList.remove('active');
+    
 }
