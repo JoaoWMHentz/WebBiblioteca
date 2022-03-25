@@ -10,12 +10,13 @@ import { CadLeitorModule } from './cad-leitor.module';
 
 export class CadLeitorComponent implements OnInit {
 
-  form: FormGroup;
+
+  formulario: FormGroup;
 
   constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = this.formbuilder.group({
+    this.formulario = this.formbuilder.group({
       Nome: [null],
       Senha: [null],
       Email: [null],
@@ -24,7 +25,7 @@ export class CadLeitorComponent implements OnInit {
       Cpf: [null],
       Rg: [null],
       Telefone: [null],
-      celular: [null],
+      Celular: [null],
       Rua: [null],
       Numero: [null],
       Bairro: [null],
@@ -32,6 +33,9 @@ export class CadLeitorComponent implements OnInit {
       Cep: [null]
     })
     UpdateActive();
+  }
+  onSubmit(){
+    console.log(this.formulario.value);
   }
 }
 

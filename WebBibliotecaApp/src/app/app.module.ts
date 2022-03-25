@@ -1,3 +1,4 @@
+import { CadLeitorModule } from './admin-page/cad-leitor/cad-leitor.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -9,7 +10,7 @@ import { AdminPageModule } from './admin-page/admin-page.module';
 import { PesquisaLivroComponent } from './pesquisa-livro/pesquisa-livro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LeitorPageComponent } from './leitor-page/leitor-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     Homemodule,
     AdminPageModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CadLeitorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

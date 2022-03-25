@@ -8,8 +8,7 @@ import { CadLeitorComponent } from './cad-leitor/cad-leitor.component';
 
 @NgModule({
   declarations: [
-    AdminPageComponent,
-    CadLeitorComponent],
+    AdminPageComponent],
   imports: [
     AdminPageRoutingModule,
     CommonModule],

@@ -1,68 +1,81 @@
-<main>
-  <form class="MyForm">
-    <div class="mb-2">
-      <label for="TbNome" class="form-label">Nome:</label>
-      <input type="text" class="form-control MyTam" id="TbNome">
-    </div>
-    <div class="mb-2">
-      <label for="TbSenha" class="form-label">Senha:</label>
-      <input type="password" class="form-control MyTam" id="TbSenha">
-    </div>
-    <div class="mb-3">
-      <label for="TbEmail" class="form-label">Email:</label>
-      <input type="Email" class="form-control MyTam" id="TbEmail">
-    </div>
-    <div class="mb-2">
-      <label class="form-check-label TamInline">Sexo:</label>
-    </div>
-    <div class="mb-3">
-      <input type="checkbox" class="form-check-input" style="margin-right: 0.5vw;" id="Masc">
-      <label class="form-check-label" for="Masc">Masculino</label>
-      <input type="checkbox" class="form-check-input" style="margin-left: 1vw; margin-right: 0.5vw;" id="Fem">
-      <label class="form-check-label" for="Fem">Femenino</label>
-    </div>
-    <div class="mb-2">
-      <label for="TbNome" class="form-label">Data de Nascimento:</label>
-      <input type="text" class="form-control MyTam" id="TbNome" placeholder="__/__/____">
-    </div>
-    <div class="mb-2">
-      <label for="TbNome" class="form-label TamInline">Cpf:</label>
-      <label for="TbNome" class="form-label TamInline MyMargin">Rg:</label>
-      <div class="mb-2">
-        <input type="tel" class="form-control TamInline" id="TbNome" placeholder="___.___.___-__" maxlength="11">
-        <input type="tel" class="form-control TamInline MyMargin" id="TbNome" placeholder="_-___.___.__" maxlength="9">
+<div class="container">
+  <form class="MyForm" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-6 mb-2">
+        <label for="TbNome" class="form-label">Nome:</label>
+        <input type="text" class="form-control MyTam" id="TbNome" formControlName="Nome">
+      </div>
+      <div class="col-6 mb-2">
+        <label for="TbSenha" class="form-label">Senha:</label>
+        <input type="password" class="form-control MyTam" id="TbSenha" formControlName="Senha">
       </div>
     </div>
-    
-  </form>
-  <form class="MyForm">
-      <div class="md-2">
+    <div class="row">
+      <div class="col-6 mb-3">
+        <label for="TbEmail" class="form-label">Email:</label>
+        <input type="Email" class="form-control MyTam" id="TbEmail" formControlName="Email">
+      </div>
+      <div class="col-6 mb-2">
+        <div class="mb-2">
+          <label class="form-check-label TamInline">Sexo:</label>
+        </div>
+        <div class="mb-3">
+          <input type="checkbox" class="form-check-input" style="margin-right: 0.5vw;" id="Masc" value="M" formControlName="Sexo">
+          <label class="form-check-label" for="Masc">Masculino</label>
+          <input type="checkbox" class="form-check-input" style="margin-left: 1vw; margin-right: 0.5vw;" id="Fem" value="F" formControlName="Sexo">
+          <label class="form-check-label" for="Fem">Femenino</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 mb-2">
+        <label for="TbNasc" class="form-label">Data de Nascimento:</label>
+        <input type="date" class="form-control MyTam" id="TbNasc" placeholder="__/__/____" formControlName="DataNascimento">
+      </div>
+      <div class="col-6 mb-2">
+        <label for="TbCpf" class="form-label TamInline">Cpf:</label>
+        <label for="TbNome" class="form-label TamInline MyMargin">Rg:</label>
+        <div class="mb-2">
+          <input type="text" class="form-control TamInline" id="TbCpf" placeholder="___.___.___-__" maxlength="11" formControlName="Cpf">
+          <input type="text" class="form-control TamInline MyMargin" id="TbTbNome" placeholder="_-___.___.__" maxlength="9" formControlName="Rg">
+        </div>
+      </div>
+    </div>  
+    <div class=" row">
+      <div class="col-6 md-2">
         <label for="TbTel" class="form-label TamInline">Telefone:</label>
         <label for="TbCell" class="form-label TamInline MyMargin">Celular:</label>
           <div class="md-2">
-            <input type="tel" class="form-control TamInline " id="TbTel" placeholder="(__) _____-____">
-            <input type="tel" class="form-control TamInline MyMargin" id="TbCell" placeholder="(__) _____-____">
+            <input type="tel" class="form-control TamInline" id="TbTel" placeholder="(__) _____-____" formControlName="Telefone">
+            <input type="tel" class="form-control TamInline MyMargin" id="TbCell" placeholder="(__) _____-____" formControlName="Celular"><br>
+            <small class="text-muted">(DDD) 00000-0000</small>
         </div>
       </div>
-    <div class="mb-2 mt-2">
-      <label for="TbRua" class="form-label e">Rua:</label>
-      <input type="text" class="form-control MyTam" id="TbRua">
+      <div class="col-6 mb-2">
+        <label for="TbRua" class="form-label e">Rua:</label>
+        <input type="text" class="form-control MyTam" id="TbRua" formControlName="Rua">
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-6 mb-2">
+        <label for="TbNum" class="form-label e">Número:</label>
+        <input type="number" class="form-control MyTam" id="TbNum" formControlName="Numero">
+      </div>
+      <div class="col-6 mb-2">
+        <label for="TbBairro" class="form-label e">Bairro:</label>
+        <input type="text" class="form-control MyTam" id="TbBairro" formControlName="Bairro">
+      </div>
     </div>
-    <div class="mb-2">
-      <label for="TbNum" class="form-label e">Número:</label>
-      <input type="number" class="form-control MyTam" id="TbNum">
+    <div class=" row">
+      <div class="col-6 mb-2">
+        <label for="TbCidade" class="form-label e">Cidade:</label>
+        <input type="text" class="form-control MyTam" id="TbCidade" formControlName="Cidade">
+      </div>
+      <div class="col-6 mb-2">
+        <label for="TbCep" class="form-label e">Cep:</label>
+        <input type="text" class="form-control MyTam " id="TbCep" formControlName="Cep">
+      </div>
     </div>
-    <div class="mb-2">
-      <label for="TbBairro" class="form-label e">Bairro:</label>
-      <input type="text" class="form-control MyTam" id="TbBairro">
-    </div>
-    <div class="mb-2">
-      <label for="TbCidade" class="form-label e">Cidade:</label>
-      <input type="text" class="form-control MyTam" id="TbCidade">
-    </div>
-    <div class="mb-2">
-      <label for="TbCep" class="form-label e">Cep:</label>
-      <input type="text" class="form-control MyTam " id="TbCep">
-    </div>
+    <button type="submit" class="btn btn-primary ">Salvar</button>
   </form>
-</main>
+</div>
