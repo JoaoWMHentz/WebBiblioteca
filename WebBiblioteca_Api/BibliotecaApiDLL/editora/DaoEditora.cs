@@ -9,7 +9,7 @@ namespace BibliotecaApiDLL.editora
 {
     public class DaoEditora
     {
-		private string TableName => "MvtBIBLeitor";
+		private string TableName => "MvtBIBEditora";
 		private string InsertCommand => $@"INSERT INTO {TableName} ( 
 												nomeEditora, 
 												descricaoEditora

@@ -15,13 +15,12 @@ namespace WebBiblioteca_Api.ControlerLocal
             return list;
         }
         [HttpPost]
-        public void Create([FromBody] List<Local> listaLeitores)
+        public void Create([FromBody] Local local)
         {
             DaoLocal Dao = new DaoLocal();
-            foreach (var leitor in listaLeitores)
-            {
-                Dao.Salvar(leitor);
-            }
+            
+                Dao.Salvar(local);
+            
         }
     }
 }

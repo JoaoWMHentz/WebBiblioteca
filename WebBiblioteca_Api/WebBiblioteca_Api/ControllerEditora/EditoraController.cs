@@ -15,13 +15,10 @@ namespace WebBiblioteca_Api.ControlerEditora
             return list;
         }
         [HttpPost]
-        public void Create([FromBody] List<Editora> ListaAutores)
+        public void Create([FromBody] Editora editora)
         {
-            DaoEditora Dao = new DaoEditora();
-            foreach (var Autor in ListaAutores)
-            {
-                Dao.Salvar(Autor);
-            }
+            DaoEditora Dao = new DaoEditora();  
+                Dao.Salvar(editora);
         }
     }
 }

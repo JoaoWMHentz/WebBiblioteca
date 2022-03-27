@@ -6,7 +6,7 @@ namespace BibliotecaApiDLL.local
 {
     public class DaoLocal
     {
-		private string TableName => "MvtBIBLeitor";
+		private string TableName => "MvtBIBLocal";
 		private string InsertCommand => $@"INSERT INTO {TableName} ( 
 											descricaoLocal
 											) VALUES (

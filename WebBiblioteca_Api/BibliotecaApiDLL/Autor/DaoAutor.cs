@@ -6,8 +6,8 @@ namespace BibliotecaApiDLL.Autor
 {
 	public class DaoAutor
 	{
-		private string TableName => "MvtBIBLeitor";
-		private string InsertCommand => $@"INSERT INTO {TableName} (codAutor, nomeAutor, descricaoAutor, ) VALUES (@codAutor, @nomeAutor, @descricaoAutor, )";
+		private string TableName => "MvtBIBAutor";
+		private string InsertCommand => $@"INSERT INTO {TableName} (nomeAutor, descricaoAutor) VALUES (@nomeAutor, @descricaoAutor)";
 		private string UpdateCommand => $@"UPDATE {TableName} SET codAutor = @codAutor, nomeAutor = @nomeAutor, descricaoAutor = @descricaoAutor,  WHERE xxxxxxxxxxxx";
 		private string SelectCommand => $@"SELECT TOP (1000) [codAutor]
 										,[nomeAutor]

@@ -5,7 +5,7 @@ export class Autor {
 
     constructor (codAutor: number, nome: string, descricao: string){
         this.codAutor = codAutor;
-        this.descricao
-        this.nome
+        this.descricao = descricao;
+        this.nome = nome;
     }
 }

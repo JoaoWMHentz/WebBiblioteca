@@ -1,9 +1,18 @@
-<main>
-  <form class="MyForm">
+<div class="MyForm">
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="mb-2">
-      <label for="TbDescricao" class="form-label">Descrição:</label>
-      <textarea type="text" class="form-control MyTam" id="TbDescricao" rows="4" style="resize: none"></textarea>
+      <label for="TbDescricao" class="form-label ">Descrição:</label>
+      <textarea type="text" class="form-control MyTam" id="TbDescricao" rows="4" style="resize: none" formControlName="descricao"></textarea>
     </div>
+    <button type="submit" class="btn btn-primary mb-2 ">Salvar</button>
   </form>
-</main>
+  <div class=" row">
+    <gui-grid [source]="source"
+        [columns]="columns"
+        [paging]="paging"
+        [searching]="searching"
+        >
+    </gui-grid>
+  </div>
+</div>
 

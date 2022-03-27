@@ -1,11 +1,11 @@
 export class Editora {
     codEditora = 0;
     nomeEditora: string = '';
-    descricaoEditora: string = ''
+    descricaoEDitora: string = ''
 
-    constructor(codEditora: number, nomeEditora: string, descricaoEditora: string ){
+    constructor(codEditora: number, nomeEditora: string, descricaoEDitora: string ){
         this.codEditora = codEditora;
         this.nomeEditora = nomeEditora;
-        this.descricaoEditora = descricaoEditora;
+        this.descricaoEDitora = descricaoEDitora;
     }
 }

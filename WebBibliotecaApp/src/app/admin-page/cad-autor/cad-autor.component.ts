@@ -1,6 +1,7 @@
+import { GuiPaging, GuiSearching, GuiColumn, GuiPagingDisplay } from '@generic-ui/ngx-grid';
 import { AutorService } from 'src/Services/autor.service';
 import { Autor } from './../../../Objects/Autor';
-
+import { CadAutorModule } from './cad-autor.module';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -15,7 +16,44 @@ export class CadAutorComponent implements OnInit {
 
   constructor(private formbuilder: FormBuilder, public AutorService: AutorService) { }
 
+  source: Array<Autor> = [];
+
+  paging: GuiPaging = {
+		enabled: true,
+		page: 1,
+		pageSize: 5,
+		pageSizes: [5,10, 25, 50],
+		pagerTop: false,
+		pagerBottom: true,
+		display: GuiPagingDisplay.ADVANCED
+	};
+  searching: GuiSearching = {
+		enabled: true,
+		placeholder: 'Pesquisar...'
+	};
+
+  columns: Array<GuiColumn> = [
+    {
+      header: 'Código',
+      field: 'codAutor',
+      width: 70
+    },
+    {
+      header: 'Nome',
+      field: 'nome',
+      width: 150
+    },
+    {
+      header: 'Descrição',
+      field: 'descricao',
+      width: 300
+    },
+
+];
+
   ngOnInit(): void {
+
+    this.AutorService.GetAutor().subscribe(autores => {this.source = autores; console.log(autores)})
 
     this.formulario1 = this.formbuilder.group({
       codAutor: [0],

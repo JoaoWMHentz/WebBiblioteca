@@ -15,5 +15,8 @@ export class EditoraService {
   public GetEditora(): Observable<Editora[]>{
     return this.http.get<Editora[]>(ApiServiceService.urlPadrao + this.pathbase)
   }
+  public PostEditora(editora: Editora){
+    return this.http.post(ApiServiceService.urlPadrao + this.pathbase, editora)
+  }
 
 }
