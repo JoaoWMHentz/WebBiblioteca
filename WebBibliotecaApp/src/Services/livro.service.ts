@@ -15,4 +15,5 @@ export class LivroService {
     public GetLivro():Observable<Livro[]> {
         return this.http.get<Livro[]>(ApiServiceService.urlPadrao + this.pathBase)
     }
+
   }

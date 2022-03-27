@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RenovarComponent } from './renovar/renovar.component';
-import { ReservarComponent } from './reservar/reservar.component';
+import { LeitorPageComponent } from './leitor-page.component';
 
 
 
 @NgModule({
   declarations: [
-    RenovarComponent,
-    ReservarComponent
+    LeitorPageComponent
   ],
   imports: [
     CommonModule

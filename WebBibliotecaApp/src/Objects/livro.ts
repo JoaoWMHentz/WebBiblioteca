@@ -13,7 +13,7 @@ export class Livro {
     Volume: string = '';
     AnoEdicAo: string = '';
     IdIoma: string = '';
-    StatuS: string = ''; 
+    StatuS: string = '';
 
     constructor( CodLivro: number, TiTulo: string, Descricao: string, NumeroExemplar: string, Autor: string, Editora: string, ColeCao: string, Tipo: string, SeCao: string, Volume: string, AnoEdicAo: string, IdIoma: string, StatuS: string){
         this.CodLivro = CodLivro;

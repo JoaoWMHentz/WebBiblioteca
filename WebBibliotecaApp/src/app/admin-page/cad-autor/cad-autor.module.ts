@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadAutorComponent } from './cad-autor.component';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -9,7 +9,7 @@ import { CadAutorComponent } from './cad-autor.component';
     CadAutorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,  FormsModule, ReactiveFormsModule
   ]
 })
 export class CadAutorModule { }

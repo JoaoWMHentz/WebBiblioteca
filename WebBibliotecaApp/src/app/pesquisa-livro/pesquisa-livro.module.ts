@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PesquisaLivroComponent } from './pesquisa-livro.component';
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PesquisaLivroComponent
+  ],
   imports: [
     CommonModule
   ]

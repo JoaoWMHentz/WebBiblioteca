@@ -14,7 +14,6 @@ namespace BibliotecaApiDLL.leitor
                 // Monta o comando para o DB
                 cmd.CommandText = InsertCommand;
                 // Seta os parametros para o DB
-                cmd.Parameters.AddWithValue("@CodLeitor", leitor.CodLeitor);
                 cmd.Parameters.AddWithValue("@nome", leitor.Nome);
                 cmd.Parameters.AddWithValue("@senha", leitor.Senha);
                 cmd.Parameters.AddWithValue("@Sexo", leitor.Sexo);
@@ -26,7 +25,7 @@ namespace BibliotecaApiDLL.leitor
                 cmd.Parameters.AddWithValue("@telefoneCelular", leitor.TelefoneCelular);
                 cmd.Parameters.AddWithValue("@enderecoRua", leitor.EnderecoRua);
                 cmd.Parameters.AddWithValue("@enderecoNumero", leitor.EnderecoNumero);
-                cmd.Parameters.AddWithValue("@enderecoBairo", leitor.EnderecoBairro);
+                cmd.Parameters.AddWithValue("@enderecoBairro", leitor.EnderecoBairro);
                 cmd.Parameters.AddWithValue("@enderecoCidade", leitor.EnderecoCidade);
                 cmd.Parameters.AddWithValue("@enderecoCep", leitor.EnderecoCep);
                 cmd.Parameters.AddWithValue("@enderecoUf", leitor.EnderecoUF);
@@ -100,7 +99,7 @@ namespace BibliotecaApiDLL.leitor
               ,[enderecoUf]
             FROM [MvtBiblioteca].[dbo].[{TableName}]";
         private string InsertCommand => $@"
-            INSERT INTO {TableName} (CodLeitor,
+            INSERT INTO {TableName} (
                 nome,
                 senha,
                 Sexo,
@@ -116,7 +115,7 @@ namespace BibliotecaApiDLL.leitor
                 enderecoCidade,
                 enderecoCep,
                 enderecoUf)
-            VALUES (@CodLeitor,
+            VALUES (
                 @nome, 
                 @senha,
                 @Sexo,

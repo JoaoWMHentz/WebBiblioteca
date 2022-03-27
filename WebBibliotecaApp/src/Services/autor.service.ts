@@ -15,4 +15,7 @@ export class AutorService {
   public GetAutor():Observable<Autor[]> {
     return this.http.get<Autor[]>(ApiServiceService.urlPadrao + this.pathBase)
   }
+  public PostAutor(autor: Autor){
+    return this.http.post(ApiServiceService.urlPadrao + this.pathBase, autor)
+  }
 }

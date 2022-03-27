@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadLivroComponent } from './cad-livro.component';
@@ -9,7 +10,7 @@ import { CadLivroComponent } from './cad-livro.component';
     CadLivroComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, ReactiveFormsModule
   ]
 })
 export class CadLivroModule { }

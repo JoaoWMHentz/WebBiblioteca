@@ -16,13 +16,10 @@ namespace WebBiblioteca_Api.ControlerLeitor
             return list;
         }
         [HttpPost]
-        public void Create([FromBody] List<Leitor> listaLeitores)
+        public void Create([FromBody] Leitor leitor)
         {
             LeitorDao Dao = new LeitorDao();
-            foreach (var leitor in listaLeitores)
-            {
                 Dao.Salvar(leitor);
-            }
         }
     }
 }
