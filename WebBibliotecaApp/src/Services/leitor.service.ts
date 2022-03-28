@@ -13,8 +13,8 @@ export class LeitorService {
 
   constructor(private http: HttpClient) { }
 
-  public GetLeitor():Observable<Leitor[]> {
-    return this.http.get<Leitor[]>(ApiServiceService.urlPadrao + this.pathBase)
+  public GetLeitor(id: number):Observable<Leitor[]> {
+    return this.http.get<Leitor[]>(ApiServiceService.urlPadrao + this.pathBase + "/" + id)
   }
 
   public PostLeitor(leitor: Leitor){

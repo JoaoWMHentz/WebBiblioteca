@@ -47,25 +47,9 @@ namespace BibliotecaApiDLL.itemAcervo
 											anoEdicao = @anoEdicao, 
 											idioma = @idioma, 
 											status = @status
-											 WHERE xxxxxxxxxxxx";
-		private string SelectCommand => $@"SELECT Livro.codLivro
-												  ,Livro.titulo
-												  ,Livro.descricao
-												  ,Livro.numeroExemplar
-												  ,Autor.nomeAutor
-												  ,Editora.nomeEditora
-												  ,Colecao.nomeColecao
-												  ,Livro.Tipo
-												  ,Secao.descricaoSecao
-												  ,Livro.volume
-												  ,Livro.anoEdicao
-												  ,Livro.idioma
-												  ,Livro.status
-											  FROM MvtBIBItemAcervo As Livro 
-											  INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
-											  INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
-											  INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
-											  INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao";
+											 WHERE codLivro = @codLivro";
+		
+											  
 		public void Salvar(ItemAcervo itemAcervo)
 		{
 			using (var cmd = new SqlCommand())
@@ -75,7 +59,18 @@ namespace BibliotecaApiDLL.itemAcervo
 				string colecao = itemAcervo.ColeCao.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
 				string secao = itemAcervo.SeCao.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
 
-				cmd.CommandText = InsertCommand;
+                if (itemAcervo.CodLivro != 0)
+                {
+					cmd.CommandText = UpdateCommand;
+					cmd.Parameters.AddWithValue("@codLivro", itemAcervo.CodLivro);
+				}
+                else
+                {
+					cmd.CommandText = InsertCommand;
+				}
+
+				
+
 				cmd.Parameters.AddWithValue("@titulo", itemAcervo.TiTulo);
 				cmd.Parameters.AddWithValue("@descricao", itemAcervo.Descricao);
 				cmd.Parameters.AddWithValue("@numeroExemplar", itemAcervo.NumeroExemplar);
@@ -96,12 +91,35 @@ namespace BibliotecaApiDLL.itemAcervo
 				}
 			}
 		}
-		public List<ItemAcervo> GetDados()
+		public List<ItemAcervo> GetDados(int id)
 		{
 			var List = new List<ItemAcervo>();
 			using (var cmd = new SqlCommand())
 			{
-				cmd.CommandText = SelectCommand;
+				if (id != 0)
+                {
+					cmd.CommandText = $@"SELECT Livro.codLivro
+								,Livro.titulo,Livro.descricao,Livro.numeroExemplar,Autor.nomeAutor,Editora.nomeEditora,Colecao.nomeColecao,Livro.Tipo
+								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status
+							FROM MvtBIBItemAcervo As Livro 
+							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
+							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
+							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
+							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
+							WHERE codLivro LIKE '%{id}%'";
+				}
+                else
+                {
+					cmd.CommandText = $@"SELECT Livro.codLivro
+								,Livro.titulo,Livro.descricao,Livro.numeroExemplar,Autor.nomeAutor,Editora.nomeEditora,Colecao.nomeColecao,Livro.Tipo
+								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status
+							FROM MvtBIBItemAcervo As Livro 
+							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
+							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
+							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
+							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
+							WHERE codLivro LIKE '%{""}%'";
+                }
 				using (var Con = new Conexao())
 				{
 					cmd.Connection = Con.Conectar();

@@ -8,6 +8,7 @@ import { LeitorService } from 'src/Services/leitor.service';
 import { LivroService } from 'src/Services/livro.service';
 import { EmprestimoService } from 'src/Services/emprestimo.service';
 import { Emprestimo } from 'src/Objects/emprestimo';
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-emprestimo',
   templateUrl: './emprestimo.component.html',
@@ -18,6 +19,7 @@ export class EmprestimoComponent implements OnInit {
   constructor(private leitorService: LeitorService, public livroService: LivroService, public emprestimoService: EmprestimoService, private formbuilder: FormBuilder) { }
 
   formulario: FormGroup;
+  Language = AppComponent.localization;
 
   tbLivroValue: string = "";
   tbLeitorValue: string = "";
@@ -36,8 +38,8 @@ export class EmprestimoComponent implements OnInit {
 		page: 1,
 		pageSize: 5,
 		pageSizes: [5 ,10, 25, 50],
-		pagerTop: false,
-		pagerBottom: true,
+		pagerTop: true,
+		pagerBottom: false,
 		display: GuiPagingDisplay.ADVANCED
 	};
   searching: GuiSearching = {
@@ -150,8 +152,12 @@ export class EmprestimoComponent implements OnInit {
       onSelectedRowsEmprestimo(rows: Array<GuiSelectedRow>): void {
         this.tbLeitorValue = rows.map((m: GuiSelectedRow) => m.source.leitor)[0];
         this.tbLivroValue = rows.map((m: GuiSelectedRow) => m.source.livro)[0];
-        this.TbDataEmprestimo = rows.map((m: GuiSelectedRow) => m.source.dataEmprestimo)[0];
-        this.TbDataDevolucao = rows.map((m: GuiSelectedRow) => m.source.dataDevolucao)[0];
+        var dataEmprestimo: string[] = rows.map((m: GuiSelectedRow) => m.source.dataEmprestimo)[0].split("/");
+        this.TbDataEmprestimo = dataEmprestimo[2] + "-" + dataEmprestimo[1] +"-"+ dataEmprestimo[0];
+
+        var dataDevolucao: string[] = rows.map((m: GuiSelectedRow) => m.source.dataDevolucao)[0].split("/");
+        this.TbDataDevolucao = dataDevolucao[2] + "-" + dataDevolucao[1] +"-"+ dataDevolucao[0];
+
         this.CodigoLeitor = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
         this.CodigoLivro = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
         this.idEmprestimo = rows.map((m: GuiSelectedRow) => m.source.codEmprestimo)[0];
@@ -162,8 +168,8 @@ export class EmprestimoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.leitorService.GetLeitor().subscribe(leitores => {this.sourceLeitor = leitores; console.log(leitores)})
-    this.livroService.GetLivro().subscribe(livros => { this.sourceLivro = livros})
+    this.leitorService.GetLeitor(0).subscribe(leitores => {this.sourceLeitor = leitores; console.log(leitores)})
+    this.livroService.GetLivro(0).subscribe(livros => { this.sourceLivro = livros})
     this.emprestimoService.GetEmprestimo().subscribe(Emprestimos => { this.source = Emprestimos})
 
     this.formulario = this.formbuilder.group({

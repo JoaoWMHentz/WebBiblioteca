@@ -4,6 +4,7 @@ import { LocalService } from './../../../Services/local.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { CadLocalModule } from './cad-local.module';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-cad-local',
@@ -13,6 +14,8 @@ import { CadLocalModule } from './cad-local.module';
 export class CadLocalComponent implements OnInit {
 
   constructor(private formbuilder: FormBuilder ,public localService :LocalService ) { }
+
+  Language = AppComponent.localization;
 
   source: Array<Local> = [];
 

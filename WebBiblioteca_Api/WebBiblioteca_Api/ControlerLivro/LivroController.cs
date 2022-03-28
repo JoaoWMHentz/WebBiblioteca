@@ -6,11 +6,11 @@ namespace WebBiblioteca_Api.ControlerLivro
     [Route("api/cadlivro")]
     public class LivroController
     {
-        [HttpGet]
-        public List<ItemAcervo> Get()
+        [HttpGet("{id}")]
+        public List<ItemAcervo> Get(int id)
         {
             DaoItemAcervo Dao = new DaoItemAcervo();
-            return Dao.GetDados();
+            return Dao.GetDados(id);
         }
         [HttpPost]
         public void Create([FromBody] ItemAcervo Object)

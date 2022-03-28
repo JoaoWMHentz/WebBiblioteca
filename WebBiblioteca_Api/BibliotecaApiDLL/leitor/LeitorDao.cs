@@ -12,7 +12,16 @@ namespace BibliotecaApiDLL.leitor
             using (var cmd = new SqlCommand())
             {
                 // Monta o comando para o DB
-                cmd.CommandText = InsertCommand;
+
+                if(leitor.CodLeitor != 0)
+                {
+                    cmd.CommandText = UpdateCommand;
+                    cmd.Parameters.AddWithValue("@CodLeitor", leitor.CodLeitor);
+                }
+                else
+                {
+                    cmd.CommandText = InsertCommand;
+                }
                 // Seta os parametros para o DB
                 cmd.Parameters.AddWithValue("@nome", leitor.Nome);
                 cmd.Parameters.AddWithValue("@senha", leitor.Senha);
@@ -37,13 +46,54 @@ namespace BibliotecaApiDLL.leitor
                 }
             }
         }
-        public List<Leitor> GetDados()
+        public List<Leitor> GetDados(int id)
         {
             var leitores = new List<Leitor>();
             using (var cmd = new SqlCommand())
             {
-                // Monta o comando para o DB
-                cmd.CommandText = SelectCommand;
+            if(id != 0)
+                {
+                    cmd.CommandText = $@"
+                        SELECT TOP (1000) [CodLeitor]
+                          ,[nome]
+                          ,[Sexo]
+                          ,[dataNascimento]
+                          ,[cpf]
+                          ,[rg]
+                          ,[senha]
+                          ,[email]
+                          ,[telefone]
+                          ,[telefoneCelular]
+                          ,[enderecoRua]
+                          ,[enderecoNumero]
+                          ,[enderecoBairro]
+                          ,[enderecoCidade]
+                          ,[enderecoCep]
+                          ,[enderecoUf]
+                        FROM {TableName} WHERE CodLeitor LIKE '%{id}%'";
+                }
+                else
+                {
+                    cmd.CommandText = $@"
+                        SELECT TOP (1000) [CodLeitor]
+                          ,[nome]
+                          ,[Sexo]
+                          ,[dataNascimento]
+                            ,[senha]
+                          ,[cpf]
+                          ,[rg]
+                          ,[email]
+                          ,[telefone]
+                          ,[telefoneCelular]
+                          ,[enderecoRua]
+                          ,[enderecoNumero]
+                          ,[enderecoBairro]
+                          ,[enderecoCidade]
+                          ,[enderecoCep]
+                          ,[enderecoUf]
+                        FROM {TableName} WHERE CodLeitor LIKE '%{""}%'";
+                }
+                
                 using (var Con = new Conexao())
                 {
                     // Faz a conexao com o DB
@@ -65,7 +115,7 @@ namespace BibliotecaApiDLL.leitor
             return new Leitor(
                 Convert.ToInt32(reader["CodLeitor"]),
                 Convert.ToString(reader["nome"]),
-                "",
+                Convert.ToString(reader["senha"]),
                 Convert.ToChar(reader["Sexo"]),
                 Convert.ToString(reader["dataNascimento"]),
                 Convert.ToString(reader["cpf"]),
@@ -84,7 +134,8 @@ namespace BibliotecaApiDLL.leitor
         private string SelectCommand => $@"
             SELECT TOP (1000) [CodLeitor]
               ,[nome]
-              ,[Sexo]
+              ,[Sexo],
+               [senha]
               ,[dataNascimento]
               ,[cpf]
               ,[rg]
@@ -97,7 +148,7 @@ namespace BibliotecaApiDLL.leitor
               ,[enderecoCidade]
               ,[enderecoCep]
               ,[enderecoUf]
-            FROM [MvtBiblioteca].[dbo].[{TableName}]";
+            FROM {TableName} WHERE CodLeitor LIKE '%@id%'";
         private string InsertCommand => $@"
             INSERT INTO {TableName} (
                 nome,
@@ -131,5 +182,22 @@ namespace BibliotecaApiDLL.leitor
                 @enderecoCidade,
                 @enderecoCep,
                 @enderecoUf)";
+        private string UpdateCommand => $@"UPDATE {TableName}
+                           SET	nome = @nome,
+		                        senha = @senha,
+		                        Sexo = @Sexo,
+		                        dataNascimento = @dataNascimento,
+		                        cpf = @cpf,
+		                        rg = @rg,
+		                        email = @email,
+		                        telefone = @telefone,
+		                        telefoneCelular = @telefoneCelular,
+		                        enderecoRua = @enderecoRua,
+		                        enderecoNumero = @enderecoNumero,
+		                        enderecoBairro = @enderecoBairro,
+		                        enderecoCidade = @enderecoCidade,
+		                        enderecoCep = @enderecoCep,
+		                        enderecoUf = @enderecoUf
+                            WHERE CodLeitor = @CodLeitor";
     }
 }

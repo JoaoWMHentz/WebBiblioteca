@@ -1,3 +1,4 @@
+import { AppComponent } from 'src/app/app.component';
 import { ColecaoService } from './../../../Services/colecao.service';
 import { GuiPaging, GuiPagingDisplay, GuiSearching, GuiColumn } from '@generic-ui/ngx-grid';
 import { Colecao } from './../../../Objects/Colecao';
@@ -15,6 +16,8 @@ import { CadColecaoModule } from './cad-colecao.module';
   styleUrls: ['./cad-colecao.component.scss']
 })
 export class CadColecaoComponent implements OnInit {
+
+  Language = AppComponent.localization;
 
   constructor(public AutorService: AutorService, public EditoraService: EditoraService, private formbuilder: FormBuilder, private colecaoService: ColecaoService) { }
 

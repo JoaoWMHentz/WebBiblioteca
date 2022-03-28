@@ -10,8 +10,9 @@ import { Autor } from './../../../Objects/Autor';
 import { Component, OnInit } from '@angular/core';
 import { Secao } from 'src/Objects/Secao';
 import { SecaoService } from 'src/Services/secao.service';
-import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiSearching } from '@generic-ui/ngx-grid';
+import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiRowSelection, GuiRowSelectionMode, GuiRowSelectionType, GuiSearching, GuiSelectedRow } from '@generic-ui/ngx-grid';
 import { LivroService } from 'src/Services/livro.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-cad-livro',
@@ -20,13 +21,24 @@ import { LivroService } from 'src/Services/livro.service';
 })
 export class CadLivroComponent implements OnInit {
 
+  Language = AppComponent.localization;
   source: Array<Livro> = [];
 
   formulario: FormGroup;
 
   constructor(private formbuilder: FormBuilder, public AutorService: AutorService, public EditoraService: EditoraService, public SecaoService: SecaoService, public livroService: LivroService,public colecaoService: ColecaoService) { }
-
-
+  Tbtitulo: string;
+  TbDescricao: string;
+  TbNExemplar: string;
+  TbEditora: string;
+  TbColecao: string;
+  TbAutor: string;
+  TbSecao: string;
+  TbVolume: string;
+  TbAno: string;
+  TbTipo: string;
+  TbIdioma: string;
+  TbStatus: string;
 
   paging: GuiPaging = {
 		enabled: true,
@@ -74,6 +86,11 @@ export class CadLivroComponent implements OnInit {
         field: 'coleCao',
       },
     ];
+    rowSelection: boolean | GuiRowSelection = {
+      enabled: true,
+      type: GuiRowSelectionType.CHECKBOX,
+      mode: GuiRowSelectionMode.SINGLE,
+    };
 
   ngOnInit(): void {
 
@@ -105,7 +122,7 @@ export class CadLivroComponent implements OnInit {
       this.colecaoService.GetColecao().subscribe(colecoes => {
         colecoes.forEach(colecao => {UpdateOptionColecao(colecao)})})
 
-    this.livroService.GetLivro().subscribe(livros => { this.source =livros})
+    this.livroService.GetLivro(0).subscribe(livros => { this.source =livros})
 
     UpdateActive();
   }
@@ -123,6 +140,39 @@ export class CadLivroComponent implements OnInit {
     this.SalvarLivro(new Livro(form.CodLivro, form.Titulo, form.Descricao, form.NumeroExemplar, form.Autor, form.Editora, form.Colecao, form.Tipo, form.Secao, form.Volume, form.AnoEdicao, form.Idioma, form.Status))
     console.log(this.formulario.value)
   }
+  onSelectedRows(rows: Array<GuiSelectedRow>): void {
+    var Cod = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
+    this.livroService.GetLivro(Cod).subscribe(livros => {this.livroToTb(livros[0])})
+  }
+  livroToTb(livro: Livro){
+    var form = this.formulario.value;
+    this.Tbtitulo = livro.tiTulo
+    this.TbDescricao = livro.descricao
+    this.TbNExemplar = livro.numeroExemplar
+    this.TbEditora = livro.editora
+    this.TbColecao = livro.coleCao
+    this.TbAutor = livro.autor
+    this.TbSecao = livro.seCao
+    this.TbVolume = livro.volume
+    this.TbAno = livro.anoEdicAo
+    this.TbTipo = livro.tipo
+    this.TbIdioma = livro.idIoma
+    this.TbStatus = livro.statuS
+
+    form.CodLivro = livro.codLivro
+    form.Titulo = livro.tiTulo
+    form.Descricao = livro.descricao
+    form.NumeroExemplar = livro.numeroExemplar
+    form.Autor = livro.autor
+    form.Editora = livro.editora
+    form.Colecao = livro.coleCao
+    form.Tipo = livro.tipo
+    form.Secao = livro.seCao
+    form.Volume = livro.volume
+    form.AnoEdicao = livro.anoEdicAo
+    form.Idioma = livro.idIoma
+    form.Status = livro.statuS
+    }
 }
 
 function UpdateOptionColecao(colecao: Colecao){

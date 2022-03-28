@@ -5,6 +5,7 @@ import { Local } from 'src/Objects/local';
 import { LocalService } from './../../../Services/local.service';
 import { Component, OnInit } from '@angular/core';
 import { CadSecaoModule } from './cad-secao.module';
+import { AppComponent } from 'src/app/app.component';
 @Component({
   selector: 'app-cad-secao',
   templateUrl: './cad-secao.component.html',
@@ -15,6 +16,8 @@ export class CadSecaoComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(private localService: LocalService, private formbuilder: FormBuilder,private secaoService: SecaoService) { }
+
+  Language = AppComponent.localization;
 
   ngOnInit(): void {
     this.formulario = this.formbuilder.group({

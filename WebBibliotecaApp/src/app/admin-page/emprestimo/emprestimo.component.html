@@ -6,7 +6,7 @@
       <div class="col-6 mb-2">
         <label for="TbNome" class="form-label">Leitor:</label>
         <div class="input-group MyTam">
-          <input type="text" class="form-control MyTam" id="TbNome" value="{{tbLeitorValue}}" formControlName="leitor">
+          <input required type="text" class="form-control MyTam" id="TbNome" value="{{tbLeitorValue}}" formControlName="leitor">
           <div class="input-group-prepend">
             <button class="btn btn-outline-secondary" type="button"  data-bs-toggle="modal" data-bs-target="#modalLeitor">
               <img src="../assets/search.png"  width="20" height="20">
@@ -19,7 +19,7 @@
       <div class="col-6 mb-2">
         <label for="TbLivro" class="form-label" >Livro:</label>
         <div class="input-group MyTam">
-          <input type="text" class="form-control MyTam" id="TbLivro" value="{{ tbLivroValue }}" formControlName="livro">
+          <input required type="text" class="form-control MyTam" id="TbLivro" value="{{ tbLivroValue }}" formControlName="livro">
           <div class="input-group-prepend">
             <button class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#modalLivro" >
               <img src="../assets/search.png"  width="20" height="20">
@@ -31,12 +31,12 @@
     <div class="row">
       <div class="col-6 mb-2">
         <label for="TbDataemprestimo" class="form-label">Data Empréstimo:</label>
-        <input type="date" class="form-control MyTam" id="TbDataemprestimo" value="{{TbDataEmprestimo}}" formControlName="dataEmprestimo">
+        <input required type="date" class="form-control MyTam" id="TbDataemprestimo" value="{{TbDataEmprestimo}}" formControlName="dataEmprestimo">
       </div>
 
       <div class="col-6 mb-2">
         <label for="TbDataDevolucao" class="form-label ">Data Devolução</label>
-        <input type="date" class="form-control MyTam" id="TbDataDevolucao" value="{{TbDataDevolucao}}" formControlName="dataDevolucao">
+        <input required type="date" class="form-control MyTam" id="TbDataDevolucao" value="{{TbDataDevolucao}}" formControlName="dataDevolucao">
       </div>
     </div>
     <button type="submit" class="btn btn-primary mb-2">Salvar</button>
@@ -52,6 +52,7 @@
       [searching]="searching"
       [rowSelection]="rowSelection"
       (selectedRows)="onSelectedRowsEmprestimo($event)"
+      [localization]="Language"
       ></gui-grid>
     </div>
   </div>
@@ -71,12 +72,13 @@
           [paging]="paging"
           [searching]="searching"
           [rowSelection]="rowSelection"
-          (selectedRows)="onSelectedRowsLeitor($event)"></gui-grid>
+          (selectedRows)="onSelectedRowsLeitor($event)"
+          [localization]="Language"></gui-grid>
       <br>
       <br>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
@@ -96,10 +98,11 @@
         [paging]="paging"
         [searching]="searching"
         [rowSelection]="rowSelection"
-        (selectedRows)="onSelectedRowsLivro($event)"></gui-grid>
+        (selectedRows)="onSelectedRowsLivro($event)"
+        [localization]="Language"></gui-grid>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

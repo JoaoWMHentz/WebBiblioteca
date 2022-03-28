@@ -1,3 +1,4 @@
+import { AppComponent } from 'src/app/app.component';
 import { EditoraService } from './../../../Services/editora.service';
 import { GuiPaging, GuiPagingDisplay, GuiSearching, GuiColumn } from '@generic-ui/ngx-grid';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -14,6 +15,8 @@ import { EditTemplateFactory } from '@generic-ui/ngx-grid/composition/core/domai
 export class CadEditoraComponent implements OnInit {
 
   constructor(private formbuilder: FormBuilder,public editoraService: EditoraService) { }
+
+  Language = AppComponent.localization;
 
   formulario: FormGroup;
 

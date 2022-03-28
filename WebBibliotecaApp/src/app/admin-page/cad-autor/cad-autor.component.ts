@@ -4,6 +4,7 @@ import { Autor } from './../../../Objects/Autor';
 import { CadAutorModule } from './cad-autor.module';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-cad-autor',
@@ -11,6 +12,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./cad-autor.component.scss']
 })
 export class CadAutorComponent implements OnInit {
+
+  Language = AppComponent.localization;
 
   formulario1: FormGroup;
 
