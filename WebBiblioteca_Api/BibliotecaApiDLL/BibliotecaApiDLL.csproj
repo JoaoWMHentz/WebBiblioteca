@@ -43,9 +43,13 @@
   <ItemGroup>
     <Compile Include="Autor\Autor.cs" />
     <Compile Include="Autor\DaoAutor.cs" />
+    <Compile Include="Colecao\Colecao.cs" />
+    <Compile Include="Colecao\DaoColecao.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="editora\DaoEditora.cs" />
     <Compile Include="editora\Editora.cs" />
+    <Compile Include="Emprestimo\DaoEmprestimo.cs" />
+    <Compile Include="Emprestimo\Emprestimo.cs" />
     <Compile Include="IConexao.cs" />
     <Compile Include="itemAcervo\DaoItemAcervo.cs" />
     <Compile Include="itemAcervo\ItemAcervo.cs" />
@@ -60,8 +64,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Colecao\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EditoraService {
+  
   pathbase: string = "/api/cadeditora";
 
   constructor(private http: HttpClient) { }
@@ -18,5 +19,4 @@ export class EditoraService {
   public PostEditora(editora: Editora){
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase, editora)
   }
-
 }

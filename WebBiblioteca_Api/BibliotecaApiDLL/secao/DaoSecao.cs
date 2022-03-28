@@ -7,13 +7,12 @@ namespace BibliotecaApiDLL.secao
     public class DaoSecao
     {
 		private string TableName => "MvtBIBLeitor";
-		private string InsertCommand => $@"INSERT INTO {TableName} (codSecao, 
+		private string InsertCommand => $@"INSERT INTO {TableName} (
 										descricaoSecao, 
-										codLocal, 
-										) VALUES (@codSecao, 
+										codLocal
+										) VALUES (
 										@descricaoSecao, 
-										@codLocal, 
-)";
+										@codLocal)";
 		private string UpdateCommand => $@"UPDATE {TableName} SET codSecao = @codSecao, 
 										descricaoSecao = @descricaoSecao, 
 										codLocal = @codLocal, 
@@ -31,7 +30,7 @@ namespace BibliotecaApiDLL.secao
 				cmd.Parameters.AddWithValue("@codSecao", secao.codSecao);
 				cmd.Parameters.AddWithValue("@descricaoSecao", secao.DescricaoSecao);
 				cmd.Parameters.AddWithValue("@codLocal", secao.DescricaoLocal);
-
+				
 				using (var Con = new Conexao())
 				{
 					cmd.Connection = Con.Conectar();

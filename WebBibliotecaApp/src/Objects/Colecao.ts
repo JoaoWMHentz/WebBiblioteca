@@ -1,15 +1,15 @@
 export class Colecao {
-  CodColecao = 0;
-  NomeColecao: string = '';
-  Autor: string = '';
-  Editora: string = '';
-  AnoLancamento: string = '';
+  codColecao = 0;
+  nomeColecao: string = "";
+  autor: string = "";
+  editora: string = "";
+  anoLancamento = 0;
 
-  constructor(CodColecao: number, NomeColecao: string, Autor: string, Editora: string, AnoLancamento: string) {
-    this.CodColecao = CodColecao;
-    this.NomeColecao = NomeColecao;
-    this.Autor = Autor;
-    this.Editora = Editora;
-    this.AnoLancamento = AnoLancamento;
+  constructor(CodColecao: number, NomeColecao: string, Autor: string, Editora: string, AnoLancamento: number) {
+    this.codColecao = CodColecao;
+    this.nomeColecao = NomeColecao;
+    this.autor = Autor;
+    this.editora = Editora;
+    this.anoLancamento = AnoLancamento;
   }
 }

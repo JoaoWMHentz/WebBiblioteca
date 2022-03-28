@@ -15,5 +15,8 @@ export class LivroService {
     public GetLivro():Observable<Livro[]> {
         return this.http.get<Livro[]>(ApiServiceService.urlPadrao + this.pathBase)
     }
+    public PostLivro(livro: Livro){
+      return this.http.post(ApiServiceService.urlPadrao + this.pathBase, livro)
+    }
 
   }

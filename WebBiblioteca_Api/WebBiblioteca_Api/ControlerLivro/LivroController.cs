@@ -13,13 +13,10 @@ namespace WebBiblioteca_Api.ControlerLivro
             return Dao.GetDados();
         }
         [HttpPost]
-        public void Create([FromBody] List<ItemAcervo> Lista)
+        public void Create([FromBody] ItemAcervo Object)
         {
             var Dao = new DaoItemAcervo();
-            foreach (var Object in Lista)
-            {
-                Dao.Salvar(Object);
-            }
+               Dao.Salvar(Object);
         }
     }
 }

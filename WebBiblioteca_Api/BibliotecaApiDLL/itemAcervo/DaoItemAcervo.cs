@@ -6,7 +6,7 @@ namespace BibliotecaApiDLL.itemAcervo
 {
     public class DaoItemAcervo
     {
-		private string TableName => "MvtBIBLeitor";
+		private string TableName => "MvtBIBItemAcervo";
 		private string InsertCommand => $@"INSERT INTO {TableName} (
 											titulo, 
 											descricao, 
@@ -14,7 +14,7 @@ namespace BibliotecaApiDLL.itemAcervo
 											codAutor, 
 											codEditora, 
 											codColecao, 
-											codTipo, 
+											Tipo, 
 											codSecao, 
 											volume, 
 											anoEdicao, 
@@ -27,7 +27,7 @@ namespace BibliotecaApiDLL.itemAcervo
 											@codAutor, 
 											@codEditora, 
 											@codColecao, 
-											@codTipo, 
+											@Tipo, 
 											@codSecao, 
 											@volume, 
 											@anoEdicao, 
@@ -70,15 +70,20 @@ namespace BibliotecaApiDLL.itemAcervo
 		{
 			using (var cmd = new SqlCommand())
 			{
+				string autor = itemAcervo.Autor.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
+				string editora = itemAcervo.Editora.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
+				string colecao = itemAcervo.ColeCao.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
+				string secao = itemAcervo.SeCao.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
+
 				cmd.CommandText = InsertCommand;
 				cmd.Parameters.AddWithValue("@titulo", itemAcervo.TiTulo);
 				cmd.Parameters.AddWithValue("@descricao", itemAcervo.Descricao);
 				cmd.Parameters.AddWithValue("@numeroExemplar", itemAcervo.NumeroExemplar);
-				cmd.Parameters.AddWithValue("@nomeAutor", itemAcervo.Autor);
-				cmd.Parameters.AddWithValue("@nomeEditora", itemAcervo.Editora);
-				cmd.Parameters.AddWithValue("@nomeColecao", itemAcervo.ColeCao);
+				cmd.Parameters.AddWithValue("@codAutor", autor);
+				cmd.Parameters.AddWithValue("@codEditora", editora);
+				cmd.Parameters.AddWithValue("@codColecao", colecao);
 				cmd.Parameters.AddWithValue("@Tipo", itemAcervo.Tipo);
-				cmd.Parameters.AddWithValue("@descricaoSecao", itemAcervo.SeCao);
+				cmd.Parameters.AddWithValue("@codSecao", secao);
 				cmd.Parameters.AddWithValue("@volume", itemAcervo.Volume);
 				cmd.Parameters.AddWithValue("@anoEdicao", itemAcervo.AnoEdicAo);
 				cmd.Parameters.AddWithValue("@idioma", itemAcervo.IdIoma);

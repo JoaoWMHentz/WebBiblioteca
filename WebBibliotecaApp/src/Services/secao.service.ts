@@ -17,4 +17,7 @@ export class SecaoService {
   public GetSecao():Observable<Secao[]>{
     return this.http.get<Secao[]>(ApiServiceService.urlPadrao + this.pathBase)
   }
+  public PostSecao(secao: Secao){
+    return this.http.post(ApiServiceService.urlPadrao + this.pathBase, secao)
+  }
 }

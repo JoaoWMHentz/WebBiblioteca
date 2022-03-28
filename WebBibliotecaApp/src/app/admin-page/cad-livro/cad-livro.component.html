@@ -1,83 +1,95 @@
-<main>
-  <form class="MyForm" [formGroup]="formulario">
-    <div class="mb-2">
-      <label for="TbTitulo" class="form-label">Título:</label>
-      <input type="text" class="form-control MyTam" id="TbTitulo" formControlName="Titulo">
-    </div>
-    <div class="mb-2">
-      <label for="TbDescricao" class="form-label">Descrição:</label>
-      <input type="text" class="form-control MyTam" id="TbDescricao" formControlName="Descricao">
-    </div>
-    <div class="mb-2">
-      <label for="\TbNumeroExemplar" class="form-label">Número Exemplar:</label>
-      <input type="text" class="form-control MyTam" id="\TbNumeroExemplar" formControlName="NumeroExemplar">
-    </div>
-    <div class="mb-2">
-      <label for="TbAutor" class="form-label">Autor:</label>
-      <input class="form-control" list="DatalistAutor" id="TbAutor" placeholder="Digite para Pesquisar..." formControlName="Autor">
-      <datalist id="DatalistAutor">
-      </datalist>
-    </div>
-    <div class="mb-2">
-      <label for="TbEditora" class="form-label">Editora:</label>
-      <input class="form-control" list="DatalistEditora" id="TbEditora" placeholder="Digite para Pesquisar..." formControlName="Editora">
-      <datalist  id="DatalistEditora">
-      </datalist>
-    </div>
-    <div class="mb-2">
-      <label for="TbColecao" class="form-label">Coleção:</label>
-      <input type="text" class="form-control MyTam" id="TbColecao">
-      <datalist id="DatalistColecao">
-      </datalist>
-    </div>
-  </form>
-  <form class="MyForm">
-    <div class="mb-2">
-      <label for="SeTipo" class="form-label">Tipo:</label>
-      <select class="form-control MyTam " id="SeTipo">
-        <option selected>Selecione...</option>
-        <option value="1">Dicionário</option>
-        <option value="2">História</option>
-        <option value="3">Aventura</option>
-        <option value="4">Terror</option>
-        <option value="5">Romance</option>
-        <option value="6">Ficção</option>
-        <option value="7">Enciclopédia</option>
-      </select>
-    </div>
-    <div class="mb-2">
-      <label for="TbSecao" class="form-label">Seção:</label>
-      <div class="input-group mb-2">
-        <input type="tel" class="form-control MyTam" id="TbSecao" list="DatalistSecao" placeholder="Digite para Pesquisar...">
-        <datalist id="DatalistSecao">
-
-        </datalist>
+<div class="MyForm">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="mb-2 col-4">
+          <label for="TbTitulo" class="form-label">Título:</label>
+          <input type="text" class="form-control MyTam" id="TbTitulo" formControlName="Titulo">
+        </div>
+        <div class="mb-2 col-4">
+          <label for="TbDescricao" class="form-label">Descrição:</label>
+          <input type="text" class="form-control MyTam" id="TbDescricao" formControlName="Descricao">
+        </div>
+        <div class="mb-2 col-4">
+          <label for="\TbNumeroExemplar" class="form-label">Número Exemplar:</label>
+          <input type="text" class="form-control MyTam" id="\TbNumeroExemplar" formControlName="NumeroExemplar">
+        </div>
       </div>
-    </div>
-    <div class="mb-2">
-      <label for="TbVol" class="form-label e">Volume:</label>
-      <input type="text" class="form-control MyTam" id="TbVol">
-    </div>
-    <div class="mb-2">
-      <label for="TbAno" class="form-label e">Ano:</label>
-      <input type="number" class="form-control MyTam" id="TbNum" placeholder="1900" >
-    </div>
-    <div class="mb-2">
-      <label for="SeIdioma" class="form-label e">Idioma</label>
-      <select class="form-control MyTam " id="SeIdioma">
-        <option selected>Selecione...</option>
-        <option value="1">Português</option>
-        <option value="2">Inglês</option>
-        <option value="3">Espanhol</option>
-      </select>
-    </div>
-    <div class="mb-2 ">
-      <label for="TbStatus" class="form-label e">Status:</label>
-      <input type="text" class="form-control MyTam Disabled" id="TbStatus" disabled="">
-    </div>
-  </form>
-</main>
+      <div class="row">
+        <div class="mb-2 col-4">
+          <label for="TbEditora" class="form-label">Editora:</label>
+          <input class="form-control" list="DatalistEditora" id="TbEditora" placeholder="Digite para Pesquisar..." formControlName="Editora">
+          <datalist  id="DatalistEditora">
+          </datalist>
+        </div>
+        <div class="mb-2 col-4">
+          <label for="TbColecao" class="form-label">Coleção:</label>
+          <input type="text" class="form-control MyTam"list="DatalistColecao" id="TbColecao" formControlName="Colecao" placeholder="Digite para Pesquisar...">
+          <datalist id="DatalistColecao">
+          </datalist>
+        </div>
+        <div class="mb-2 col-4">
+          <label for="TbAutor" class="form-label">Autor:</label>
+          <input class="form-control" list="DatalistAutor" id="TbAutor" placeholder="Digite para Pesquisar..." formControlName="Autor">
+          <datalist  id="DatalistAutor">
+          </datalist>
+        </div>
 
+      </div>
+      <div class="row">
+        <div class="mb-2 col-4">
+          <label for="TbSecao" class="form-label">Seção:</label>
+          <div class="input-group mb-2">
+            <input type="tel" class="form-control MyTam" id="TbSecao" list="DatalistSecao" placeholder="Digite para Pesquisar..." formControlName="Secao">
+            <datalist id="DatalistSecao">
+            </datalist>
+          </div>
+        </div>
+        <div class="mb-2 col-4">
+          <label for="TbVol" class="form-label e">Volume:</label>
+          <input type="text" class="form-control MyTam" id="TbVol" formControlName="Volume">
+        </div>
+        <div class="mb-2 col-4">
+          <label for="TbAno" class="form-label e">Ano:</label>
+          <input type="number" class="form-control MyTam" id="TbNum" placeholder="1900" formControlName="AnoEdicao">
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-2 col-4">
+          <label for="SeTipo" class="form-label">Tipo:</label>
+          <select class="form-control MyTam " id="SeTipo" formControlName="Tipo">
+            <option selected>Selecione...</option>
+            <option value="1">Dicionário</option>
+            <option value="2">História</option>
+            <option value="3">Aventura</option>
+            <option value="4">Terror</option>
+            <option value="5">Romance</option>
+            <option value="6">Ficção</option>
+            <option value="7">Enciclopédia</option>
+          </select>
+        </div>
+        <div class="mb-2 col-4">
+          <label for="SeIdioma" class="form-label e">Idioma</label>
+          <select class="form-control MyTam " id="SeIdioma" formControlName="Idioma">
+            <option selected>Selecione...</option>
+            <option value="1">Português</option>
+            <option value="2">Inglês</option>
+            <option value="3">Espanhol</option>
+          </select>
+        </div>
+        <div class="mb-2 col-4">
+          <label for="TbStatus" class="form-label e">Status:</label>
+          <input type="text" class="form-control MyTam Disabled" id="TbStatus" disabled value="Disponível" >
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Salvar</button>
+    </form>
+    <gui-grid [source]="source"
+    [columns]="columns"
+    [paging]="paging"
+    [searching]="searching"
+    >
+  </gui-grid>
+</div>
 
 
 

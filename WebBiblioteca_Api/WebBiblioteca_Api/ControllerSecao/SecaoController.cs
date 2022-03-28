@@ -13,13 +13,11 @@ namespace WebBiblioteca_Api.ControllerSecao
             return Dao.GetDados();
         }
         [HttpPost]
-        public void Create([FromBody] List<Secao> ListaSecao)
+        public void Create([FromBody] Secao secao)
         {
             DaoSecao Dao = new DaoSecao();
-            foreach (var Secao in ListaSecao)
-            {
-                Dao.Salvar(Secao);
-            }
+            Dao.Salvar(secao);
+            
         }
     }
 }

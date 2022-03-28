@@ -7,7 +7,9 @@ import { CadLocalComponent } from './cad-local.component';
 
 
 @NgModule({
-  declarations: [CadLocalComponent],
+  declarations: [
+    CadLocalComponent
+  ],
   imports: [
     CommonModule, ReactiveFormsModule, GuiGridModule, FormsModule
   ]

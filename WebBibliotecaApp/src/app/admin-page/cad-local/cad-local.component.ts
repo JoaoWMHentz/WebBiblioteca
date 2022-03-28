@@ -22,7 +22,7 @@ export class CadLocalComponent implements OnInit {
 		enabled: true,
 		page: 1,
 		pageSize: 5,
-		pageSizes: [5,10, 25, 50],
+		pageSizes: [5 ,10, 25, 50],
 		pagerTop: false,
 		pagerBottom: true,
 		display: GuiPagingDisplay.ADVANCED
@@ -72,7 +72,6 @@ export class CadLocalComponent implements OnInit {
 }
 
 
-
 function UpdateActive(){
   var CadLeitorActive = document.getElementById('ACadleitor');
   CadLeitorActive?.classList.remove('active');
@@ -88,5 +87,4 @@ function UpdateActive(){
   AcadLocalActiva?.classList.add('active');
   var AcadSecapActive = document.getElementById('AcadColecao');
   AcadSecapActive?.classList.remove('active');
-
 }
