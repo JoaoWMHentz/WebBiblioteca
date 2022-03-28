@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaApiDLL.Emprestimo
 {
-    internal class Emprestimo
+    public class Emprestimo
     {
         public Emprestimo(int codEmprestimo, string leitor, string cpfleitor, string livro, int exemplar, string dataEmprestimo, string dataDevolucao, string status)
         {

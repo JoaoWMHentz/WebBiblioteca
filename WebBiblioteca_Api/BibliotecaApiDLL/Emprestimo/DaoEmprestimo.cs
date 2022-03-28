@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaApiDLL.Emprestimo
 {
-    internal class DaoEmprestimo
+    public class DaoEmprestimo
     {
 
         private string TableName => "MvtBIBEmprestimo";
@@ -83,8 +83,8 @@ namespace BibliotecaApiDLL.Emprestimo
 				Convert.ToString(reader["cpf"]),
 				Convert.ToString(reader["titulo"]),
 				Convert.ToInt32(reader["numeroExemplar"]),
-				Convert.ToString(reader["dataEmprestimo"]),
-				Convert.ToString(reader["dataDevolucao"]),
+				(Convert.ToDateTime(reader["dataEmprestimo"])).ToString("dd/MM/yyyy"),
+				(Convert.ToDateTime(reader["dataDevolucao"])).ToString("dd/MM/yyyy"),
 				Convert.ToString(reader["status"])
 				);
 		}

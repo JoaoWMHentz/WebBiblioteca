@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmprestimoModule } from './emprestimo.module';
 import { LeitorService } from 'src/Services/leitor.service';
 import { LivroService } from 'src/Services/livro.service';
+import { EmprestimoService } from 'src/Services/emprestimo.service';
+import { Emprestimo } from 'src/Objects/emprestimo';
 @Component({
   selector: 'app-emprestimo',
   templateUrl: './emprestimo.component.html',
@@ -13,28 +15,13 @@ import { LivroService } from 'src/Services/livro.service';
 })
 export class EmprestimoComponent implements OnInit {
 
-  constructor(private leitorService: LeitorService, public livroService: LivroService) { }
+  constructor(private leitorService: LeitorService, public livroService: LivroService, public emprestimoService: EmprestimoService) { }
 
   tbLivroValue: string = "";
   tbLeitorValue: string = "";
   formulario: FormGroup;
 
-  source: Array<any> = [
-    {
-      name: 'T-shirt',
-      type: 'clothes',
-      price: '15$'
-    },
-    {
-      name: 'Shoes',
-      type: 'footwear',
-      price: '100$'
-    },
-    {
-      name: 'Ball cap',
-      type: 'headgear',
-      price: '50$'
-    }];
+    source: Array<Emprestimo> = [];
     sourceLeitor: Array<Leitor> = [];
     sourceLivro: Array<Livro> = [];
 
@@ -61,8 +48,20 @@ export class EmprestimoComponent implements OnInit {
     {
       header: 'Descrição',
       field: 'descricaoLocal',
-      width: 300
-    },];
+    },
+    {
+      header: '',
+      field: '',
+    },
+    {
+      header: '',
+      field: '',
+    },
+    {
+      header: '',
+      field: '',
+    },
+    ];
     columnsLeitor: Array<GuiColumn> = [
       {
         header: 'Código',
@@ -132,7 +131,7 @@ export class EmprestimoComponent implements OnInit {
   ngOnInit(): void {
     this.leitorService.GetLeitor().subscribe(leitores => {this.sourceLeitor = leitores; console.log(leitores)})
     this.livroService.GetLivro().subscribe(livros => { this.sourceLivro =livros})
-
+    this.emprestimoService.GetEmprestimo().subscribe(Emprestimos => { this.source = Emprestimos})
   }
 
 }
