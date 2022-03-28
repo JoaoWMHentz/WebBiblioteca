@@ -38,13 +38,16 @@ namespace BibliotecaApiDLL.Emprestimo
                                         LEFT JOIN MvtBIBLeitor AS Leitor
 	                                        ON Leitor.CodLeitor = Emprestimo.codLeitor
                                         LEFT JOIN MvtBIBItemAcervo AS Livro 
-	                                        ON Livro.codLivro = Emprestimo.codLivro";
+	                                        ON Livro.codLivro = Emprestimo.codLivro
+										WHERE Emprestimo.status = 'Emprestado'";
+		private string DevolverCommand => $@"UPDATE {TableName}
+										   SET [status] = 'Disponível'
+											WHERE CodEmprestimo = @CodEmprestimo";
 		public void Salvar(Emprestimo emprestimo)
 		{
 			using (var cmd = new SqlCommand())
 			{
 				cmd.CommandText = InsertCommand;
-				cmd.Parameters.AddWithValue("@codEmprestimo", emprestimo.CodEmprestimo);
 				cmd.Parameters.AddWithValue("@codLeitor", emprestimo.Leitor);
 				cmd.Parameters.AddWithValue("@codLivro", emprestimo.Livro);
 				cmd.Parameters.AddWithValue("@dataEmprestimo", emprestimo.DataEmprestimo);
@@ -87,6 +90,19 @@ namespace BibliotecaApiDLL.Emprestimo
 				(Convert.ToDateTime(reader["dataDevolucao"])).ToString("dd/MM/yyyy"),
 				Convert.ToString(reader["status"])
 				);
+		}
+		public void Devolver(int IdEmprestimo)
+		{
+			using (var cmd = new SqlCommand())
+			{
+				cmd.CommandText = DevolverCommand;
+				cmd.Parameters.AddWithValue("@codEmprestimo", IdEmprestimo);
+				using (var Con = new Conexao())
+				{
+					cmd.Connection = Con.Conectar();
+					cmd.ExecuteNonQuery();
+				}
+			}
 		}
 	}
 }

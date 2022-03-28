@@ -10,6 +10,7 @@ import { ApiServiceService } from './api-service.service';
 export class EmprestimoService {
 
   pathbase: string = "/api/emprestimo";
+  pathbase2: string = "/api/devolver";
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,11 @@ export class EmprestimoService {
     return this.http.get<Emprestimo[]>(ApiServiceService.urlPadrao + this.pathbase)
   }
   public PostEmprestimo(emprestimo: Emprestimo){
+    console.log(emprestimo)
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase, emprestimo)
+  }
+  public Devolver(idEmprestimo: number){
+    console.log(idEmprestimo)
+    return this.http.post(ApiServiceService.urlPadrao + this.pathbase2, idEmprestimo)
   }
 }

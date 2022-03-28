@@ -1,7 +1,7 @@
 import { Livro } from 'src/Objects/livro';
 import { Leitor } from './../../../Objects/Leitor';
 import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiRowSelection, GuiRowSelectionMode, GuiRowSelectionType, GuiSearching, GuiSelectedRow } from '@generic-ui/ngx-grid';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { EmprestimoModule } from './emprestimo.module';
 import { LeitorService } from 'src/Services/leitor.service';
@@ -15,11 +15,17 @@ import { Emprestimo } from 'src/Objects/emprestimo';
 })
 export class EmprestimoComponent implements OnInit {
 
-  constructor(private leitorService: LeitorService, public livroService: LivroService, public emprestimoService: EmprestimoService) { }
+  constructor(private leitorService: LeitorService, public livroService: LivroService, public emprestimoService: EmprestimoService, private formbuilder: FormBuilder) { }
+
+  formulario: FormGroup;
 
   tbLivroValue: string = "";
   tbLeitorValue: string = "";
-  formulario: FormGroup;
+  TbDataEmprestimo: string = "";
+  TbDataDevolucao: string = "";
+  CodigoLeitor: string = "";
+  CodigoLivro: string = "";
+  idEmprestimo: number = 0;
 
     source: Array<Emprestimo> = [];
     sourceLeitor: Array<Leitor> = [];
@@ -42,24 +48,35 @@ export class EmprestimoComponent implements OnInit {
   columns: Array<GuiColumn> = [
     {
       header: 'Código',
-      field: 'codLoCal',
+      field: 'codEmprestimo',
       width: 70
     },
     {
-      header: 'Descrição',
-      field: 'descricaoLocal',
+      header: 'Leitor',
+      field: 'leitor',
     },
     {
-      header: '',
-      field: '',
+      header: 'Cpf',
+      field: 'cpfleitor',
     },
     {
-      header: '',
-      field: '',
+      header: 'Livro',
+      field: 'livro',
     },
     {
-      header: '',
-      field: '',
+      header: 'Exemplar',
+      field: 'exemplar',
+      width: 80
+    },
+    {
+      header: 'Empréstimo',
+      field: 'dataEmprestimo',
+      width: 100
+    },
+    {
+      header: 'Devolução',
+      field: 'dataDevolucao',
+      width: 100
     },
     ];
     columnsLeitor: Array<GuiColumn> = [
@@ -111,6 +128,7 @@ export class EmprestimoComponent implements OnInit {
           header: 'Coleção',
           field: 'coleCao',
         },
+
       ];
       rowSelection: boolean | GuiRowSelection = {
         enabled: true,
@@ -121,17 +139,73 @@ export class EmprestimoComponent implements OnInit {
       onSelectedRowsLivro(rows: Array<GuiSelectedRow>): void {
         var names: string  = rows.map((m: GuiSelectedRow) => m.source.tiTulo)[0];
         this.tbLivroValue = names;
+        this.CodigoLivro = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
       }
       onSelectedRowsLeitor(rows: Array<GuiSelectedRow>): void {
         var names: string  = rows.map((m: GuiSelectedRow) => m.source.nome)[0];
         this.tbLeitorValue = names;
+        this.CodigoLeitor = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
+        console.log(this.CodigoLeitor);
+      }
+      onSelectedRowsEmprestimo(rows: Array<GuiSelectedRow>): void {
+        this.tbLeitorValue = rows.map((m: GuiSelectedRow) => m.source.leitor)[0];
+        this.tbLivroValue = rows.map((m: GuiSelectedRow) => m.source.livro)[0];
+        this.TbDataEmprestimo = rows.map((m: GuiSelectedRow) => m.source.dataEmprestimo)[0];
+        this.TbDataDevolucao = rows.map((m: GuiSelectedRow) => m.source.dataDevolucao)[0];
+        this.CodigoLeitor = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
+        this.CodigoLivro = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
+        this.idEmprestimo = rows.map((m: GuiSelectedRow) => m.source.codEmprestimo)[0];
+        console.log(this.idEmprestimo)
+        var CadLeitorActive = document.getElementById('BtnDevolver');
+        CadLeitorActive?.classList.remove('disabled');
       }
 
 
   ngOnInit(): void {
     this.leitorService.GetLeitor().subscribe(leitores => {this.sourceLeitor = leitores; console.log(leitores)})
-    this.livroService.GetLivro().subscribe(livros => { this.sourceLivro =livros})
+    this.livroService.GetLivro().subscribe(livros => { this.sourceLivro = livros})
     this.emprestimoService.GetEmprestimo().subscribe(Emprestimos => { this.source = Emprestimos})
-  }
 
+    this.formulario = this.formbuilder.group({
+      codEmprestimo: [0],
+      leitor: [''],
+      cpfleitor: [''],
+      livro: [''],
+      exemplar: [0],
+      dataEmprestimo: [''],
+      dataDevolucao : [''],
+      status: ['Emprestado'],
+
+    })
+    var CadLeitorActive = document.getElementById('BtnDevolver');
+    CadLeitorActive?.classList.add('disabled');
+  }
+  SalvarEmprestimo(emprestimo: Emprestimo){
+    console.log(emprestimo)
+    this.emprestimoService.PostEmprestimo(emprestimo).subscribe(
+      () => {
+        console.log("Sucess: " + emprestimo);
+      },(erro: any) => {
+        console.log("Erro" + emprestimo);
+      }
+    )
+  }
+  onSubmit(){
+    var form =  this.formulario.value;
+    form.leitor = this.CodigoLeitor.toString();
+    form.livro = this.CodigoLivro.toString();
+    this.SalvarEmprestimo(new Emprestimo(form.codEmprestimo, form.leitor, form.cpfleitor, form.livro, form.exemplar , form.dataEmprestimo, form.dataDevolucao, form.status))
+    console.log(this.formulario.value)
+  }
+  DevolverOnClik(){
+    this.emprestimoService.Devolver(this.idEmprestimo).subscribe(
+      () => {
+        console.log("Sucess: " + this.idEmprestimo);
+      },(erro: any) => {
+        console.log("Erro" + this.idEmprestimo);
+      }
+    );
+    var CadLeitorActive = document.getElementById('BtnDevolver');
+        CadLeitorActive?.classList.add('disabled');
+  }
 }
