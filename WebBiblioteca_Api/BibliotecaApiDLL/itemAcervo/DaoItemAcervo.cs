@@ -41,7 +41,7 @@ namespace BibliotecaApiDLL.itemAcervo
 											codAutor = @codAutor, 
 											codEditora = @codEditora, 
 											codColecao = @codColecao, 
-											codTipo = @codTipo, 
+											Tipo = @Tipo, 
 											codSecao = @codSecao, 
 											volume = @volume, 
 											anoEdicao = @anoEdicao, 
@@ -100,7 +100,7 @@ namespace BibliotecaApiDLL.itemAcervo
                 {
 					cmd.CommandText = $@"SELECT Livro.codLivro
 								,Livro.titulo,Livro.descricao,Livro.numeroExemplar,Autor.nomeAutor,Editora.nomeEditora,Colecao.nomeColecao,Livro.Tipo
-								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status
+								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status,Livro.codAutor,Livro.codEditora,Livro.codColecao,Livro.codSecao
 							FROM MvtBIBItemAcervo As Livro 
 							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
 							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
@@ -112,13 +112,13 @@ namespace BibliotecaApiDLL.itemAcervo
                 {
 					cmd.CommandText = $@"SELECT Livro.codLivro
 								,Livro.titulo,Livro.descricao,Livro.numeroExemplar,Autor.nomeAutor,Editora.nomeEditora,Colecao.nomeColecao,Livro.Tipo
-								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status
+								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status,Livro.codAutor,Livro.codEditora,Livro.codColecao,Livro.codSecao
 							FROM MvtBIBItemAcervo As Livro 
 							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
 							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
 							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
 							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
-							WHERE codLivro LIKE '%{""}%'";
+							";
                 }
 				using (var Con = new Conexao())
 				{
@@ -139,11 +139,11 @@ namespace BibliotecaApiDLL.itemAcervo
 				Convert.ToString(reader["titulo"]),
 				Convert.ToString(reader["descricao"]),
 				Convert.ToString(reader["numeroExemplar"]),
-				Convert.ToString(reader["nomeAutor"]),
-				Convert.ToString(reader["nomeEditora"]),
-				Convert.ToString(reader["nomeColecao"]),
+				Convert.ToString(reader["nomeAutor"]) + " - código " + Convert.ToString(reader["codAutor"]),
+				Convert.ToString(reader["nomeEditora"]) + " - código " + Convert.ToString(reader["codEditora"]),
+				Convert.ToString(reader["nomeColecao"]) + " - código " + Convert.ToString(reader["codColecao"]),
 				Convert.ToString(reader["Tipo"]),
-				Convert.ToString(reader["descricaoSecao"]),
+				Convert.ToString(reader["descricaoSecao"]) + " - código " + Convert.ToString(reader["codSecao"]),
 				Convert.ToInt32(reader["volume"]),
 				Convert.ToInt32(reader["anoEdicao"]),
 				Convert.ToString(reader["idioma"]),

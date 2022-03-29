@@ -3,33 +3,33 @@
       <div class="row">
         <div class="mb-2 col-4">
           <label for="TbTitulo" class="form-label">Título:</label>
-          <input type="text" class="form-control MyTam" id="TbTitulo" value="{{Tbtitulo}}" formControlName="Titulo">
+          <input type="text" class="form-control MyTam" id="TbTitulo"  formControlName="tiTulo">
         </div>
         <div class="mb-2 col-4">
           <label for="TbDescricao" class="form-label">Descrição:</label>
-          <input type="text" class="form-control MyTam" id="TbDescricao" value="{{TbDescricao}}" formControlName="Descricao">
+          <input type="text" class="form-control MyTam" id="TbDescricao"  formControlName="descricao">
         </div>
         <div class="mb-2 col-4">
           <label for="\TbNumeroExemplar" class="form-label">Número Exemplar:</label>
-          <input type="text" class="form-control MyTam" id="\TbNumeroExemplar" value="{{TbNExemplar}}" formControlName="NumeroExemplar">
+          <input type="text" class="form-control MyTam" id="\TbNumeroExemplar"  formControlName="numeroExemplar">
         </div>
       </div>
       <div class="row">
         <div class="mb-2 col-4">
           <label for="TbEditora" class="form-label">Editora:</label>
-          <input class="form-control" list="DatalistEditora" id="TbEditora" value="{{TbEditora}}" placeholder="Digite para Pesquisar..." formControlName="Editora">
+          <input class="form-control" list="DatalistEditora" id="TbEditora"  placeholder="Digite para Pesquisar..." formControlName="editora">
           <datalist  id="DatalistEditora">
           </datalist>
         </div>
         <div class="mb-2 col-4">
           <label for="TbColecao" class="form-label">Coleção:</label>
-          <input type="text" class="form-control MyTam"list="DatalistColecao" value="{{TbColecao}}" id="TbColecao" formControlName="Colecao" placeholder="Digite para Pesquisar...">
+          <input type="text" class="form-control MyTam"list="DatalistColecao"  id="TbColecao" formControlName="coleCao" placeholder="Digite para Pesquisar...">
           <datalist id="DatalistColecao">
           </datalist>
         </div>
         <div class="mb-2 col-4">
           <label for="TbAutor" class="form-label">Autor:</label>
-          <input class="form-control" list="DatalistAutor" id="TbAutor" value="{{TbAutor}}" placeholder="Digite para Pesquisar..." formControlName="Autor">
+          <input class="form-control" list="DatalistAutor" id="TbAutor"  placeholder="Digite para Pesquisar..." formControlName="autor">
           <datalist  id="DatalistAutor">
           </datalist>
         </div>
@@ -39,24 +39,24 @@
         <div class="mb-2 col-4">
           <label for="TbSecao" class="form-label">Seção:</label>
           <div class="input-group mb-2">
-            <input type="tel" class="form-control MyTam" id="TbSecao" value="{{TbSecao}}" list="DatalistSecao" placeholder="Digite para Pesquisar..." formControlName="Secao">
+            <input type="tel" class="form-control MyTam" id="TbSecao"  list="DatalistSecao" placeholder="Digite para Pesquisar..." formControlName="seCao">
             <datalist id="DatalistSecao">
             </datalist>
           </div>
         </div>
         <div class="mb-2 col-4">
           <label for="TbVol" class="form-label e">Volume:</label>
-          <input type="text" class="form-control MyTam" id="TbVol" value="{{TbVolume}}" formControlName="Volume">
+          <input type="text" class="form-control MyTam" id="TbVol"  formControlName="volume">
         </div>
         <div class="mb-2 col-4">
           <label for="TbAno" class="form-label e">Ano:</label>
-          <input type="number" class="form-control MyTam" id="TbNum"value="{{TbAno}}" placeholder="1900" formControlName="AnoEdicao">
+          <input type="number" class="form-control MyTam" id="TbNum" placeholder="1900" formControlName="anoEdicAo">
         </div>
       </div>
       <div class="row">
         <div class="mb-2 col-4">
           <label for="SeTipo" class="form-label">Tipo:</label>
-          <select class="form-control MyTam " id="SeTipo" formControlName="Tipo" value="{{TbTipo}}">
+          <select class="form-control MyTam " id="SeTipo" formControlName="tipo" >
             <option selected>Selecione...</option>
             <option value="1">Dicionário</option>
             <option value="2">História</option>
@@ -69,7 +69,7 @@
         </div>
         <div class="mb-2 col-4">
           <label for="SeIdioma" class="form-label e">Idioma</label>
-          <select class="form-control MyTam " id="SeIdioma" formControlName="Idioma" value="{{TbIdioma}}">
+          <select class="form-control MyTam " id="SeIdioma" formControlName="idIoma">
             <option selected>Selecione...</option>
             <option value="1">Português</option>
             <option value="2">Inglês</option>
@@ -78,7 +78,7 @@
         </div>
         <div class="mb-2 col-4">
           <label for="TbStatus" class="form-label e">Status:</label>
-          <input type="text" class="form-control MyTam Disabled" id="TbStatus" value="{{TbStatus}}" disabled value="Disponível" >
+          <input type="text" class="form-control MyTam Disabled" id="TbStatus" disabled value="Disponível" >
         </div>
       </div>
       <button type="submit" class="btn btn-primary mb-2">Salvar</button>

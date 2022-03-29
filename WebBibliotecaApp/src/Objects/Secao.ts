@@ -1,5 +1,5 @@
 export class Secao {
-    codSecao = 0;
+    codSecao: number = 0;
     descricaoSecao: string = '';
     descricaoLocal: string = '';
 

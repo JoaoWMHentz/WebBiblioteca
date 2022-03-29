@@ -25,6 +25,7 @@ export class EmprestimoComponent implements OnInit {
   tbLeitorValue: string = "";
   TbDataEmprestimo: string = "";
   TbDataDevolucao: string = "";
+
   CodigoLeitor: string = "";
   CodigoLivro: string = "";
   idEmprestimo: number = 0;
@@ -38,8 +39,8 @@ export class EmprestimoComponent implements OnInit {
 		page: 1,
 		pageSize: 5,
 		pageSizes: [5 ,10, 25, 50],
-		pagerTop: true,
-		pagerBottom: false,
+		pagerTop: false,
+		pagerBottom: true,
 		display: GuiPagingDisplay.ADVANCED
 	};
   searching: GuiSearching = {
@@ -147,23 +148,31 @@ export class EmprestimoComponent implements OnInit {
         var names: string  = rows.map((m: GuiSelectedRow) => m.source.nome)[0];
         this.tbLeitorValue = names;
         this.CodigoLeitor = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
-        console.log(this.CodigoLeitor);
       }
       onSelectedRowsEmprestimo(rows: Array<GuiSelectedRow>): void {
-        this.tbLeitorValue = rows.map((m: GuiSelectedRow) => m.source.leitor)[0];
-        this.tbLivroValue = rows.map((m: GuiSelectedRow) => m.source.livro)[0];
-        var dataEmprestimo: string[] = rows.map((m: GuiSelectedRow) => m.source.dataEmprestimo)[0].split("/");
-        this.TbDataEmprestimo = dataEmprestimo[2] + "-" + dataEmprestimo[1] +"-"+ dataEmprestimo[0];
 
-        var dataDevolucao: string[] = rows.map((m: GuiSelectedRow) => m.source.dataDevolucao)[0].split("/");
-        this.TbDataDevolucao = dataDevolucao[2] + "-" + dataDevolucao[1] +"-"+ dataDevolucao[0];
+        if (rows.length == 0){
+          document.getElementById('BtnDevolver')?.classList.add('disabled');
+          document.getElementById('BtnSubmit')?.classList.remove('disabled');
+          this.tbLeitorValue = "";
+          this.tbLivroValue = "";
+          this.TbDataEmprestimo ="";
 
-        this.CodigoLeitor = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
-        this.CodigoLivro = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
-        this.idEmprestimo = rows.map((m: GuiSelectedRow) => m.source.codEmprestimo)[0];
-        console.log(this.idEmprestimo)
-        var CadLeitorActive = document.getElementById('BtnDevolver');
-        CadLeitorActive?.classList.remove('disabled');
+        }else{
+          document.getElementById('BtnDevolver')?.classList.remove('disabled');
+          document.getElementById('BtnSubmit')?.classList.add('disabled');
+          this.tbLeitorValue = rows.map((m: GuiSelectedRow) => m.source.leitor)[0];
+          this.tbLivroValue = rows.map((m: GuiSelectedRow) => m.source.livro)[0];
+          var dataEmprestimo: string[] = rows.map((m: GuiSelectedRow) => m.source.dataEmprestimo)[0].split("/");
+          this.TbDataEmprestimo = dataEmprestimo[2] + "-" + dataEmprestimo[1] +"-"+ dataEmprestimo[0];
+          var dataDevolucao: string[] = rows.map((m: GuiSelectedRow) => m.source.dataDevolucao)[0].split("/");
+          this.TbDataDevolucao = dataDevolucao[2] + "-" + dataDevolucao[1] +"-"+ dataDevolucao[0];
+          this.CodigoLeitor = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
+          this.CodigoLivro = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
+          this.idEmprestimo = rows.map((m: GuiSelectedRow) => m.source.codEmprestimo)[0];
+        }
+
+
       }
 
 
@@ -183,8 +192,9 @@ export class EmprestimoComponent implements OnInit {
       status: ['Emprestado'],
 
     })
-    var CadLeitorActive = document.getElementById('BtnDevolver');
-    CadLeitorActive?.classList.add('disabled');
+    activeUpdate()
+    document.getElementById('BtnDevolver')?.classList.add('disabled');
+    document.getElementById('BtnSubmit')?.classList.remove('disabled');
   }
   SalvarEmprestimo(emprestimo: Emprestimo){
     console.log(emprestimo)
@@ -201,7 +211,7 @@ export class EmprestimoComponent implements OnInit {
     form.leitor = this.CodigoLeitor.toString();
     form.livro = this.CodigoLivro.toString();
     this.SalvarEmprestimo(new Emprestimo(form.codEmprestimo, form.leitor, form.cpfleitor, form.livro, form.exemplar , form.dataEmprestimo, form.dataDevolucao, form.status))
-    console.log(this.formulario.value)
+    location.reload();
   }
   DevolverOnClik(){
     this.emprestimoService.Devolver(this.idEmprestimo).subscribe(
@@ -211,7 +221,19 @@ export class EmprestimoComponent implements OnInit {
         console.log("Erro" + this.idEmprestimo);
       }
     );
-    var CadLeitorActive = document.getElementById('BtnDevolver');
-        CadLeitorActive?.classList.add('disabled');
+    document.getElementById('BtnDevolver')?.classList.add('disabled');
+        this.emprestimoService.GetEmprestimo().subscribe(Emprestimos => { this.source = Emprestimos})
+        location.reload();
   }
+}
+
+function activeUpdate(){
+  document.getElementById('ACadleitor')?.classList.remove('active');
+  document.getElementById('ACadlivro')?.classList.remove('active');
+  document.getElementById('ACadAutor')?.classList.remove('active');
+  document.getElementById('ACadEditora')?.classList.remove('active');
+  document.getElementById('AcadSecao')?.classList.remove('active');
+  document.getElementById('AcadLocal')?.classList.remove('active');
+  document.getElementById('AcadColecao')?.classList.remove('active');
+  document.getElementById('AEmprestimo')?.classList.add('active');
 }

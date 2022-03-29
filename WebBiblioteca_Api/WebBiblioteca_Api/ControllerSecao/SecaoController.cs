@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using BibliotecaApiDLL.secao;
+﻿using BibliotecaApiDLL.secao;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebBiblioteca_Api.ControllerSecao
 {
     [Route("api/cadsecao")]
-    public class SecaoController : Controller
+    public class SecaoController
     {
+        
         [HttpGet]
         public List<Secao> Get()
         {
@@ -17,7 +18,8 @@ namespace WebBiblioteca_Api.ControllerSecao
         {
             DaoSecao Dao = new DaoSecao();
             Dao.Salvar(secao);
-            
+
         }
     }
 }
+

@@ -4,12 +4,12 @@
     {
         public Secao(int codSeCao, string descricaoSecao, string codLocal)
         {
-            codSecao = codSeCao;
+            CodSecao = codSeCao;
             DescricaoSecao = descricaoSecao;
             DescricaoLocal = codLocal;
         }
 
-        public int codSecao { get; set; }
+        public int CodSecao { get; set; }
         public string DescricaoSecao { get; set; }
         public string DescricaoLocal { get; set; }
     }

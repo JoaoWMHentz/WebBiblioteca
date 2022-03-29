@@ -27,18 +27,7 @@ export class CadLivroComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(private formbuilder: FormBuilder, public AutorService: AutorService, public EditoraService: EditoraService, public SecaoService: SecaoService, public livroService: LivroService,public colecaoService: ColecaoService) { }
-  Tbtitulo: string;
-  TbDescricao: string;
-  TbNExemplar: string;
-  TbEditora: string;
-  TbColecao: string;
-  TbAutor: string;
-  TbSecao: string;
-  TbVolume: string;
-  TbAno: string;
-  TbTipo: string;
-  TbIdioma: string;
-  TbStatus: string;
+
 
   paging: GuiPaging = {
 		enabled: true,
@@ -95,19 +84,19 @@ export class CadLivroComponent implements OnInit {
   ngOnInit(): void {
 
     this.formulario = this.formbuilder.group({
-      CodLivro: [0],
-      Titulo: [''],
-      Descricao: [''],
-      NumeroExemplar: [''],
-      Autor: [''],
-      Editora: [''],
-      Colecao: [''],
-      Tipo: [''],
-      Secao: [''],
-      Volume: [''],
-      AnoEdicao: [''],
-      Idioma: [''],
-      Status: ['Disponível']
+    codLivro: [],
+    tiTulo :[""],
+    descricao :[""],
+    numeroExemplar :[""],
+    autor :[""],
+    editora :[""],
+    coleCao :[""],
+    tipo :[""],
+    seCao :[""],
+    volume :[""],
+    anoEdicAo :[""],
+    idIoma :[""],
+    statuS :[""]
     })
 
 
@@ -136,42 +125,19 @@ export class CadLivroComponent implements OnInit {
     )
   }
   onSubmit(){
-    var form =  this.formulario.value;
-    this.SalvarLivro(new Livro(form.CodLivro, form.Titulo, form.Descricao, form.NumeroExemplar, form.Autor, form.Editora, form.Colecao, form.Tipo, form.Secao, form.Volume, form.AnoEdicao, form.Idioma, form.Status))
+    let livro: Livro = {...this.formulario.value};
+    livro
+    this.SalvarLivro(livro)
     console.log(this.formulario.value)
+    location.reload();
   }
   onSelectedRows(rows: Array<GuiSelectedRow>): void {
     var Cod = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
     this.livroService.GetLivro(Cod).subscribe(livros => {this.livroToTb(livros[0])})
   }
   livroToTb(livro: Livro){
-    var form = this.formulario.value;
-    this.Tbtitulo = livro.tiTulo
-    this.TbDescricao = livro.descricao
-    this.TbNExemplar = livro.numeroExemplar
-    this.TbEditora = livro.editora
-    this.TbColecao = livro.coleCao
-    this.TbAutor = livro.autor
-    this.TbSecao = livro.seCao
-    this.TbVolume = livro.volume
-    this.TbAno = livro.anoEdicAo
-    this.TbTipo = livro.tipo
-    this.TbIdioma = livro.idIoma
-    this.TbStatus = livro.statuS
+    this.formulario.patchValue(livro);
 
-    form.CodLivro = livro.codLivro
-    form.Titulo = livro.tiTulo
-    form.Descricao = livro.descricao
-    form.NumeroExemplar = livro.numeroExemplar
-    form.Autor = livro.autor
-    form.Editora = livro.editora
-    form.Colecao = livro.coleCao
-    form.Tipo = livro.tipo
-    form.Secao = livro.seCao
-    form.Volume = livro.volume
-    form.AnoEdicao = livro.anoEdicAo
-    form.Idioma = livro.idIoma
-    form.Status = livro.statuS
     }
 }
 
@@ -203,18 +169,12 @@ function UpdateOptionSecao(secao: Secao){
 
 
 function UpdateActive(){
-  var CadLeitorActive = document.getElementById('ACadleitor');
-      CadLeitorActive?.classList.remove('active');
-    var CadLivroActive = document.getElementById('ACadlivro');
-           CadLivroActive?.classList.add('active');
-    var ACadAutorActive = document.getElementById('ACadAutor');
-      ACadAutorActive?.classList.remove('active');
-    var ACadEditoraActive = document.getElementById('ACadEditora');
-        ACadEditoraActive?.classList.remove('active');
-    var AcadSecaoActiva = document.getElementById('AcadSecao');
-      AcadSecaoActiva?.classList.remove('active');
-    var AcadLocalActiva = document.getElementById('AcadLocal');
-      AcadLocalActiva?.classList.remove('active');
-    var AcadSecapActive = document.getElementById('AcadColecao');
-      AcadSecapActive?.classList.remove('active');
+  document.getElementById('ACadleitor')?.classList.remove('active');
+  document.getElementById('ACadlivro')?.classList.add('active');
+  document.getElementById('ACadAutor')?.classList.remove('active');
+  document.getElementById('ACadEditora')?.classList.remove('active');
+  document.getElementById('AcadSecao')?.classList.remove('active');
+  document.getElementById('AcadLocal')?.classList.remove('active');
+  document.getElementById('AcadColecao')?.classList.remove('active');
+  document.getElementById('AEmprestimo')?.classList.remove('active');
 }

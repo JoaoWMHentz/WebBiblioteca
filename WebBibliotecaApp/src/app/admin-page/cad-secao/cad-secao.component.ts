@@ -21,8 +21,8 @@ export class CadSecaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.formbuilder.group({
-      CodSecao: [0],
-      Descricao: [''],
+      codSecao: ['0'],
+      descricaoSecao: [''],
       descricaoLocal: ['']
     })
 
@@ -36,16 +36,16 @@ export class CadSecaoComponent implements OnInit {
       () => {
         console.log("Sucess: " + secao);
       },(erro: any) => {
-        console.log("Erro" + secao.codSecao + secao.descricaoLocal + secao.descricaoSecao);
+        console.log("Erro" + secao);
       }
     )
   }
   onSubmit(){
-    var form =  this.formulario.value;
-    this.SalvarSecao(new Secao(form.CodSecao, form.Descricao, form.descricaoLocal))
-    console.log(this.formulario.value)
+    let secao: Secao = {...this.formulario.value} ;
+    console.log(secao);
+    this.SalvarSecao(secao)
+    location.reload();
   }
-
 }
 
 function UpdateOptionLocal(local: Local){

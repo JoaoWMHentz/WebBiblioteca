@@ -71,23 +71,18 @@ export class CadLocalComponent implements OnInit {
     var form =  this.formulario.value;
     this.SalvarLocal(new Local(form.codLocal, form.descricao))
     console.log(this.formulario.value)
+    location.reload();
   }
 }
 
 
 function UpdateActive(){
-  var CadLeitorActive = document.getElementById('ACadleitor');
-  CadLeitorActive?.classList.remove('active');
-  var CadLivroActive = document.getElementById('ACadlivro');
-  CadLivroActive?.classList.remove('active');
-  var ACadAutorActive = document.getElementById('ACadAutor');
-  ACadAutorActive?.classList.remove('active');
-  var ACadEditoraActive = document.getElementById('ACadEditora');
-  ACadEditoraActive?.classList.remove('active');
-  var AcadSecaoActiva = document.getElementById('AcadSecao');
-  AcadSecaoActiva?.classList.remove('active');
-  var AcadLocalActiva = document.getElementById('AcadLocal');
-  AcadLocalActiva?.classList.add('active');
-  var AcadSecapActive = document.getElementById('AcadColecao');
-  AcadSecapActive?.classList.remove('active');
+  document.getElementById('ACadleitor')?.classList.remove('active');
+  document.getElementById('ACadlivro')?.classList.remove('active');
+  document.getElementById('ACadAutor')?.classList.remove('active');
+  document.getElementById('ACadEditora')?.classList.remove('active');
+  document.getElementById('AcadSecao')?.classList.remove('active');
+  document.getElementById('AcadLocal')?.classList.add('active');
+  document.getElementById('AcadColecao')?.classList.remove('active');
+  document.getElementById('AEmprestimo')?.classList.remove('active');
 }

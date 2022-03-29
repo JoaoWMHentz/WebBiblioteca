@@ -6,17 +6,15 @@ namespace BibliotecaApiDLL.secao
 {
     public class DaoSecao
     {
-		private string TableName => "MvtBIBLeitor";
+		private string TableName => "MvtBIBSecao";
+
 		private string InsertCommand => $@"INSERT INTO {TableName} (
 										descricaoSecao, 
 										codLocal
 										) VALUES (
 										@descricaoSecao, 
 										@codLocal)";
-		private string UpdateCommand => $@"UPDATE {TableName} SET codSecao = @codSecao, 
-										descricaoSecao = @descricaoSecao, 
-										codLocal = @codLocal, 
-										 WHERE xxxxxxxxxxxx";
+		
 		private string SelectCommand => $@"SELECT Secao.codSecao,
 										Secao.descricaoSecao,
 										Local.descricaoLocal FROM MvtBIBSecao AS Secao
@@ -27,7 +25,6 @@ namespace BibliotecaApiDLL.secao
 			using (var cmd = new SqlCommand())
 			{
 				cmd.CommandText = InsertCommand;
-				cmd.Parameters.AddWithValue("@codSecao", secao.codSecao);
 				cmd.Parameters.AddWithValue("@descricaoSecao", secao.DescricaoSecao);
 				cmd.Parameters.AddWithValue("@codLocal", secao.DescricaoLocal);
 				

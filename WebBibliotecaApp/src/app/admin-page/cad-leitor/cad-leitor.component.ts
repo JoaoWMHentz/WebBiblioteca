@@ -16,21 +16,7 @@ import { AppComponent } from 'src/app/app.component';
 
 export class CadLeitorComponent implements OnInit {
 
-  TbNome: string;
-  TbSenha: string;
-  TbNumero: number;
-  TbEmail: string;
-  TbSexo: string;
-  TbBairro: string;
-  TbNasc: string;
-  TbCpf: string;
-  TbRg: string;
-  TbTel: string;
-  TbCell: string;
-  TbCep: string;
-  TbUf: string;
-  TbRua: string;
-  TbCidade: string;
+
   formulario: FormGroup;
 
 
@@ -132,59 +118,24 @@ export class CadLeitorComponent implements OnInit {
     var form =  this.formulario.value;
     this.salvarLeitor(new Leitor(form.codLeitor, form.nome, form.senha, form.sexo, form.dataNascimento, form.cpf, form.rg, form.email, form.telefone, form.telefoneCelular, form.enderecoRua, form.enderecoNumero, form.enderecoBairro, form.enderecoCidade, form.enderecoCep, form.enderecoUF))
     console.log(this.formulario.value)
+    location.reload();
   }
   leitorToTb(leitor: Leitor){
   var form = this.formulario.value;
 
-    this.TbNome = leitor.nome;
-    this.TbSenha = leitor.senha;
-    this.TbNumero = leitor.enderecoNumero;
-    this.TbEmail = leitor.email;
-    this.TbSexo = leitor.sexo;
-    this.TbBairro = leitor.enderecoBairro
-    this.TbNasc = leitor.dataNascimento
-    this.TbCpf = leitor.cpf
-    this.TbRg = leitor.rg
-    this.TbTel = leitor.telefone
-    this.TbCell = leitor.telefoneCelular
-    this.TbCep = leitor.enderecoCep
-    this.TbUf = leitor.enderecoUF
-    this.TbRua = leitor.enderecoRua
-    this.TbCidade = leitor.enderecoCidade;
-    form.nome = leitor.nome;
-    form.senha = leitor.senha;
-    form.enderecoNumero = leitor.enderecoNumero;
-    form.email = leitor.email;
-    form.sexo = leitor.sexo;
-    form.enderecoBairro = leitor.enderecoBairro
-    form.dataNascimento = leitor.dataNascimento
-    form.cpf = leitor.cpf
-    form.rg = leitor.rg
-    form.telefone = leitor.telefone
-    form.telefoneCelular = leitor.telefoneCelular
-    form.enderecoCep = leitor.enderecoCep
-    form.enderecoUF = leitor.enderecoUF
-    form.enderecoRua = leitor.enderecoRua
-    form.codLeitor = leitor.codLeitor
-    form.enderecoCidade= leitor.enderecoCidade;
+    this.formulario.patchValue(leitor);
   }
 }
 
 
 
 function UpdateActive(){
-  var CadLeitorActive = document.getElementById('ACadleitor');
-      CadLeitorActive?.classList.add('active');
-    var CadLivroActive = document.getElementById('ACadlivro');
-           CadLivroActive?.classList.remove('active');
-    var ACadAutorActive = document.getElementById('ACadAutor');
-      ACadAutorActive?.classList.remove('active');
-    var ACadEditoraActive = document.getElementById('ACadEditora');
-        ACadEditoraActive?.classList.remove('active');
-    var AcadSecaoActiva = document.getElementById('AcadSecao');
-      AcadSecaoActiva?.classList.remove('active');
-    var AcadLocalActiva = document.getElementById('AcadLocal');
-      AcadLocalActiva?.classList.remove('active');
-    var AcadSecapActive = document.getElementById('AcadColecao');
-      AcadSecapActive?.classList.remove('active');
+  document.getElementById('ACadleitor')?.classList.add('active');
+  document.getElementById('ACadlivro')?.classList.remove('active');
+  document.getElementById('ACadAutor')?.classList.remove('active');
+  document.getElementById('ACadEditora')?.classList.remove('active');
+  document.getElementById('AcadSecao')?.classList.remove('active');
+  document.getElementById('AcadLocal')?.classList.remove('active');
+  document.getElementById('AcadColecao')?.classList.remove('active');
+  document.getElementById('AEmprestimo')?.classList.remove('active');
 }
