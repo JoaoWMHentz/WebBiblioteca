@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Emprestimo } from 'src/Objects/emprestimo';
 import { HttpClient } from '@angular/common/http';
 import { ApiServiceService } from './api-service.service';
+import { Livro } from 'src/Objects/livro';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,7 @@ export class EmprestimoService {
     console.log(idEmprestimo)
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase2, idEmprestimo)
   }
+  public GetLivro(id: number):Observable<Livro[]> {
+    return this.http.get<Livro[]>(ApiServiceService.urlPadrao + this.pathbase + "/getlivro")
+}
 }

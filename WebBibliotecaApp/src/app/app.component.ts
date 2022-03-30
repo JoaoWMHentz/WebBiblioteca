@@ -10,12 +10,12 @@ export class AppComponent {
   title = 'WebBibliotecaApp';
   public static localization: GuiLocalization = {
     'translation': {
-      "sourceEmpty": "Não há Items no Grid.",
-      "pagingItemsPerPage": "Item por página",
+      "sourceEmpty": "Não há Items.",
+      "pagingItemsPerPage": "Items por página",
       "pagingOf": "of",
-      "pagingNextPage": "Next",
-      "pagingPrevPage": "Prev",
-      "pagingNoItems": "There is no items.",
+      "pagingNextPage": "Próximo",
+      "pagingPrevPage": "Anterior",
+      "pagingNoItems": "Não há items.",
       "infoPanelShowing": "Showing",
       "infoPanelItems": "items",
       "infoPanelOutOf": "out of",

@@ -2,7 +2,7 @@
 import { LeitorService } from './../../../Services/leitor.service';
 import { Leitor } from './../../../Objects/Leitor';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CadLeitorModule } from './cad-leitor.module';
 import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiRowSelection, GuiRowSelectionMode, GuiRowSelectionType, GuiSearching, GuiSelectedRow } from '@generic-ui/ngx-grid';
 import { AppComponent } from 'src/app/app.component';
@@ -78,22 +78,22 @@ export class CadLeitorComponent implements OnInit {
 
 
     this.formulario = this.formbuilder.group({
-      codLeitor: [0],
-      nome: [''],
-      senha: [''],
-      sexo: [''],
-      dataNascimento: [''],
-      cpf: [''],
+      codLeitor: [0, Validators.required],
+      nome: ['', Validators.required],
+      senha: ['', Validators.required],
+      sexo: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      cpf: ['', Validators.required],
       rg: [''],
-      email: [''],
+      email: ['', Validators.required],
       telefone: [''],
       telefoneCelular: [''],
-      enderecoRua: [''],
-      enderecoNumero: [''],
-      enderecoBairro: [''],
-      enderecoCidade: [''],
-      enderecoCep: [''],
-      enderecoUF: ['']
+      enderecoRua: ['', Validators.required],
+      enderecoNumero: ['', Validators.required],
+      enderecoBairro: ['', Validators.required],
+      enderecoCidade: ['', Validators.required],
+      enderecoCep: ['', Validators.required],
+      enderecoUF: ['', Validators.required]
     })
     UpdateActive();
   }
@@ -101,7 +101,7 @@ export class CadLeitorComponent implements OnInit {
   onSelectedRows(rows: Array<GuiSelectedRow>): void {
     var Cod = rows.map((m: GuiSelectedRow) => m.source.codLeitor)[0];
     this.formulario.value.codLeitor = Cod;
-    this.leitorService.GetLeitor(Cod).subscribe(leitores => {this.leitorToTb(leitores[0])})
+    this.leitorService.GetLeitor(Cod).subscribe(leitores => {this.formulario.reset; this.formulario.patchValue(leitores[0])})
   }
 
   salvarLeitor(leitor: Leitor){
@@ -115,16 +115,11 @@ export class CadLeitorComponent implements OnInit {
   }
 
   onSubmit(){
-    var form =  this.formulario.value;
-    this.salvarLeitor(new Leitor(form.codLeitor, form.nome, form.senha, form.sexo, form.dataNascimento, form.cpf, form.rg, form.email, form.telefone, form.telefoneCelular, form.enderecoRua, form.enderecoNumero, form.enderecoBairro, form.enderecoCidade, form.enderecoCep, form.enderecoUF))
-    console.log(this.formulario.value)
-    location.reload();
+    let leitor: Leitor = {...this.formulario.value}
+    this.salvarLeitor(leitor)
+    this.formulario.reset;
   }
-  leitorToTb(leitor: Leitor){
-  var form = this.formulario.value;
 
-    this.formulario.patchValue(leitor);
-  }
 }
 
 

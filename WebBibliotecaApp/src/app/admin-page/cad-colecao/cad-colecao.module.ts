@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadColecaoComponent } from '../cad-colecao/cad-colecao.component';
 import { GuiGridModule } from '@generic-ui/ngx-grid';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
@@ -11,7 +12,7 @@ import { GuiGridModule } from '@generic-ui/ngx-grid';
     CadColecaoComponent
   ],
   imports: [
-    CommonModule, GuiGridModule, FormsModule, ReactiveFormsModule
+    CommonModule, GuiGridModule, FormsModule, ReactiveFormsModule, NgxMaskModule
   ]
 })
 export class CadColecaoModule { }

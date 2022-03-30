@@ -19,12 +19,12 @@ namespace BibliotecaApiDLL.Colecao
 										@codAutor, 
 										@codEditora,
 										@anoLancamento)";
-		private string UpdateCommand => $@"UPDATE {TableName} SET codColecao = @codColecao,
+		private string UpdateCommand => $@"UPDATE {TableName} SET 
 										nomeColecao = @nomeColecao,
 										codAutor = @codAutor,
 										codEditora = @codEditora,
-										anoLancamento = @anoLancamento,
-										WHERE xxxxxxxxxxxx";
+										anoLancamento = @anoLancamento
+										WHERE codColecao = @codColecao";
 		private string SelectCommand => $@"SELECT TOP (1000) codColecao,
 										Colecao.nomeColecao,
 										Autor.nomeAutor,
@@ -37,7 +37,15 @@ namespace BibliotecaApiDLL.Colecao
 		{
 			using (var cmd = new SqlCommand())
 			{
-				cmd.CommandText = InsertCommand;
+				if (colecao.CodColecao == 0)
+                {
+					cmd.CommandText = UpdateCommand;
+					cmd.Parameters.AddWithValue("@codColecao", colecao.CodColecao);
+                }
+                else
+                {
+					cmd.CommandText = InsertCommand;
+				}
 				string autor = colecao.Autor.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
 				string editora = colecao.Editora.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
 				cmd.Parameters.AddWithValue("@nomeColecao", colecao.NomeColecao);

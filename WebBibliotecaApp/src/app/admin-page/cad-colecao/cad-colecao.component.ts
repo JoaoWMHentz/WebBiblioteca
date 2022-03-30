@@ -2,7 +2,7 @@ import { AppComponent } from 'src/app/app.component';
 import { ColecaoService } from './../../../Services/colecao.service';
 import { GuiPaging, GuiPagingDisplay, GuiSearching, GuiColumn } from '@generic-ui/ngx-grid';
 import { Colecao } from './../../../Objects/Colecao';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Editora } from './../../../Objects/Editora';
 import { EditoraService } from './../../../Services/editora.service';
 import { AutorService } from 'src/Services/autor.service';
@@ -63,10 +63,10 @@ export class CadColecaoComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formbuilder.group({
       codColecao: [0],
-      nomeColecao: [''],
-      autor: [''],
-      editora: [''],
-      anoLancamento: [0]
+      nomeColecao: ['', Validators.required],
+      autor: ['', Validators.required],
+      editora: ['', Validators.required],
+      anoLancamento: [0, Validators.required]
     })
 
     this.AutorService.GetAutor().subscribe(autores => {

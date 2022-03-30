@@ -22,7 +22,9 @@
     "@generic-ui/hermes": "^0.16.4",
     "@generic-ui/ngx-grid": "^0.16.4",
     "bootstrap": "^4.5.3",
+    "inputmask": "^5.0.7",
     "ngx-bootstrap": "^7.1.2",
+    "ngx-mask": "^13.1.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

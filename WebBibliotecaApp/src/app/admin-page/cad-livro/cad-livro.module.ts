@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadLivroComponent } from './cad-livro.component';
-
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { CadLivroComponent } from './cad-livro.component';
     CadLivroComponent
   ],
   imports: [
-    CommonModule, ReactiveFormsModule, GuiGridModule
+    CommonModule, ReactiveFormsModule, GuiGridModule, NgxMaskModule
   ]
 })
 export class CadLivroModule { }

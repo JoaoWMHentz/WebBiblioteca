@@ -104,7 +104,7 @@ namespace BibliotecaApiDLL.itemAcervo
 							FROM MvtBIBItemAcervo As Livro 
 							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
 							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
-							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
+							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codColecao
 							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
 							WHERE codLivro LIKE '%{id}%'";
 				}
@@ -116,7 +116,7 @@ namespace BibliotecaApiDLL.itemAcervo
 							FROM MvtBIBItemAcervo As Livro 
 							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
 							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
-							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
+							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codColecao
 							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
 							";
                 }
@@ -149,6 +149,39 @@ namespace BibliotecaApiDLL.itemAcervo
 				Convert.ToString(reader["idioma"]),
 				Convert.ToString(reader["status"])
 				);
+		}
+		public List<ItemAcervo> ProcurarItem(ItemAcervo livro)
+        {
+			var List = new List<ItemAcervo>();
+			using (var cmd = new SqlCommand())
+			{
+					cmd.CommandText = $@"SELECT Livro.codLivro
+								,Livro.titulo,Livro.descricao,Livro.numeroExemplar,Autor.nomeAutor,Editora.nomeEditora,Colecao.nomeColecao,Livro.Tipo
+								,Secao.descricaoSecao, Livro.volume, Livro.anoEdicao, Livro.idioma, Livro.status,Livro.codAutor,Livro.codEditora,Livro.codColecao,Livro.codSecao
+							FROM MvtBIBItemAcervo As Livro 
+							INNER JOIN MvtBIBAutor as Autor on Livro.codAutor = Autor.codAutor 
+							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
+							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codAutor 
+							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
+							WHERE UPPER(Livro.titulo) LIKE '%{livro.TiTulo.ToUpper()}%' AND
+							UPPER(Autor.nomeAutor) LIKE '%{livro.Autor.ToUpper()}%' AND
+							UPPER(Editora.nomeEditora) LIKE '{livro.Editora.ToUpper()}' AND
+							UPPER(Colecao.nomeColecao) LIKE '{livro.ColeCao.ToUpper()}' AND 
+							UPPER(Secao.descricaoSecao) LIKE '{livro.SeCao.ToUpper()}' AND
+							Livro.volume LIKE '{livro.Volume}' AND
+							Lvro.anoEdicao LIKE '{livro.AnoEdicAo}'"; 
+
+				using (var Con = new Conexao())
+				{
+					cmd.Connection = Con.Conectar();
+					var reader = cmd.ExecuteReader();
+					while (reader.Read())
+					{
+						List.Add(ReaderToObject(reader));
+					}
+				}
+			}
+			return List;
 		}
 	}
 }

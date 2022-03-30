@@ -131,6 +131,32 @@ namespace BibliotecaApiDLL.leitor
                 Convert.ToString(reader["enderecoUf"])
                 ); 
         }
+        public List<Leitor> PesquisaLeitor(Leitor leitor)
+        {
+            var leitores = new List<Leitor>();
+            using (var cmd = new SqlCommand())
+            {
+                    cmd.CommandText = $@"
+                        SELECT TOP (1000) [CodLeitor],[nome],[Sexo],[dataNascimento],[cpf],[rg],[senha],[email],[telefone],[telefoneCelular],[enderecoRua],[enderecoNumero],[enderecoBairro],[enderecoCidade],[enderecoCep],[enderecoUf]
+                        FROM {TableName}
+                        WHERE CodLeitor LIKE '%{leitor.CodLeitor}%' AND[
+                        WHERE UPPER(nome) LIKE '%{leitor.Nome.ToUpper()}%'
+                        WHERE (cpf) LIKE ''%{leitor.Cpf}%";
+                using (var Con = new Conexao())
+                {
+                    // Faz a conexao com o DB
+                    cmd.Connection = Con.Conectar();
+                    var reader = cmd.ExecuteReader();
+                    // Le o DataReader 
+                    while (reader.Read())
+                    {
+                        leitores.Add(ReaderToLeitor(reader));
+                    }
+                }
+            }
+            // Retorna os Leitores
+            return leitores;
+        }
         private string SelectCommand => $@"
             SELECT TOP (1000) [CodLeitor]
               ,[nome]

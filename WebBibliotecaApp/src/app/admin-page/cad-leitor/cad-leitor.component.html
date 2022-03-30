@@ -40,8 +40,8 @@
         <label for="TbCpf" class="form-label TamInline">Cpf:</label>
         <label for="TbNome" class="form-label  MyMargin">Rg:</label>
         <div class="mb-2">
-          <input type="text" class="form-control TamInline" id="TbCpf"  placeholder="___.___.___-__" maxlength="11" formControlName="cpf">
-          <input type="text" class="form-control TamInline MyMargin" id="TbTbNome"  placeholder="_-___.___.__" maxlength="9" formControlName="rg">
+          <input type="text" class="form-control TamInline" mask="000.000.000-00" id="TbCpf" placeholder="___.___.___-__" formControlName="cpf">
+          <input type="text" class="form-control TamInline MyMargin" id="TbTbNome" mask="00.000.000-0" placeholder="__.___.___-_" formControlName="rg">
         </div>
       </div>
       <div class="col-4 mb-2">
@@ -54,8 +54,8 @@
         <label for="TbTel" class="form-label TamInline" >Telefone:</label>
         <label for="TbCell" class="form-label  MyMargin">Celular:</label>
           <div class="md-2">
-            <input type="tel" class="form-control TamInline" id="TbTel" placeholder="(__) _____-____" formControlName="telefone">
-            <input type="tel" class="form-control TamInline MyMargin"  id="TbCell" placeholder="(__) _____-____" formControlName="telefoneCelular"><br>
+            <input type="tel" class="form-control TamInline" id="TbTel" mask="(00) 00000-0000" placeholder="(__) _____-____" formControlName="telefone">
+            <input type="tel" class="form-control TamInline MyMargin" mask="(00) 00000-0000" id="TbCell" placeholder="(__) _____-____" formControlName="telefoneCelular"><br>
         </div>
       </div>
       <div class="col-4 mb-2">
@@ -66,13 +66,39 @@
         <label for="TbCep" class="form-label TamInline">Cep:</label>
         <label for="TbUf" class="form-label  MyMargin">Uf:</label>
         <div class="md-2">
-          <input type="text" class="form-control TamInline "  id="TbCep" formControlName="enderecoCep" maxlength="2">
-          <input type="text" class="form-control TamInline MyMargin"  id="TbUf" formControlName="enderecoUF">
+          <input type="text" class="form-control TamInline "  id="TbCep" formControlName="enderecoCep" mask="00000-000">
+          <select class="form-control TamInline MyMargin" id="TbUf"  formControlName="enderecoUF">
+            <option value="SC">SC</option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+
+          </select>
         </div>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary mb-2">Salvar</button>
+    <button type="submit" class="btn btn-primary mb-2" [disabled]="!formulario.valid">Salvar</button>
     <div class=" row">
       <gui-grid [source]="source"
           [columns]="columns"

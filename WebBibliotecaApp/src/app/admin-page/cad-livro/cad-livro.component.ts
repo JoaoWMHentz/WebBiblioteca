@@ -2,7 +2,7 @@ import { ColecaoService } from './../../../Services/colecao.service';
 import { Colecao } from 'src/Objects/Colecao';
 import { Livro } from './../../../Objects/livro';
 import { CadLivroModule } from './cad-livro.module';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EditoraService } from './../../../Services/editora.service';
 import { AutorService } from './../../../Services/autor.service';
 import { Editora } from './../../../Objects/Editora';
@@ -23,12 +23,15 @@ export class CadLivroComponent implements OnInit {
 
   Language = AppComponent.localization;
   source: Array<Livro> = [];
-
+  anoAtual = new Date().getFullYear();
   formulario: FormGroup;
 
+  listaDeEditoras: string[];
+  listaDeAutores: string[];
+  listaDeColecao: string[];
+  listaDeSecao: string[];
+
   constructor(private formbuilder: FormBuilder, public AutorService: AutorService, public EditoraService: EditoraService, public SecaoService: SecaoService, public livroService: LivroService,public colecaoService: ColecaoService) { }
-
-
   paging: GuiPaging = {
 		enabled: true,
 		page: 1,
@@ -84,19 +87,19 @@ export class CadLivroComponent implements OnInit {
   ngOnInit(): void {
 
     this.formulario = this.formbuilder.group({
-    codLivro: [],
-    tiTulo :[""],
-    descricao :[""],
-    numeroExemplar :[""],
-    autor :[""],
-    editora :[""],
-    coleCao :[""],
-    tipo :[""],
-    seCao :[""],
-    volume :[""],
-    anoEdicAo :[""],
-    idIoma :[""],
-    statuS :[""]
+    codLivro: [0],
+    tiTulo :["", Validators.required],
+    descricao :["",Validators.required],
+    numeroExemplar :["",Validators.required],
+    autor :["", Validators.required],
+    editora :["", Validators.required],
+    coleCao :["", Validators.required],
+    tipo :["", Validators.required],
+    seCao :["", Validators.required],
+    volume :["", Validators.required],
+    anoEdicAo :["", Validators.required],
+    idIoma :["", Validators.required],
+    statuS :["Disponível"]
     })
 
 
@@ -125,6 +128,7 @@ export class CadLivroComponent implements OnInit {
     )
   }
   onSubmit(){
+
     let livro: Livro = {...this.formulario.value};
     livro
     this.SalvarLivro(livro)
@@ -133,14 +137,9 @@ export class CadLivroComponent implements OnInit {
   }
   onSelectedRows(rows: Array<GuiSelectedRow>): void {
     var Cod = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
-    this.livroService.GetLivro(Cod).subscribe(livros => {this.livroToTb(livros[0])})
+    this.livroService.GetLivro(Cod).subscribe(livros => {this.formulario.patchValue(livros[0])})
   }
-  livroToTb(livro: Livro){
-    this.formulario.patchValue(livro);
-
-    }
 }
-
 function UpdateOptionColecao(colecao: Colecao){
   var DataList = document.getElementById('DatalistColecao');
   var Option = document.createElement('option');

@@ -11,11 +11,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LeitorPageComponent } from './leitor-page/leitor-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GuiGridModule } from '@generic-ui/ngx-grid';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+const maskConfigFunction: () => Partial<IConfig> = () => {
+  return {
+    validation: false,
+  };
+};
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    PesquisaLivroComponent,
-    LeitorPageComponent,
   ],
   imports: [
     CollapseModule,
@@ -27,7 +34,8 @@ import { GuiGridModule } from '@generic-ui/ngx-grid';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    GuiGridModule
+    GuiGridModule,
+    NgxMaskModule.forRoot(maskConfigFunction)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@
       <div class="row">
         <div class="mb-2 col-4">
           <label for="TbTitulo" class="form-label">Título:</label>
-          <input type="text" class="form-control MyTam" id="TbTitulo"  formControlName="tiTulo">
+          <input type="text" class="form-control MyTam" id="TbTitulo"   formControlName="tiTulo">
         </div>
         <div class="mb-2 col-4">
           <label for="TbDescricao" class="form-label">Descrição:</label>
@@ -11,25 +11,25 @@
         </div>
         <div class="mb-2 col-4">
           <label for="\TbNumeroExemplar" class="form-label">Número Exemplar:</label>
-          <input type="text" class="form-control MyTam" id="\TbNumeroExemplar"  formControlName="numeroExemplar">
+          <input type="text" class="form-control MyTam" id="\TbNumeroExemplar"   formControlName="numeroExemplar">
         </div>
       </div>
       <div class="row">
         <div class="mb-2 col-4">
           <label for="TbEditora" class="form-label">Editora:</label>
-          <input class="form-control" list="DatalistEditora" id="TbEditora"  placeholder="Digite para Pesquisar..." formControlName="editora">
+          <input class="form-control" list="DatalistEditora" autocomplete="off" id="TbEditora"   placeholder="Digite para Pesquisar..." formControlName="editora">
           <datalist  id="DatalistEditora">
           </datalist>
         </div>
         <div class="mb-2 col-4">
           <label for="TbColecao" class="form-label">Coleção:</label>
-          <input type="text" class="form-control MyTam"list="DatalistColecao"  id="TbColecao" formControlName="coleCao" placeholder="Digite para Pesquisar...">
+          <input type="text" class="form-control MyTam"list="DatalistColecao" autocomplete="off"  id="TbColecao" formControlName="coleCao" placeholder="Digite para Pesquisar...">
           <datalist id="DatalistColecao">
           </datalist>
         </div>
         <div class="mb-2 col-4">
           <label for="TbAutor" class="form-label">Autor:</label>
-          <input class="form-control" list="DatalistAutor" id="TbAutor"  placeholder="Digite para Pesquisar..." formControlName="autor">
+          <input class="form-control" list="DatalistAutor" id="TbAutor" autocomplete="off" placeholder="Digite para Pesquisar..." formControlName="autor">
           <datalist  id="DatalistAutor">
           </datalist>
         </div>
@@ -39,7 +39,7 @@
         <div class="mb-2 col-4">
           <label for="TbSecao" class="form-label">Seção:</label>
           <div class="input-group mb-2">
-            <input type="tel" class="form-control MyTam" id="TbSecao"  list="DatalistSecao" placeholder="Digite para Pesquisar..." formControlName="seCao">
+            <input type="tel" class="form-control MyTam" id="TbSecao" autocomplete="off"  list="DatalistSecao" placeholder="Digite para Pesquisar..." formControlName="seCao">
             <datalist id="DatalistSecao">
             </datalist>
           </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="mb-2 col-4">
           <label for="TbAno" class="form-label e">Ano:</label>
-          <input type="number" class="form-control MyTam" id="TbNum" placeholder="1900" formControlName="anoEdicAo">
+          <input type="text" class="form-control MyTam" id="TbNum" placeholder="1900" mask="0000" formControlName="anoEdicAo">
         </div>
       </div>
       <div class="row">
@@ -81,7 +81,7 @@
           <input type="text" class="form-control MyTam Disabled" id="TbStatus" disabled value="Disponível" >
         </div>
       </div>
-      <button type="submit" class="btn btn-primary mb-2">Salvar</button>
+      <button type="submit" class="btn btn-primary mb-2" [disabled]="!formulario.valid">Salvar</button>
     </form>
     <gui-grid [source]="source"
     [columns]="columns"

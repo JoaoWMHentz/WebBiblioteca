@@ -8,24 +8,24 @@
        </div>
        <div class="mb-2 col-6">
         <label for="TbAno" class="form-label" >Ano:</label>
-        <input type="number" class="form-control MyTam" id="TbNum" placeholder="1900" formControlName="anoLancamento">
+        <input type="text" class="form-control MyTam" id="TbNum" placeholder="1900" mask="0000" formControlName="anoLancamento">
       </div>
      </div>
      <div class="row">
       <div class="mb-2 col-6">
         <label for="TbAutor" class="form-label">Autor:</label>
-        <input class="form-control" list="DatalistAutor" id="TbAutor" placeholder="Digite para Pesquisar..." formControlName="autor">
+        <input class="form-control" list="DatalistAutor" id="TbAutor" autocomplete="off" placeholder="Digite para Pesquisar..." formControlName="autor">
         <datalist id="DatalistAutor">
         </datalist>
       </div>
       <div class="mb-2 col-6">
         <label for="TbEditora" class="form-label">Editora:</label>
-        <input class="form-control" list="datalistEditora" id="TbEditora" placeholder="Digite para Pesquisar..." formControlName="editora">
+        <input class="form-control" list="datalistEditora" id="TbEditora" autocomplete="off" placeholder="Digite para Pesquisar..." formControlName="editora">
         <datalist  id="datalistEditora">
         </datalist>
        </div>
      </div>
-      <button type="submit" class="btn btn-primary mb-2">Salvar</button>
+      <button type="submit" class="btn btn-primary mb-2" [disabled]="!formulario.valid">Salvar</button>
 
     </form>
     <div class=" row">
