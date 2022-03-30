@@ -25,7 +25,8 @@ namespace BibliotecaApiDLL.Emprestimo
                                         @dataEmprestimo,
                                         @dataDevolucao,
                                         @status)
-										FROM MvtBIBEmprestimo
+										
+
 										UPDATE MvtBIBItemAcervo
 										SET status = 'Emprestado'
 										FROM MvtBIBItemAcervo AS Livro

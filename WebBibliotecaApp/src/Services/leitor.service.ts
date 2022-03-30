@@ -20,4 +20,8 @@ export class LeitorService {
   public PostLeitor(leitor: Leitor){
     return this.http.post(ApiServiceService.urlPadrao + this.pathBase, leitor)
   }
+  public ConsultaLeitor(nome: string, cpf: string, rg:string, email:string):Observable<Leitor[]> {
+    return this.http.get<Leitor[]>(ApiServiceService.urlPadrao + "/api/conleitor" + '/' + nome + '/' + cpf + '/' + rg + '/' + email)
+  }
 }
+

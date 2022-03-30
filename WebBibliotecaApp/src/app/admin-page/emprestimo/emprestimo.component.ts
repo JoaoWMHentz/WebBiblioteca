@@ -1,7 +1,7 @@
 import { Livro } from 'src/Objects/livro';
 import { Leitor } from './../../../Objects/Leitor';
 import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiRowSelection, GuiRowSelectionMode, GuiRowSelectionType, GuiSearching, GuiSelectedRow } from '@generic-ui/ngx-grid';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { EmprestimoModule } from './emprestimo.module';
 import { LeitorService } from 'src/Services/leitor.service';
@@ -178,7 +178,7 @@ export class EmprestimoComponent implements OnInit {
 
   ngOnInit(): void {
     this.leitorService.GetLeitor(0).subscribe(leitores => {this.sourceLeitor = leitores; console.log(leitores)})
-    this.livroService.GetLivro(0).subscribe(livros => { this.sourceLivro = livros})
+    this.emprestimoService.GetLivro().subscribe(livros => { this.sourceLivro = livros})
     this.emprestimoService.GetEmprestimo().subscribe(Emprestimos => { this.source = Emprestimos})
 
     this.formulario = this.formbuilder.group({
@@ -194,7 +194,6 @@ export class EmprestimoComponent implements OnInit {
     })
     activeUpdate()
     document.getElementById('BtnDevolver')?.classList.add('disabled');
-    document.getElementById('BtnSubmit')?.classList.remove('disabled');
   }
   SalvarEmprestimo(emprestimo: Emprestimo){
     console.log(emprestimo)

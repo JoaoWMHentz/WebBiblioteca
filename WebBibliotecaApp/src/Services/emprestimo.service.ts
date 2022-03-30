@@ -26,7 +26,7 @@ export class EmprestimoService {
     console.log(idEmprestimo)
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase2, idEmprestimo)
   }
-  public GetLivro(id: number):Observable<Livro[]> {
-    return this.http.get<Livro[]>(ApiServiceService.urlPadrao + this.pathbase + "/getlivro")
+  public GetLivro():Observable<Livro[]> {
+    return this.http.get<Livro[]>(ApiServiceService.urlPadrao + "/api/getlivro")
 }
 }

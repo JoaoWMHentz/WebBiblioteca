@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebBiblioteca_Api.ControlerLivro
 {
-    [Route("api/emprestimo/getlivro")]
-    public class GetLivroEmprestimo
+    [Route("api/getlivro")]
+    public class GetLivroEmprestimo: Controller
     {
         [HttpGet]
-        public List<ItemAcervo> Get(int id)
+        public List<ItemAcervo> Get()
         {
             var Dao = new DaoEmprestimo();
             return Dao.GetLivro();

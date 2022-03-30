@@ -1,3 +1,4 @@
+import { ConsultarLeitorComponent } from './consultar-leitor/consultar-leitor.component';
 import { CadAutorComponent } from './cad-autor/cad-autor.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,7 +20,8 @@ const routesAdmin: Routes = [
     {path: 'cadsecao', component: CadSecaoComponent},
     {path: 'cadLocal', component: CadLocalComponent},
     {path: 'cadcolecao', component: CadColecaoComponent},
-    {path: 'emprestimo', component: EmprestimoComponent}
+    {path: 'emprestimo', component: EmprestimoComponent},
+    {path: 'comsultarleitor', component: ConsultarLeitorComponent}
   ]}
 ];
 

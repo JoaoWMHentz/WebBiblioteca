@@ -131,17 +131,35 @@ namespace BibliotecaApiDLL.leitor
                 Convert.ToString(reader["enderecoUf"])
                 ); 
         }
-        public List<Leitor> PesquisaLeitor(Leitor leitor)
+        public List<Leitor> PesquisaLeitor(string nome, string cpf, string rg, string email)
         {
             var leitores = new List<Leitor>();
             using (var cmd = new SqlCommand())
             {
-                    cmd.CommandText = $@"
-                        SELECT TOP (1000) [CodLeitor],[nome],[Sexo],[dataNascimento],[cpf],[rg],[senha],[email],[telefone],[telefoneCelular],[enderecoRua],[enderecoNumero],[enderecoBairro],[enderecoCidade],[enderecoCep],[enderecoUf]
-                        FROM {TableName}
-                        WHERE CodLeitor LIKE '%{leitor.CodLeitor}%' AND[
-                        WHERE UPPER(nome) LIKE '%{leitor.Nome.ToUpper()}%'
-                        WHERE (cpf) LIKE ''%{leitor.Cpf}%";
+                if (nome == "0")
+                {
+                    nome = "";
+                }
+                if (cpf == "0")
+                {
+                    cpf = "";
+                }
+                if (rg == "0")
+                {
+                    rg = "";
+                }
+                if (email == "0")
+                {
+                    email = "";
+                }
+                cmd.CommandText = $@"
+                        SELECT [CodLeitor],[nome],[Sexo],[dataNascimento],[cpf],[rg],[senha],[email],[telefone],[telefoneCelular],[enderecoRua],[enderecoNumero],[enderecoBairro],[enderecoCidade],[enderecoCep],[enderecoUf]
+                        FROM MvtBIBLeitor
+                        WHERE UPPER(nome) LIKE '%{nome.ToUpper()}%' AND
+                        cpf LIKE '%{cpf}%' AND
+                        rg LIKE '%{rg}%' AND
+                        email LIKE '%{email}%'
+                        ";
                 using (var Con = new Conexao())
                 {
                     // Faz a conexao com o DB
@@ -157,6 +175,7 @@ namespace BibliotecaApiDLL.leitor
             // Retorna os Leitores
             return leitores;
         }
+
         private string SelectCommand => $@"
             SELECT TOP (1000) [CodLeitor]
               ,[nome]
