@@ -82,6 +82,7 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary mb-2" [disabled]="!formulario.valid">Salvar</button>
+      <button  class="btn btn-danger mb-2 MyMargin" [disabled]="!formulario.valid" (click)="delete()">Deletar</button>
     </form>
     <gui-grid [source]="source"
     [columns]="columns"

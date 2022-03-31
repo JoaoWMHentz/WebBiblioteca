@@ -106,7 +106,7 @@ namespace BibliotecaApiDLL.itemAcervo
 							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
 							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codColecao
 							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
-							WHERE codLivro LIKE '%{id}%'";
+							WHERE Livro.codLivro LIKE '%{id}%' AND Livro.status NOT IN ('Arquivado')";
 				}
                 else
                 {
@@ -118,7 +118,7 @@ namespace BibliotecaApiDLL.itemAcervo
 							INNER JOIN MvtBIBEditora as Editora on Livro.codEditora = Editora.codEditora 
 							INNER JOIN MvtBIBColecao as Colecao on Livro.codColecao = Colecao.codColecao
 							INNER JOIN MvtBIBSecao as Secao on Livro.codSecao = Secao.codSecao
-							";
+							WHERE Livro.status NOT IN ('Arquivado')";
                 }
 				using (var Con = new Conexao())
 				{

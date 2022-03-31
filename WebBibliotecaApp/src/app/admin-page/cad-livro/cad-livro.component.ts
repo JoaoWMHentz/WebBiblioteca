@@ -137,6 +137,9 @@ export class CadLivroComponent implements OnInit {
     this.formulario.reset
     this.livroService.GetLivro(0).subscribe(livros => { this.source =livros})
   }
+  delete(){
+    this.formulario.value.statuS = "Arquivado";
+  }
   onSelectedRows(rows: Array<GuiSelectedRow>): void {
     var Cod = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
     this.livroService.GetLivro(Cod).subscribe(livros => {this.formulario.patchValue(livros[0])})
