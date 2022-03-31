@@ -14,19 +14,34 @@ namespace BibliotecaApiDLL.secao
 										) VALUES (
 										@descricaoSecao, 
 										@codLocal)";
-		
+		private string UpdateCommand => $@"UPDATE {TableName} SET 
+										descricaoSecao = @descricaoSecao, 
+										codLocal = @codLocal
+										WHERE codSecao = @codSecao";
+
 		private string SelectCommand => $@"SELECT Secao.codSecao,
 										Secao.descricaoSecao,
-										Local.descricaoLocal FROM MvtBIBSecao AS Secao
+										Local.descricaoLocal,
+										Local.codLocal
+										FROM MvtBIBSecao AS Secao
 										LEFT JOIN MvtBIBLocal AS Local	
 										ON Secao.codLocal = Local.codLocal";
 		public void Salvar(Secao secao)
 		{
 			using (var cmd = new SqlCommand())
 			{
-				cmd.CommandText = InsertCommand;
-				cmd.Parameters.AddWithValue("@descricaoSecao", secao.DescricaoSecao);
-				cmd.Parameters.AddWithValue("@codLocal", secao.DescricaoLocal);
+				if (secao.CodSecao != 0)
+                {
+					cmd.CommandText = UpdateCommand;
+					cmd.Parameters.AddWithValue("@codSecao", secao.CodSecao);
+                }
+                else
+                {
+					cmd.CommandText = InsertCommand;
+				}
+				string codlocal = secao.DescricaoLocal.Split(new string[] { " - código " }, StringSplitOptions.None)[1];
+				cmd.Parameters.AddWithValue("@descricaoSecao", secao.DescricaoSecao) ;
+				cmd.Parameters.AddWithValue("@codLocal", codlocal);
 				
 				using (var Con = new Conexao())
 				{
@@ -58,7 +73,7 @@ namespace BibliotecaApiDLL.secao
 			return new Secao(
 				Convert.ToInt32(reader["codSecao"]),
 				Convert.ToString(reader["descricaoSecao"]),
-				Convert.ToString(reader["descricaoLocal"])
+				(Convert.ToString(reader["descricaoLocal"]) + " - código " + Convert.ToString(reader["codLocal"]))
 				);
 		}
 	}

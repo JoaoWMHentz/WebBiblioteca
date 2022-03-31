@@ -1,0 +1,34 @@
+<form class="MyForm" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-4 mb-2">
+      <label for="TbNome" class="form-label">Leitor:</label>
+      <input type="text" class="form-control MyTam" id="TbNome" formControlName="leitor">
+    </div>
+    <div class="col-4 mb-2">
+      <label for="TbLivro" class="form-label">Livro:</label>
+      <input type="text" class="form-control MyTam" id="TbLivro" formControlName="livro">
+    </div>
+    <div class="col-4 mb-2">
+      <label class="form-label" for="Masc">Status:</label>
+      <select class="form-control MyTam " id="SeTipo" formControlName="status">
+        <option value="0">Selecione...</option>
+        <option value="Emprestado">Emprestado</option>
+        <option value="Arquivado">Arquivado</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 mb-2">
+      <label for="TbDataemprestimo" class="form-label">Data Empréstimo:</label>
+      <input type="date" class="form-control MyTam" id="TbDataemprestimo" formControlName="dataEmprestimo">
+    </div>
+    <div class="col-4 mb-2">
+      <label for="TbDataDevolucao" class="form-label ">Data Devolução</label>
+      <input type="date" class="form-control MyTam" id="TbDataDevolucao" formControlName="dataDevolucao">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2" id="BtnSubmit">Pesquisar</button>
+  <div class="row">
+    <gui-grid [source]="source" [columns]="columns" [paging]="paging" [localization]="Language"></gui-grid>
+  </div>
+</form>

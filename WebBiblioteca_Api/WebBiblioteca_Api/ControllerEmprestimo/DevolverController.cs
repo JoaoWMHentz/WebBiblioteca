@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebBiblioteca_Api.ControllerEmprestimo
 {
     [Route("api/devolver")]
-    public class DevolverController
+    public class DevolverController: Controller
     {
         [HttpPost]
         public void Create([FromBody] int IdEmprestimo)

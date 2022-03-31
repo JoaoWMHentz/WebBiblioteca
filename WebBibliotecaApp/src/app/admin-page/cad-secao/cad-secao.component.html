@@ -2,24 +2,20 @@
   <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="mb-2">
       <label for="TbDescricao" class="form-label">Descrição:</label>
-      <textarea type="text" class="form-control MyTam" id="TbDescricao" rows="4" style="resize: none" formControlName="descricaoSecao"></textarea>
+      <textarea type="text" class="form-control MyTam" id="TbDescricao" rows="4" style="resize: none"
+        formControlName="descricaoSecao"></textarea>
     </div>
     <div class="mb-2">
       <label for="TbLocal" class="form-label">Local:</label>
-      <input class="form-control" list="DatalistLocal" id="TbLocal" placeholder="Digite para Pesquisar..." formControlName="descricaoLocal">
+      <input class="form-control" list="DatalistLocal" id="TbLocal" placeholder="Digite para Pesquisar..."
+        formControlName="descricaoLocal">
       <datalist id="DatalistLocal">
-        </datalist>
+      </datalist>
     </div>
-    <button type="submit" class="btn btn-primary mb-2 ">Salvar</button>
+    <button type="submit" class="btn btn-primary mb-2 " [disabled]="!formulario.valid">Salvar</button>
   </form>
   <div class=" row">
-    <gui-grid [source]="source"
-        [columns]="columns"
-        [paging]="paging"
-        [searching]="searching"
-        [localization]="Language"
-    ></gui-grid>
+    <gui-grid [source]="source" [columns]="columns"  [paging]="paging" [searching]="searching" [localization]="Language"
+      [rowSelection]="rowSelection" (selectedRows)="onSelectedRows($event)"></gui-grid>
   </div>
 </div>
-
-

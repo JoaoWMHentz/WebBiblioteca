@@ -137,4 +137,5 @@ function UpdateActive(){
   document.getElementById('AEmprestimo')?.classList.remove('active');
   document.getElementById('AConLeitor')?.classList.remove('active');
   document.getElementById('AConlivro')?.classList.remove('active');
+  document.getElementById('AConEmprestimo')?.classList.remove('active');
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebBiblioteca_Api.ControllerEmprestimo
 {
     [Route("api/emprestimo")]
-    public class EmprestimoController
+    public class EmprestimoController: Controller
     {
         [HttpGet]
         public List<Emprestimo> Get()

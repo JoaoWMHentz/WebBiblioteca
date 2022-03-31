@@ -1,5 +1,5 @@
 import { Local } from './../../../Objects/local';
-import { GuiPaging, GuiPagingDisplay, GuiSearching, GuiColumn } from '@generic-ui/ngx-grid';
+import { GuiPaging, GuiPagingDisplay, GuiSearching, GuiColumn, GuiRowSelection, GuiRowSelectionType, GuiRowSelectionMode, GuiSelectedRow } from '@generic-ui/ngx-grid';
 import { LocalService } from './../../../Services/local.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +13,7 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class CadLocalComponent implements OnInit {
 
-  constructor(private formbuilder: FormBuilder ,public localService :LocalService ) { }
+  constructor(private formbuilder: FormBuilder, public localService: LocalService) { }
 
   Language = AppComponent.localization;
 
@@ -22,19 +22,23 @@ export class CadLocalComponent implements OnInit {
   formulario: FormGroup;
 
   paging: GuiPaging = {
-		enabled: true,
-		page: 1,
-		pageSize: 5,
-		pageSizes: [5 ,10, 25, 50],
-		pagerTop: false,
-		pagerBottom: true,
-		display: GuiPagingDisplay.ADVANCED
-	};
+    enabled: true,
+    page: 1,
+    pageSize: 5,
+    pageSizes: [5, 10, 25, 50],
+    pagerTop: false,
+    pagerBottom: true,
+    display: GuiPagingDisplay.ADVANCED
+  };
   searching: GuiSearching = {
-		enabled: true,
-		placeholder: 'Pesquisar...'
-	};
-
+    enabled: true,
+    placeholder: 'Pesquisar...'
+  };
+  rowSelection: boolean | GuiRowSelection = {
+    enabled: true,
+    type: GuiRowSelectionType.CHECKBOX,
+    mode: GuiRowSelectionMode.SINGLE,
+  };
   columns: Array<GuiColumn> = [
     {
       header: 'Código',
@@ -47,36 +51,43 @@ export class CadLocalComponent implements OnInit {
       width: 300
     },
 
-];
+  ];
 
   ngOnInit(): void {
     this.formulario = this.formbuilder.group({
-      codLocal: [0],
-      descricao: ['']
+      codLoCal: [0],
+      descricaoLocal: ['']
     })
-    this.localService.GetLocal().subscribe(locais => {this.source = locais; console.log(locais)})
+    this.localService.GetLocal().subscribe(locais => { this.source = locais; console.log(locais) })
     UpdateActive();
   }
 
-  SalvarLocal(local: Local){
+  SalvarLocal(local: Local) {
     this.localService.PostLocal(local).subscribe(
       () => {
         console.log("Sucess: " + local);
-      },(erro: any) => {
+        location.reload();
+      }, (erro: any) => {
         console.log("Erro" + local);
       }
     )
   }
-  onSubmit(){
-    var form =  this.formulario.value;
-    this.SalvarLocal(new Local(form.codLocal, form.descricao))
+  onSelectedRows(rows: Array<GuiSelectedRow>): void {
+    var cod: number = rows.map((m: GuiSelectedRow) => m.source.codLoCal)[0];
+    var descricao: string = rows.map((m: GuiSelectedRow) => m.source.descricaoLocal)[0];
+    let editora: Local = { codLoCal: cod, descricaoLocal: descricao };
+    this.formulario.patchValue(editora)
+  }
+  onSubmit() {
+    var form = this.formulario.value;
+    this.SalvarLocal(new Local(form.codLoCal, form.descricaoLocal))
     console.log(this.formulario.value)
-    location.reload();
+
   }
 }
 
 
-function UpdateActive(){
+function UpdateActive() {
   document.getElementById('ACadleitor')?.classList.remove('active');
   document.getElementById('ACadlivro')?.classList.remove('active');
   document.getElementById('ACadAutor')?.classList.remove('active');
@@ -87,4 +98,5 @@ function UpdateActive(){
   document.getElementById('AEmprestimo')?.classList.remove('active');
   document.getElementById('AConLeitor')?.classList.remove('active');
   document.getElementById('AConlivro')?.classList.remove('active');
+  document.getElementById('AConEmprestimo')?.classList.remove('active');
 }

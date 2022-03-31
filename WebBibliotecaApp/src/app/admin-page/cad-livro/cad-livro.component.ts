@@ -31,140 +31,144 @@ export class CadLivroComponent implements OnInit {
   listaDeColecao: string[];
   listaDeSecao: string[];
 
-  constructor(private formbuilder: FormBuilder, public AutorService: AutorService, public EditoraService: EditoraService, public SecaoService: SecaoService, public livroService: LivroService,public colecaoService: ColecaoService) { }
+  constructor(private formbuilder: FormBuilder, public AutorService: AutorService, public EditoraService: EditoraService, public SecaoService: SecaoService, public livroService: LivroService, public colecaoService: ColecaoService) { }
   paging: GuiPaging = {
-		enabled: true,
-		page: 1,
-		pageSize: 5,
-		pageSizes: [5,10, 25, 50],
-		pagerTop: false,
-		pagerBottom: true,
-		display: GuiPagingDisplay.ADVANCED
-	};
+    enabled: true,
+    page: 1,
+    pageSize: 5,
+    pageSizes: [5, 10, 25, 50],
+    pagerTop: false,
+    pagerBottom: true,
+    display: GuiPagingDisplay.ADVANCED
+  };
   searching: GuiSearching = {
-		enabled: true,
-		placeholder: 'Pesquisar...'
-	};
+    enabled: true,
+    placeholder: 'Pesquisar...'
+  };
 
-    columns: Array<GuiColumn> = [
-      {
-        header: 'Código',
-        field: 'codLivro',
-        width: 70
-      },
-      {
-        header: 'Titulo',
-        field: 'tiTulo',
-      },
-      {
-        header: 'Descrição',
-        field: 'descricao',
-      },
-      {
-        header: 'Exemplar',
-        field: 'numeroExemplar',
-        width: 75
-      },
-      {
-        header: 'Autor',
-        field: 'autor',
-      },
-      {
-        header: 'Editora',
-        field: 'editora',
-      },
-      {
-        header: 'Coleção',
-        field: 'coleCao',
-      },
-    ];
-    rowSelection: boolean | GuiRowSelection = {
-      enabled: true,
-      type: GuiRowSelectionType.CHECKBOX,
-      mode: GuiRowSelectionMode.SINGLE,
-    };
+  columns: Array<GuiColumn> = [
+    {
+      header: 'Código',
+      field: 'codLivro',
+      width: 70
+    },
+    {
+      header: 'Titulo',
+      field: 'tiTulo',
+    },
+    {
+      header: 'Descrição',
+      field: 'descricao',
+    },
+    {
+      header: 'Exemplar',
+      field: 'numeroExemplar',
+      width: 75
+    },
+    {
+      header: 'Autor',
+      field: 'autor',
+    },
+    {
+      header: 'Editora',
+      field: 'editora',
+    },
+    {
+      header: 'Coleção',
+      field: 'coleCao',
+    },
+  ];
+  rowSelection: boolean | GuiRowSelection = {
+    enabled: true,
+    type: GuiRowSelectionType.CHECKBOX,
+    mode: GuiRowSelectionMode.SINGLE,
+  };
 
   ngOnInit(): void {
 
     this.formulario = this.formbuilder.group({
-    codLivro: [0],
-    tiTulo :["", Validators.required],
-    descricao :["",Validators.required],
-    numeroExemplar :["",Validators.required],
-    autor :["", Validators.required],
-    editora :["", Validators.required],
-    coleCao :["", Validators.required],
-    tipo :["", Validators.required],
-    seCao :["", Validators.required],
-    volume :["", Validators.required],
-    anoEdicAo :["", Validators.required],
-    idIoma :["", Validators.required],
-    statuS :["Disponível"]
+      codLivro: [0],
+      tiTulo: ["", Validators.required],
+      descricao: ["", Validators.required],
+      numeroExemplar: ["", Validators.required],
+      autor: ["", Validators.required],
+      editora: ["", Validators.required],
+      coleCao: ["", Validators.required],
+      tipo: ["", Validators.required],
+      seCao: ["", Validators.required],
+      volume: ["", Validators.required],
+      anoEdicAo: ["", Validators.required],
+      idIoma: ["", Validators.required],
+      statuS: ["Disponível"]
     })
 
 
     this.AutorService.GetAutor().subscribe(autores => {
-      autores.forEach(autor => {UpdateOptionAutor(autor)})})
+      autores.forEach(autor => { UpdateOptionAutor(autor) })
+    })
 
     this.EditoraService.GetEditora().subscribe(editoras => {
-      editoras.forEach(editora => {UpdateOptionEditora(editora)})})
+      editoras.forEach(editora => { UpdateOptionEditora(editora) })
+    })
 
     this.SecaoService.GetSecao().subscribe(secoes => {
-      secoes.forEach(secao => {UpdateOptionSecao(secao)})})
-      this.colecaoService.GetColecao(0).subscribe(colecoes => {
-        colecoes.forEach(colecao => {UpdateOptionColecao(colecao)})})
+      secoes.forEach(secao => { UpdateOptionSecao(secao) })
+    })
+    this.colecaoService.GetColecao(0).subscribe(colecoes => {
+      colecoes.forEach(colecao => { UpdateOptionColecao(colecao) })
+    })
 
-    this.livroService.GetLivro(0).subscribe(livros => { this.source =livros})
+    this.livroService.GetLivro(0).subscribe(livros => { this.source = livros })
 
     UpdateActive();
   }
-  SalvarLivro(livro: Livro){
+  SalvarLivro(livro: Livro) {
     this.livroService.PostLivro(livro).subscribe(
       () => {
         console.log("Sucess: " + livro);
         location.reload();
-      },(erro: any) => {
+      }, (erro: any) => {
         console.log("Erro" + livro);
       }
     )
   }
-  onSubmit(){
+  onSubmit() {
 
-    let livro: Livro = {...this.formulario.value};
+    let livro: Livro = { ...this.formulario.value };
     livro
     this.SalvarLivro(livro)
     console.log(this.formulario.value)
     this.formulario.reset
-    this.livroService.GetLivro(0).subscribe(livros => { this.source =livros})
+    this.livroService.GetLivro(0).subscribe(livros => { this.source = livros })
   }
-  delete(){
+  delete() {
     this.formulario.value.statuS = "Arquivado";
   }
   onSelectedRows(rows: Array<GuiSelectedRow>): void {
     var Cod = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
-    this.livroService.GetLivro(Cod).subscribe(livros => {this.formulario.patchValue(livros[0])})
+    this.livroService.GetLivro(Cod).subscribe(livros => { this.formulario.patchValue(livros[0]) })
   }
 }
-function UpdateOptionColecao(colecao: Colecao){
+function UpdateOptionColecao(colecao: Colecao) {
   var DataList = document.getElementById('DatalistColecao');
   var Option = document.createElement('option');
   Option.value = colecao.nomeColecao + " - código " + colecao.codColecao;
   DataList?.appendChild(Option);
 }
 
-function UpdateOptionAutor(Autor: Autor){
+function UpdateOptionAutor(Autor: Autor) {
   var DataList = document.getElementById('DatalistAutor');
   var Option = document.createElement('option');
   Option.value = Autor.nome + " - código " + Autor.codAutor;
   DataList?.appendChild(Option);
 }
-function UpdateOptionEditora(editora: Editora){
+function UpdateOptionEditora(editora: Editora) {
   var Datalist = document.getElementById('DatalistEditora');
   var Option = document.createElement('option');
   Option.value = editora.nomeEditora + ' - código ' + editora.codEditora;
   Datalist?.appendChild(Option);
 }
-function UpdateOptionSecao(secao: Secao){
+function UpdateOptionSecao(secao: Secao) {
   var Datalist = document.getElementById('DatalistSecao');
   var Option = document.createElement('option');
   Option.value = secao.descricaoSecao + ' - ' + secao.descricaoLocal + ' - código ' + secao.codSecao;
@@ -172,7 +176,7 @@ function UpdateOptionSecao(secao: Secao){
 }
 
 
-function UpdateActive(){
+function UpdateActive() {
   document.getElementById('ACadleitor')?.classList.remove('active');
   document.getElementById('ACadlivro')?.classList.add('active');
   document.getElementById('ACadAutor')?.classList.remove('active');
@@ -183,4 +187,5 @@ function UpdateActive(){
   document.getElementById('AEmprestimo')?.classList.remove('active');
   document.getElementById('AConLeitor')?.classList.remove('active');
   document.getElementById('AConlivro')?.classList.remove('active');
+  document.getElementById('AConEmprestimo')?.classList.remove('active');
 }

@@ -1,25 +1,21 @@
-
-  <form class="MyForm" [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <div class=" row">
-      <div class="mb-2">
-        <label for="TbNome" class="form-label">Nome:</label>
-        <input type="text" class="form-control MyTam" id="TbNome" formControlName="nome">
-      </div>
+<form class="MyForm" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class=" row">
+    <div class="mb-2">
+      <label for="TbNome" class="form-label">Nome:</label>
+      <input type="text" class="form-control MyTam" id="TbNome" formControlName="nomeEditora">
     </div>
-    <div class=" row">
-      <div class="col-6 mb-2">
-        <label for="TbDescricao" class="form-label">Descrição:</label>
-        <textarea type="text" class="form-control MyTam" id="TbDescricao" rows="4" style="resize: none" formControlName="descricao"></textarea>
-      </div>
+  </div>
+  <div class=" row">
+    <div class="col-6 mb-2">
+      <label for="TbDescricao" class="form-label">Descrição:</label>
+      <textarea type="text" class="form-control MyTam" id="TbDescricao" rows="4" style="resize: none"
+        formControlName="descricaoEDitora"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Salvar</button>
-    <div class=" row">
-      <gui-grid [source]="source"
-          [columns]="columns"
-          [paging]="paging"
-          [searching]="searching"
-          [localization]="Language"
-          >
-      </gui-grid>
-    </div>
-  </form>
+  </div>
+  <button type="submit" [disabled]="!formulario.valid" class="btn btn-primary mb-2">Salvar</button>
+  <div class=" row">
+    <gui-grid [source]="source" [columns]="columns" [paging]="paging" [searching]="searching" [localization]="Language"
+      [rowSelection]="rowSelection" (selectedRows)="onSelectedRows($event)">
+    </gui-grid>
+  </div>
+</form>

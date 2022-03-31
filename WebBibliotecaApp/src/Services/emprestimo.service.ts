@@ -15,18 +15,21 @@ export class EmprestimoService {
 
   constructor(private http: HttpClient) { }
 
-  public GetEmprestimo(): Observable<Emprestimo[]>{
+  public GetEmprestimo(): Observable<Emprestimo[]> {
     return this.http.get<Emprestimo[]>(ApiServiceService.urlPadrao + this.pathbase)
   }
-  public PostEmprestimo(emprestimo: Emprestimo){
+  public PostEmprestimo(emprestimo: Emprestimo) {
     console.log(emprestimo)
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase, emprestimo)
   }
-  public Devolver(idEmprestimo: number){
+  public Devolver(idEmprestimo: number) {
     console.log(idEmprestimo)
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase2, idEmprestimo)
   }
-  public GetLivro():Observable<Livro[]> {
+  public GetLivro(): Observable<Livro[]> {
     return this.http.get<Livro[]>(ApiServiceService.urlPadrao + "/api/getlivro")
-}
+  }
+  public ConEmprestimo(status: string, livro: string, leitor: string, dataEmprestimo: string, dataDevolucao: string): Observable<Emprestimo[]> {
+    return this.http.get<Emprestimo[]>(ApiServiceService.urlPadrao + "/api/conemprestimo" + "/" + status + "/" + livro + "/" + leitor + "/" + dataEmprestimo + "/" + dataDevolucao)
+  }
 }

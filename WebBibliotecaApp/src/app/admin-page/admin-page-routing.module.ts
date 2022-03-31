@@ -11,6 +11,7 @@ import { CadLocalComponent } from './cad-local/cad-local.component';
 import { CadColecaoComponent } from './cad-colecao/cad-colecao.component';
 import { EmprestimoComponent } from './emprestimo/emprestimo.component';
 import { ConsultarLivroComponent } from './consultar-livro/consultar-livro.component';
+import { ConsultarEmprestimoComponent } from './consultar-emprestimo/consultar-emprestimo.component';
 
 const routesAdmin: Routes = [
   {path: 'adminpage', component: AdminPageComponent, children: [
@@ -24,6 +25,7 @@ const routesAdmin: Routes = [
     {path: 'emprestimo', component: EmprestimoComponent},
     {path: 'consultarleitor', component: ConsultarLeitorComponent},
     {path: 'consultarlivro', component: ConsultarLivroComponent},
+    {path: 'consultaremprestimo', component: ConsultarEmprestimoComponent}
   ]}
 ];
 

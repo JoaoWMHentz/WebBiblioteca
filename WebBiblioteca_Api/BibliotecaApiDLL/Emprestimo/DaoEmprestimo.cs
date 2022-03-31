@@ -76,12 +76,51 @@ namespace BibliotecaApiDLL.Emprestimo
 				}
 			}
 		}
-		public List<Emprestimo> GetDados()
+		public List<Emprestimo> ConsultaEmprestimo(string status, string livro, string leitor, string dataEmprestimo, string dataDevolucao)
 		{
 			var List = new List<Emprestimo>();
 			using (var cmd = new SqlCommand())
 			{
-				cmd.CommandText = SelectCommand;
+				if(status == "0")
+                {
+					status = "";
+                }
+				if (livro == "0")
+				{
+					livro = "";
+				}
+				if (leitor == "0")
+				{
+					leitor = "";
+				}
+				if (dataEmprestimo == "0")
+				{
+					dataEmprestimo = "";
+				}
+				if (dataDevolucao == "0")
+				{
+					dataDevolucao = "";
+				}
+				cmd.CommandText = $@" SELECT
+
+											codEmprestimo,
+	                                        Leitor.nome AS 'nomeLeitor',
+	                                        Leitor.cpf,
+	                                        Livro.titulo,
+	                                        Livro.numeroExemplar,
+	                                        Emprestimo.dataEmprestimo,
+	                                        Emprestimo.dataDevolucao,
+	                                        Emprestimo.status
+										FROM MvtBIBEmprestimo AS Emprestimo
+										LEFT JOIN MvtBIBLeitor AS Leitor
+											ON Leitor.CodLeitor = Emprestimo.codLeitor
+										LEFT JOIN MvtBIBItemAcervo AS Livro
+											ON Livro.codLivro = Emprestimo.codLivro
+										WHERE Emprestimo.status LIKE '%{status}%' AND
+										UPPER(Leitor.nome) LIKE '%{leitor}%' AND
+										UPPER (livro.titulo) LIKE '%{livro}%' AND
+										Emprestimo.dataEmprestimo LIKE '%{dataEmprestimo}%' AND
+										Emprestimo.dataDevolucao LIKE '%{dataDevolucao}%'";
 				using (var Con = new Conexao())
 				{
 					cmd.Connection = Con.Conectar();
@@ -94,6 +133,28 @@ namespace BibliotecaApiDLL.Emprestimo
 						}
 					}
 					
+				}
+			}
+			return List;
+		}
+		public List<Emprestimo> GetDados()
+		{
+			var List = new List<Emprestimo>();
+			using (var cmd = new SqlCommand())
+			{
+				cmd.CommandText = SelectCommand;
+				using (var Con = new Conexao())
+				{
+					cmd.Connection = Con.Conectar();
+					var reader = cmd.ExecuteReader();
+					if (reader.HasRows)
+					{
+						while (reader.Read())
+						{
+							List.Add(ReaderToObject(reader));
+						}
+					}
+
 				}
 			}
 			return List;

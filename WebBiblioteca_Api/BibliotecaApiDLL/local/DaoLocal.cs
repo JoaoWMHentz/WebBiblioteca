@@ -12,9 +12,9 @@ namespace BibliotecaApiDLL.local
 											) VALUES (
 											@descricaoLocal
 											)";
-		private string UpdateCommand => $@"UPDATE {TableName} SET, 
+		private string UpdateCommand => $@"UPDATE {TableName} SET
 										descricaoLocal = @descricaoLocal
-										 WHERE xxxxxxxxxxxx";
+										 WHERE codLocal = @codLocal";
 		private string SelectCommand => $@"SELECT [codLocal]
 											  ,[descricaoLocal]
 										  FROM [MvtBiblioteca].[dbo].[MvtBIBLocal]";
@@ -22,7 +22,15 @@ namespace BibliotecaApiDLL.local
 		{
 			using (var cmd = new SqlCommand())
 			{
-				cmd.CommandText = InsertCommand;
+				if (local.CodLoCal != 0)
+                {
+					cmd.CommandText = UpdateCommand;
+					cmd.Parameters.AddWithValue("@codLocal", local.CodLoCal);
+                } else
+                {
+					cmd.CommandText = InsertCommand;
+				}
+				
 				cmd.Parameters.AddWithValue("@descricaoLocal", local.DescricaoLocal);
 
 				using (var Con = new Conexao())

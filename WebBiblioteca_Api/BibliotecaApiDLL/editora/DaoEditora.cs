@@ -29,7 +29,16 @@ namespace BibliotecaApiDLL.editora
 		{
 			using (var cmd = new SqlCommand())
             {
-				cmd.CommandText = InsertCommand;
+				if(editora.CodEditora != 0)
+                {
+					cmd.CommandText = UpdateCommand;
+					cmd.Parameters.AddWithValue("@codEditora", editora.CodEditora);
+                }
+                else
+                {
+					cmd.CommandText = InsertCommand;
+				}
+
 				cmd.Parameters.AddWithValue("@nomeEditora", editora.NomeEditora);
 				cmd.Parameters.AddWithValue("@descricaoEditora", editora.DescricaoEDitora);
 				using (var Con = new Conexao())

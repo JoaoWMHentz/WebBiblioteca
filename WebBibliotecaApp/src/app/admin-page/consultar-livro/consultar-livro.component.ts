@@ -90,6 +90,7 @@ export class ConsultarLivroComponent implements OnInit {
     document.getElementById('AEmprestimo')?.classList.remove('active');
     document.getElementById('AConLeitor')?.classList.remove('active');
     document.getElementById('AConlivro')?.classList.add('active');
+    document.getElementById('AConEmprestimo')?.classList.remove('active');
 
   }
   onSubmit(){

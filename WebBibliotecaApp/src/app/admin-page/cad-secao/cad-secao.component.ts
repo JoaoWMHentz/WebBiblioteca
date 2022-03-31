@@ -1,12 +1,12 @@
 import { SecaoService } from 'src/Services/secao.service';
 import { Secao } from 'src/Objects/Secao';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Local } from 'src/Objects/local';
 import { LocalService } from './../../../Services/local.service';
 import { Component, OnInit } from '@angular/core';
 import { CadSecaoModule } from './cad-secao.module';
 import { AppComponent } from 'src/app/app.component';
-import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiSearching } from '@generic-ui/ngx-grid';
+import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiRowSelection, GuiRowSelectionMode, GuiRowSelectionType, GuiSearching, GuiSelectedRow } from '@generic-ui/ngx-grid';
 @Component({
   selector: 'app-cad-secao',
   templateUrl: './cad-secao.component.html',
@@ -16,25 +16,25 @@ export class CadSecaoComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private localService: LocalService, private formbuilder: FormBuilder,private secaoService: SecaoService) { }
+  constructor(private localService: LocalService, private formbuilder: FormBuilder, private secaoService: SecaoService) { }
 
   Language = AppComponent.localization;
 
   source: Array<Secao> = [];
 
   paging: GuiPaging = {
-		enabled: true,
-		page: 1,
-		pageSize: 5,
-		pageSizes: [5 ,10, 25, 50],
-		pagerTop: false,
-		pagerBottom: true,
-		display: GuiPagingDisplay.ADVANCED
-	};
+    enabled: true,
+    page: 1,
+    pageSize: 5,
+    pageSizes: [5, 10, 25, 50],
+    pagerTop: false,
+    pagerBottom: true,
+    display: GuiPagingDisplay.ADVANCED
+  };
   searching: GuiSearching = {
-		enabled: true,
-		placeholder: 'Pesquisar...'
-	};
+    enabled: true,
+    placeholder: 'Pesquisar...'
+  };
 
   columns: Array<GuiColumn> = [
     {
@@ -53,48 +53,62 @@ export class CadSecaoComponent implements OnInit {
       width: 300
     },
 
-];
+  ];
+  rowSelection: boolean | GuiRowSelection = {
+    enabled: true,
+    type: GuiRowSelectionType.CHECKBOX,
+    mode: GuiRowSelectionMode.SINGLE,
+  };
 
   ngOnInit(): void {
     this.formulario = this.formbuilder.group({
       codSecao: ['0'],
-      descricaoSecao: [''],
-      descricaoLocal: ['']
+      descricaoSecao: ['', Validators.required],
+      descricaoLocal: ['', Validators.required]
     })
 
     UpdateActive();
 
     this.localService.GetLocal().subscribe(locais => {
-      locais.forEach(local => {UpdateOptionLocal(local)})})
+      locais.forEach(local => { UpdateOptionLocal(local) })
+    })
 
-    this.secaoService.GetSecao().subscribe(secao => {this.source = secao})
+    this.secaoService.GetSecao().subscribe(secao => { this.source = secao })
 
   }
-  SalvarSecao(secao: Secao){
+  SalvarSecao(secao: Secao) {
     this.secaoService.PostSecao(secao).subscribe(
       () => {
         console.log("Sucess: " + secao);
-      },(erro: any) => {
+        location.reload();
+      }, (erro: any) => {
         console.log("Erro" + secao);
       }
     )
   }
-  onSubmit(){
-    let secao: Secao = {...this.formulario.value} ;
+  onSubmit() {
+    let secao: Secao = { ...this.formulario.value };
     console.log(secao);
     this.SalvarSecao(secao)
-    location.reload();
+
+  }
+  onSelectedRows(rows: Array<GuiSelectedRow>): void {
+    var cod: number = rows.map((m: GuiSelectedRow) => m.source.codSecao)[0];
+    var nome: string = rows.map((m: GuiSelectedRow) => m.source.descricaoSecao)[0];
+    var descricao: string = rows.map((m: GuiSelectedRow) => m.source.descricaoLocal)[0];
+    let editora: Secao = {codSecao: cod,descricaoSecao: nome, descricaoLocal: descricao};
+    this.formulario.patchValue(editora)
   }
 }
 
-function UpdateOptionLocal(local: Local){
+function UpdateOptionLocal(local: Local) {
   var DataList = document.getElementById('DatalistLocal');
   var Option = document.createElement('option');
   Option.value = local.descricaoLocal + " - código " + local.codLoCal;
   DataList?.appendChild(Option);
 }
 
-function UpdateActive(){
+function UpdateActive() {
   var CadLeitorActive = document.getElementById('ACadleitor');
   CadLeitorActive?.classList.remove('active');
   var CadLivroActive = document.getElementById('ACadlivro');
@@ -111,4 +125,5 @@ function UpdateActive(){
   AcadSecapActive?.classList.remove('active');
   document.getElementById('AConLeitor')?.classList.remove('active');
   document.getElementById('AConlivro')?.classList.remove('active');
+  document.getElementById('AConEmprestimo')?.classList.remove('active');
 }

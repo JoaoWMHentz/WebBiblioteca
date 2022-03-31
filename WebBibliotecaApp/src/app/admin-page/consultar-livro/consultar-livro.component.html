@@ -1,54 +1,53 @@
 <div class="MyForm">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="mb-2 col-4">
-          <label for="TbTitulo" class="form-label">Título:</label>
-          <input type="text" class="form-control MyTam" id="TbTitulo"   formControlName="tiTulo">
-        </div>
-        <div class="mb-2 col-4">
-          <label for="TbAutor" class="form-label">Autor:</label>
-          <input class="form-control MyTam" list="DatalistAutor" id="TbAutor" autocomplete="off"  formControlName="autor">
-          <datalist  id="DatalistAutor">
-          </datalist>
-        </div>
-        <div class="mb-2 col-4">
-          <label for="TbColecao" class="form-label">Coleção:</label>
-          <input type="text" class="form-control MyTam"list="DatalistColecao" autocomplete="off"  id="TbColecao" formControlName="coleCao" >
-          <datalist id="DatalistColecao">
+    <div class="row">
+      <div class="mb-2 col-4">
+        <label for="TbTitulo" class="form-label">Título:</label>
+        <input type="text" class="form-control MyTam" id="TbTitulo" formControlName="tiTulo">
+      </div>
+      <div class="mb-2 col-4">
+        <label for="TbAutor" class="form-label">Autor:</label>
+        <input class="form-control MyTam" list="DatalistAutor" id="TbAutor" autocomplete="off" formControlName="autor">
+        <datalist id="DatalistAutor">
+        </datalist>
+      </div>
+      <div class="mb-2 col-4">
+        <label for="TbColecao" class="form-label">Coleção:</label>
+        <input type="text" class="form-control MyTam" list="DatalistColecao" autocomplete="off" id="TbColecao"
+          formControlName="coleCao">
+        <datalist id="DatalistColecao">
+        </datalist>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="mb-2 col-4">
+        <label for="TbEditora" class="form-label">Editora:</label>
+        <input class="form-control" list="DatalistEditora" autocomplete="off" id="TbEditora" formControlName="editora">
+        <datalist id="DatalistEditora">
+        </datalist>
+      </div>
+      <div class="mb-2 col-4">
+        <label for="TbSecao" class="form-label">Seção:</label>
+        <div class="input-group mb-2">
+          <input type="tel" class="form-control MyTam" id="TbSecao" autocomplete="off" list="DatalistSecao"
+            formControlName="seCao">
+          <datalist id="DatalistSecao">
           </datalist>
         </div>
       </div>
-
-
-      <div class="row">
-        <div class="mb-2 col-4">
-          <label for="TbEditora" class="form-label">Editora:</label>
-          <input class="form-control" list="DatalistEditora" autocomplete="off" id="TbEditora"    formControlName="editora">
-          <datalist  id="DatalistEditora">
-          </datalist>
-        </div>
-        <div class="mb-2 col-4">
-          <label for="TbSecao" class="form-label">Seção:</label>
-          <div class="input-group mb-2">
-            <input type="tel" class="form-control MyTam" id="TbSecao" autocomplete="off"  list="DatalistSecao"  formControlName="seCao">
-            <datalist id="DatalistSecao">
-            </datalist>
-          </div>
-        </div>
-        <div class="mb-2 col-4">
-          <label for="TbStatus" class="form-label e">Status:</label>
-          <input type="text" class="form-control MyTam" id="TbStatus"formControlName="status"  value="" >
-        </div>
+      <div class="col-4 mb-2">
+        <label class="form-label" for="Masc">Status:</label>
+        <select class="form-control MyTam " id="SeTipo" formControlName="status">
+          <option value="0">Selecione...</option>
+          <option value="Emprestado">Emprestado</option>
+          <option value="Disponível">Disponível</option>
+        </select>
       </div>
-      <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
-    </form>
-    <gui-grid [source]="source"
-    [columns]="columns"
-    [paging]="paging"
-    [localization]="Language"
-    >
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+  </form>
+  <gui-grid [source]="source" [columns]="columns" [paging]="paging" [localization]="Language">
   </gui-grid>
 </div>
-
-
-

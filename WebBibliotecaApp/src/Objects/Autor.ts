@@ -1,5 +1,5 @@
 export class Autor {
-    codAutor = 0;
+    codAutor: number;
     nome: string = '';
     descricao: string = '';
 

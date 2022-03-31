@@ -18,6 +18,6 @@ export class SecaoService {
     return this.http.get<Secao[]>(ApiServiceService.urlPadrao + this.pathBase)
   }
   public PostSecao(secao: Secao){
-    return this.http.post(ApiServiceService.urlPadrao + this.pathBase, secao)
+    return this.http.post(ApiServiceService.urlPadrao + this.pathBase + "/" + secao.codSecao + "/" + secao.descricaoSecao + "/" + secao.descricaoLocal, secao)
   }
 }

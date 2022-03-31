@@ -84,6 +84,7 @@ export class ConsultarLeitorComponent implements OnInit {
     document.getElementById('AEmprestimo')?.classList.remove('active');
     document.getElementById('AConLeitor')?.classList.add('active');
     document.getElementById('AConlivro')?.classList.remove('active');
+    document.getElementById('AConEmprestimo')?.classList.remove('active');
   }
   onSubmit(){
     var form = this.formulario.value

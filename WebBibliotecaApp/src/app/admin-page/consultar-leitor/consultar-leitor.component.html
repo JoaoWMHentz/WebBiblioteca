@@ -3,14 +3,16 @@
     <div class="row">
       <div class="col-4 mb-2">
         <label for="TbNome" class="form-label">Nome:</label>
-        <input type="text" class="form-control MyTam" id="TbNome"  formControlName="nome">
+        <input type="text" class="form-control MyTam" id="TbNome" formControlName="nome">
       </div>
       <div class="col-4 mb-2">
         <label for="TbCpf" class="form-label TamInline">Cpf:</label>
         <label for="TbNome" class="form-label  MyMargin">Rg:</label>
         <div class="mb-2">
-          <input type="text" class="form-control TamInline" mask="000.000.000-00" id="TbCpf" placeholder="___.___.___-__" formControlName="cpf">
-          <input type="text" class="form-control TamInline MyMargin" id="TbTbNome" mask="00.000.000-0" placeholder="__.___.___-_" formControlName="rg">
+          <input type="text" class="form-control TamInline" mask="000.000.000-00" id="TbCpf"
+            placeholder="___.___.___-__" formControlName="cpf">
+          <input type="text" class="form-control TamInline MyMargin" id="TbTbNome" mask="00.000.000-0"
+            placeholder="__.___.___-_" formControlName="rg">
         </div>
       </div>
       <div class="col-4 mb-2">
@@ -23,14 +25,8 @@
     </div>
     <div class="row">
 
-        <gui-grid [source]="source"
-        [columns]="columns"
-        [paging]="paging"
-        [searching]="searching"
-        [localization]="Language"
-        [rowSelection]="rowSelection"
-    ></gui-grid>
+      <gui-grid [source]="source" [columns]="columns" [paging]="paging" [searching]="searching"
+        [localization]="Language" [rowSelection]="rowSelection"></gui-grid>
     </div>
   </form>
 </div>
-

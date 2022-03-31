@@ -8,7 +8,7 @@ namespace BibliotecaApiDLL.Autor
 	{
 		private string TableName => "MvtBIBAutor";
 		private string InsertCommand => $@"INSERT INTO {TableName} (nomeAutor, descricaoAutor) VALUES (@nomeAutor, @descricaoAutor)";
-		private string UpdateCommand => $@"UPDATE {TableName} SET codAutor = @codAutor, nomeAutor = @nomeAutor, descricaoAutor = @descricaoAutor,  WHERE xxxxxxxxxxxx";
+		private string UpdateCommand => $@"UPDATE {TableName} SET  nomeAutor = @nomeAutor, descricaoAutor = @descricaoAutor  WHERE codAutor = @codAutor";
 		private string SelectCommand => $@"SELECT TOP (1000) [codAutor]
 										,[nomeAutor]
 										,[descricaoAutor]
@@ -17,7 +17,15 @@ namespace BibliotecaApiDLL.Autor
 		{
 			using (var cmd = new SqlCommand())
 			{
+				if (autor.CodAutor != 0)
+                {
+					cmd.CommandText = UpdateCommand;
+					cmd.Parameters.AddWithValue("@codAutor", autor.CodAutor);
+                }
+                else
+                {
 				cmd.CommandText = InsertCommand;
+                }
 				cmd.Parameters.AddWithValue("@codAutor", autor.CodAutor);
 				cmd.Parameters.AddWithValue("@nomeAutor", autor.Nome);
 				cmd.Parameters.AddWithValue("@descricaoAutor", autor.Descricao);
