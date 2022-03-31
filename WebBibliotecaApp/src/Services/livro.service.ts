@@ -15,8 +15,12 @@ export class LivroService {
     public GetLivro(id: number):Observable<Livro[]> {
         return this.http.get<Livro[]>(ApiServiceService.urlPadrao + this.pathBase + "/" + id)
     }
+    public GetConLivro(titulo: string, autor: string, editora: string, colecao: string, secao: string, status: string): Observable<Livro[]> {
+      return this.http.get<Livro[]>(ApiServiceService.urlPadrao + "/api/conlivro" + "/" + titulo +  "/" + autor + "/" + editora + "/" + colecao + "/" + secao + "/" + status)
+  }
     public PostLivro(livro: Livro){
       return this.http.post(ApiServiceService.urlPadrao + this.pathBase, livro)
     }
 
   }
+

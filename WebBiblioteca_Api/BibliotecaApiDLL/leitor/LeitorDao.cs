@@ -117,7 +117,7 @@ namespace BibliotecaApiDLL.leitor
                 Convert.ToString(reader["nome"]),
                 Convert.ToString(reader["senha"]),
                 Convert.ToChar(reader["Sexo"]),
-                Convert.ToString(reader["dataNascimento"]),
+                (Convert.ToDateTime(reader["dataNascimento"])).ToString("yyyy-MM-dd"),
                 Convert.ToString(reader["cpf"]),
                 Convert.ToString(reader["rg"]),
                 Convert.ToString(reader["email"]),

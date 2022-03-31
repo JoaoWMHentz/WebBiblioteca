@@ -210,7 +210,8 @@ export class EmprestimoComponent implements OnInit {
     form.leitor = this.CodigoLeitor.toString();
     form.livro = this.CodigoLivro.toString();
     this.SalvarEmprestimo(new Emprestimo(form.codEmprestimo, form.leitor, form.cpfleitor, form.livro, form.exemplar , form.dataEmprestimo, form.dataDevolucao, form.status))
-    location.reload();
+    this.emprestimoService.GetEmprestimo().subscribe(Emprestimos => { this.source = Emprestimos})
+    this.formulario.reset
   }
   DevolverOnClik(){
     this.emprestimoService.Devolver(this.idEmprestimo).subscribe(
@@ -235,4 +236,6 @@ function activeUpdate(){
   document.getElementById('AcadLocal')?.classList.remove('active');
   document.getElementById('AcadColecao')?.classList.remove('active');
   document.getElementById('AEmprestimo')?.classList.add('active');
+  document.getElementById('AConLeitor')?.classList.remove('active');
+  document.getElementById('AConlivro')?.classList.remove('active');
 }

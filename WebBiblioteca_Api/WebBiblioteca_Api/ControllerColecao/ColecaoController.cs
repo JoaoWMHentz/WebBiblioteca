@@ -6,12 +6,12 @@ namespace WebBiblioteca_Api.ControllerColecao
     [Route("api/cadcolecao")]
     public class ColecaoController
     {
-        [HttpGet]
-        public List<Colecao> Get()
+        [HttpGet("{id}")]
+        public List<Colecao> Get(int id)
         {
             DaoColecao Dao = new DaoColecao();
             var list = new List<Colecao>();
-            list = Dao.GetDados();
+            list = Dao.GetDados(id);
             return list;
         }
         [HttpPost]

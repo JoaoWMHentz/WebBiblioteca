@@ -10,6 +10,7 @@ import { CadSecaoComponent } from './cad-secao/cad-secao.component';
 import { CadLocalComponent } from './cad-local/cad-local.component';
 import { CadColecaoComponent } from './cad-colecao/cad-colecao.component';
 import { EmprestimoComponent } from './emprestimo/emprestimo.component';
+import { ConsultarLivroComponent } from './consultar-livro/consultar-livro.component';
 
 const routesAdmin: Routes = [
   {path: 'adminpage', component: AdminPageComponent, children: [
@@ -21,7 +22,8 @@ const routesAdmin: Routes = [
     {path: 'cadLocal', component: CadLocalComponent},
     {path: 'cadcolecao', component: CadColecaoComponent},
     {path: 'emprestimo', component: EmprestimoComponent},
-    {path: 'comsultarleitor', component: ConsultarLeitorComponent}
+    {path: 'consultarleitor', component: ConsultarLeitorComponent},
+    {path: 'consultarlivro', component: ConsultarLivroComponent},
   ]}
 ];
 

@@ -9,8 +9,8 @@ namespace BibliotecaApiDLL
         //Construtor
         public Conexao()
         {
-            Con.ConnectionString = @"Data Source=MVTRENAN\SQLEXPRESS01;Initial Catalog=MvtBiblioteca;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            //Con.ConnectionString = @"Data Source=DESKTOP-9R52LPM\SQLEXPRESS;Initial Catalog=MvtBiblioteca;Integrated Security=True";
+           // Con.ConnectionString = @"Data Source=MVTRENAN\SQLEXPRESS01;Initial Catalog=MvtBiblioteca;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            Con.ConnectionString = @"Data Source=DESKTOP-BRRLI93\SQLEXPRESS;Initial Catalog=MvtBiblioteca;Integrated Security=True";
         }
 
         // conectar

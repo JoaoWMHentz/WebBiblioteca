@@ -13,8 +13,8 @@ export class ColecaoService {
 
   constructor(private http: HttpClient) { }
 
-  public GetColecao(): Observable<Colecao[]>{
-    return this.http.get<Colecao[]>(ApiServiceService.urlPadrao + this.pathbase)
+  public GetColecao(id: number): Observable<Colecao[]>{
+    return this.http.get<Colecao[]>(ApiServiceService.urlPadrao + this.pathbase + "/" + id)
   }
   public PostColecao(colecao: Colecao){
     return this.http.post(ApiServiceService.urlPadrao + this.pathbase, colecao)

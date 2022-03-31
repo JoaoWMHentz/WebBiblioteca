@@ -96,4 +96,6 @@ function UpadateActive(){
   document.getElementById('AcadLocal')?.classList.remove('active');
   document.getElementById('AcadColecao')?.classList.remove('active');
   document.getElementById('AEmprestimo')?.classList.remove('active');
+  document.getElementById('AConLeitor')?.classList.remove('active');
+  document.getElementById('AConlivro')?.classList.remove('active');
 }

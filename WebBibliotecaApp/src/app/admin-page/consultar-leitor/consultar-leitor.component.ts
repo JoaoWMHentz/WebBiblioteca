@@ -73,6 +73,17 @@ export class ConsultarLeitorComponent implements OnInit {
       rg: ['0'],
       email: ['0']
     });
+
+    document.getElementById('ACadleitor')?.classList.remove('active');
+    document.getElementById('ACadlivro')?.classList.remove('active');
+    document.getElementById('ACadAutor')?.classList.remove('active');
+    document.getElementById('ACadEditora')?.classList.remove('active');
+    document.getElementById('AcadSecao')?.classList.remove('active');
+    document.getElementById('AcadLocal')?.classList.remove('active');
+    document.getElementById('AcadColecao')?.classList.remove('active');
+    document.getElementById('AEmprestimo')?.classList.remove('active');
+    document.getElementById('AConLeitor')?.classList.add('active');
+    document.getElementById('AConlivro')?.classList.remove('active');
   }
   onSubmit(){
     var form = this.formulario.value

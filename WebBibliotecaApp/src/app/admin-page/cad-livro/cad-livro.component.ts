@@ -111,7 +111,7 @@ export class CadLivroComponent implements OnInit {
 
     this.SecaoService.GetSecao().subscribe(secoes => {
       secoes.forEach(secao => {UpdateOptionSecao(secao)})})
-      this.colecaoService.GetColecao().subscribe(colecoes => {
+      this.colecaoService.GetColecao(0).subscribe(colecoes => {
         colecoes.forEach(colecao => {UpdateOptionColecao(colecao)})})
 
     this.livroService.GetLivro(0).subscribe(livros => { this.source =livros})
@@ -122,6 +122,7 @@ export class CadLivroComponent implements OnInit {
     this.livroService.PostLivro(livro).subscribe(
       () => {
         console.log("Sucess: " + livro);
+        location.reload();
       },(erro: any) => {
         console.log("Erro" + livro);
       }
@@ -133,7 +134,8 @@ export class CadLivroComponent implements OnInit {
     livro
     this.SalvarLivro(livro)
     console.log(this.formulario.value)
-    location.reload();
+    this.formulario.reset
+    this.livroService.GetLivro(0).subscribe(livros => { this.source =livros})
   }
   onSelectedRows(rows: Array<GuiSelectedRow>): void {
     var Cod = rows.map((m: GuiSelectedRow) => m.source.codLivro)[0];
@@ -176,4 +178,6 @@ function UpdateActive(){
   document.getElementById('AcadLocal')?.classList.remove('active');
   document.getElementById('AcadColecao')?.classList.remove('active');
   document.getElementById('AEmprestimo')?.classList.remove('active');
+  document.getElementById('AConLeitor')?.classList.remove('active');
+  document.getElementById('AConlivro')?.classList.remove('active');
 }

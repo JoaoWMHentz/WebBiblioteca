@@ -10,6 +10,7 @@ import { CadLivroComponent } from './cad-livro/cad-livro.component';
 import { CadEditoraComponent } from './cad-editora/cad-editora.component';
 import { CadAutorComponent } from './cad-autor/cad-autor.component';
 import { ConsultarLeitorComponent } from './consultar-leitor/consultar-leitor.component';
+import { ConsultarLivroComponent } from './consultar-livro/consultar-livro.component';
 
 
 @NgModule({

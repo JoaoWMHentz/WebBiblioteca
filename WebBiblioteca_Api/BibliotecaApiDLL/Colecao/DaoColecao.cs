@@ -37,7 +37,7 @@ namespace BibliotecaApiDLL.Colecao
 		{
 			using (var cmd = new SqlCommand())
 			{
-				if (colecao.CodColecao == 0)
+				if (colecao.CodColecao != 0)
                 {
 					cmd.CommandText = UpdateCommand;
 					cmd.Parameters.AddWithValue("@codColecao", colecao.CodColecao);
@@ -59,12 +59,35 @@ namespace BibliotecaApiDLL.Colecao
 				}
 			}
 		}
-		public List<Colecao> GetDados()
+		public List<Colecao> GetDados(int id)
 		{
 			var List = new List<Colecao>();
 			using (var cmd = new SqlCommand())
 			{
-				cmd.CommandText = SelectCommand;
+				if (id == 0)
+                {
+					cmd.CommandText = $@"SELECT TOP (1000) codColecao,
+										Colecao.nomeColecao,
+										Autor.nomeAutor,
+										Editora.nomeEditora,
+										Colecao.anoLancamento
+										FROM MvtBIBColecao as Colecao
+										LEFT JOIN MvtBIBAutor as Autor on Autor.codAutor = Colecao.codAutor
+										LEFT JOIN MvtBIBEditora as Editora on Editora.codEditora = Colecao.codEditora";
+                }
+                else
+                {
+					cmd.CommandText = $@"SELECT TOP (1000) Colecao.codColecao,
+										Colecao.nomeColecao,
+										Autor.nomeAutor,
+										Editora.nomeEditora,
+										Colecao.anoLancamento
+										FROM MvtBIBColecao as Colecao
+										LEFT JOIN MvtBIBAutor as Autor on Autor.codAutor = Colecao.codAutor
+										LEFT JOIN MvtBIBEditora as Editora on Editora.codEditora = Colecao.codEditora
+										WHERE Colecao.codColecao = {id}";
+				}
+				
 				using (var Con = new Conexao())
 				{
 					cmd.Connection = Con.Conectar();

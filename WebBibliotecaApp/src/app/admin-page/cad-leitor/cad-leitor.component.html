@@ -1,4 +1,4 @@
-<div class="container">
+
   <form class="MyForm" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-4 mb-2">
@@ -10,31 +10,20 @@
         <input type="password" class="form-control MyTam" id="TbSenha"  formControlName="senha">
       </div>
       <div class="col-4 mb-2">
-        <label for="TbNum" class="form-label ">Número:</label>
-        <input type="number" class="form-control MyTam" id="TbNum"  formControlName="enderecoNumero">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4 mb-2">
         <label for="TbEmail" class="form-label">Email:</label>
         <input type="Email" class="form-control MyTam" id="TbEmail" formControlName="email">
       </div>
+
+    </div>
+    <div class="row">
+
+
       <div class="col-4 mb-2">
         <label class="form-label" for="Masc">Sexo:</label>
         <select class="form-control MyTam " id="SeTipo"  formControlName="sexo">
           <option value="M">Masculino</option>
           <option value="F">Feminino</option>
         </select>
-      </div>
-      <div class="col-4 mb-2">
-        <label for="TbBairro" class="form-label ">Bairro:</label>
-        <input type="text" class="form-control MyTam" id="TbBairro" formControlName="enderecoBairro">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4 mb-2">
-        <label for="TbNasc" class="form-label">Data de Nascimento:</label>
-        <input type="date" class="form-control MyTam" id="TbNasc"  placeholder="__/__/____" formControlName="dataNascimento">
       </div>
       <div class="col-4 mb-2">
         <label for="TbCpf" class="form-label TamInline">Cpf:</label>
@@ -45,11 +34,11 @@
         </div>
       </div>
       <div class="col-4 mb-2">
-        <label for="TbCidade" class="form-label ">Cidade:</label>
-        <input type="text" class="form-control MyTam" id="TbCidade" formControlName="enderecoCidade">
+        <label for="TbNasc" class="form-label">Data de Nascimento:</label>
+        <input type="date" class="form-control MyTam" id="TbNasc"  placeholder="__/__/____" formControlName="dataNascimento">
       </div>
     </div>
-    <div class=" row">
+    <div class="row">
       <div class="col-4 md-2">
         <label for="TbTel" class="form-label TamInline" >Telefone:</label>
         <label for="TbCell" class="form-label  MyMargin">Celular:</label>
@@ -58,9 +47,26 @@
             <input type="tel" class="form-control TamInline MyMargin" mask="(00) 00000-0000" id="TbCell" placeholder="(__) _____-____" formControlName="telefoneCelular"><br>
         </div>
       </div>
+
+      <div class="col-4 mb-2">
+        <label for="TbCidade" class="form-label ">Cidade:</label>
+        <input type="text" class="form-control MyTam" id="TbCidade" formControlName="enderecoCidade">
+      </div>
+      <div class="col-4 mb-2">
+        <label for="TbBairro" class="form-label ">Bairro:</label>
+        <input type="text" class="form-control MyTam" id="TbBairro" formControlName="enderecoBairro">
+      </div>
+    </div>
+    <div class=" row">
+
+
       <div class="col-4 mb-2">
         <label for="TbRua" class="form-label ">Rua:</label>
         <input type="text" class="form-control MyTam" id="TbRua"  formControlName="enderecoRua">
+      </div>
+      <div class="col-4 mb-2">
+        <label for="TbNum" class="form-label ">Número:</label>
+        <input type="number" class="form-control MyTam" id="TbNum"  formControlName="enderecoNumero">
       </div>
       <div class="col-4 mb-2">
         <label for="TbCep" class="form-label TamInline">Cep:</label>
@@ -112,4 +118,4 @@
     </div>
   </form>
 
-</div>
+

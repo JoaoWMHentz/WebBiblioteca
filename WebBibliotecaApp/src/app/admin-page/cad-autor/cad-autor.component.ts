@@ -81,7 +81,8 @@ export class CadAutorComponent implements OnInit {
     var form =  this.formulario1.value;
     this.salvarAutor(new Autor(form.codAutor, form.nome, form.descricao))
     console.log(this.formulario1.value)
-    location.reload();
+    this.AutorService.GetAutor().subscribe(autores => {this.source = autores; console.log(autores)})
+   this.formulario1.reset
   }
 }
 function UpdateActive(){
@@ -93,4 +94,6 @@ function UpdateActive(){
   document.getElementById('AcadLocal')?.classList.remove('active');
   document.getElementById('AcadColecao')?.classList.remove('active');
   document.getElementById('AEmprestimo')?.classList.remove('active');
+  document.getElementById('AConLeitor')?.classList.remove('active');
+  document.getElementById('AConlivro')?.classList.remove('active');
 }

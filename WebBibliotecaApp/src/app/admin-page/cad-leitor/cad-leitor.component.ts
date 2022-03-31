@@ -108,6 +108,7 @@ export class CadLeitorComponent implements OnInit {
     this.leitorService.PostLeitor(leitor).subscribe(
       () => {
         console.log("Sucess");
+        location.reload();
       },(erro: any) => {
         console.log("erro")
       }
@@ -118,6 +119,7 @@ export class CadLeitorComponent implements OnInit {
     let leitor: Leitor = {...this.formulario.value}
     this.salvarLeitor(leitor)
     this.formulario.reset;
+
   }
 
 }
@@ -133,4 +135,6 @@ function UpdateActive(){
   document.getElementById('AcadLocal')?.classList.remove('active');
   document.getElementById('AcadColecao')?.classList.remove('active');
   document.getElementById('AEmprestimo')?.classList.remove('active');
+  document.getElementById('AConLeitor')?.classList.remove('active');
+  document.getElementById('AConlivro')?.classList.remove('active');
 }

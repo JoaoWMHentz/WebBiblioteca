@@ -33,7 +33,9 @@
           [columns]="columns"
           [paging]="paging"
           [searching]="searching"
-          [localization]="Language">
+          [localization]="Language"
+          [rowSelection]="rowSelection"
+          (selectedRows)="onSelectedRows($event)">
       </gui-grid>
     </div>
  </div>

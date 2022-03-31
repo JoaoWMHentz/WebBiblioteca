@@ -6,6 +6,7 @@ import { LocalService } from './../../../Services/local.service';
 import { Component, OnInit } from '@angular/core';
 import { CadSecaoModule } from './cad-secao.module';
 import { AppComponent } from 'src/app/app.component';
+import { GuiColumn, GuiPaging, GuiPagingDisplay, GuiSearching } from '@generic-ui/ngx-grid';
 @Component({
   selector: 'app-cad-secao',
   templateUrl: './cad-secao.component.html',
@@ -19,6 +20,41 @@ export class CadSecaoComponent implements OnInit {
 
   Language = AppComponent.localization;
 
+  source: Array<Secao> = [];
+
+  paging: GuiPaging = {
+		enabled: true,
+		page: 1,
+		pageSize: 5,
+		pageSizes: [5 ,10, 25, 50],
+		pagerTop: false,
+		pagerBottom: true,
+		display: GuiPagingDisplay.ADVANCED
+	};
+  searching: GuiSearching = {
+		enabled: true,
+		placeholder: 'Pesquisar...'
+	};
+
+  columns: Array<GuiColumn> = [
+    {
+      header: 'Código',
+      field: 'codSecao',
+      width: 70
+    },
+    {
+      header: 'Descrição Seção',
+      field: 'descricaoSecao',
+      width: 300
+    },
+    {
+      header: 'Descrição Local',
+      field: 'descricaoLocal',
+      width: 300
+    },
+
+];
+
   ngOnInit(): void {
     this.formulario = this.formbuilder.group({
       codSecao: ['0'],
@@ -30,6 +66,9 @@ export class CadSecaoComponent implements OnInit {
 
     this.localService.GetLocal().subscribe(locais => {
       locais.forEach(local => {UpdateOptionLocal(local)})})
+
+    this.secaoService.GetSecao().subscribe(secao => {this.source = secao})
+
   }
   SalvarSecao(secao: Secao){
     this.secaoService.PostSecao(secao).subscribe(
@@ -70,4 +109,6 @@ function UpdateActive(){
   AcadLocalActiva?.classList.remove('active');
   var AcadSecapActive = document.getElementById('AcadColecao');
   AcadSecapActive?.classList.remove('active');
+  document.getElementById('AConLeitor')?.classList.remove('active');
+  document.getElementById('AConlivro')?.classList.remove('active');
 }
